@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
+Route::middleware('auth')->group(function()
+{
+    Route::view('/', 'dashboard');
+});
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
