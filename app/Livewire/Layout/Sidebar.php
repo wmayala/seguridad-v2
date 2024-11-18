@@ -10,16 +10,16 @@ class Sidebar extends Component
         [
             'title' => 'CONTROLES',
             'options' => [
-                'Personal por actividad',
-                'Jubilados',
-                'Personal S. F.',
-                'Personal Empresas',
-                'Vehículos S. F.',
-                'Beneficiarios',
-                'Firmas Autorizadas',
+                ['label'=>'Personal por actividad','route'=>'activities.index'],
+                ['label'=>'Jubilados','route'=>'home'],
+                ['label'=>'Personal S. F.','route'=>'home'],
+                ['label'=>'Personal Empresas','route'=>'home'],
+                ['label'=>'Vehículos S. F.','route'=>'home'],
+                ['label'=>'Beneficiarios','route'=>'home'],
+                ['label'=>'Firmas Autorizadas','route'=>'home'],
             ],
         ],
-        [
+        /* [
             'title' => 'MANTENIMIENTO',
             'options' => [
                 'Actividades',
@@ -35,8 +35,13 @@ class Sidebar extends Component
                 'Usuarios',
                 'Roles',
             ],
-        ],
+        ], */
     ];
+
+    public function redirectTo($route)
+    {
+        return redirect($route);
+    }
 
     public function render()
     {
