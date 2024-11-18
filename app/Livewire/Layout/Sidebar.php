@@ -8,27 +8,32 @@ class Sidebar extends Component
 {
     public $sections = [
         [
-            'title' => 'Sección 1',
+            'title' => 'CONTROLES',
             'options' => [
-                'Opción 1.1',
-                'Opción 1.2',
-                'Opción 1.3',
+                'Personal por actividad',
+                'Jubilados',
+                'Personal S. F.',
+                'Personal Empresas',
+                'Vehículos S. F.',
+                'Beneficiarios',
+                'Firmas Autorizadas',
             ],
         ],
         [
-            'title' => 'Sección 2',
+            'title' => 'MANTENIMIENTO',
             'options' => [
-                'Opción 2.1',
-                'Opción 2.2',
-                'Opción 2.3',
+                'Actividades',
+                'Instituciones S. F.',
+                'Empresas',
+                'Tipo de Documentos',
+                'Tipo de Armamento',
             ],
         ],
         [
-            'title' => 'Sección 3',
+            'title' => 'USUARIOS',
             'options' => [
-                'Opción 3.1',
-                'Opción 3.2',
-                'Opción 3.3',
+                'Usuarios',
+                'Roles',
             ],
         ],
     ];
