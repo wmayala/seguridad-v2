@@ -18,12 +18,9 @@
                                 <ul class="ml-1">
                                     @foreach ($section['options'] as $option)
                                         <li class="py-1">
-
                                             <a href="{{ route($option['route']) }}" class="w-full text-start">
                                                 <div class="text-[#111e60] hover:bg-[#111e60] hover:text-white px-3 mx-2 w-100">{{ $option['label'] }}</div>
                                             </a>
-
-                                            {{-- <a href="{{ route('activities.index') }}">{{ $option['label'] }}</a> --}}
                                         </li>
                                     @endforeach
                                 </ul>
