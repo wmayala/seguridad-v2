@@ -13,7 +13,7 @@
                         </thead>
                         <tbody>
                             @foreach ($activities as $act)
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 hover:text-[#111e60]">
                                 <td class="px-3">{{ $act->name }}</td>
                                 <td class="px-3">{{ $act->email }}</td>
                             </tr>

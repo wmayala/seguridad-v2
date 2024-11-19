@@ -10,7 +10,7 @@ class Sidebar extends Component
         [
             'title' => 'CONTROLES',
             'options' => [
-                ['label'=>'Personal por actividad','route'=>'activities.index'],
+                ['label'=>'Personal por actividad','route'=>'home'],
                 ['label'=>'Jubilados','route'=>'home'],
                 ['label'=>'Personal S. F.','route'=>'home'],
                 ['label'=>'Personal Empresas','route'=>'home'],
@@ -19,23 +19,23 @@ class Sidebar extends Component
                 ['label'=>'Firmas Autorizadas','route'=>'home'],
             ],
         ],
-        /* [
+        [
             'title' => 'MANTENIMIENTO',
             'options' => [
-                'Actividades',
-                'Instituciones S. F.',
-                'Empresas',
-                'Tipo de Documentos',
-                'Tipo de Armamento',
+                ['label'=>'Actividades','route'=>'activities.index'],
+                ['label'=>'Instituciones S. F.','route'=>'home'],
+                ['label'=>'Empresas','route'=>'home'],
+                ['label'=>'Tipo de Documentos','route'=>'home'],
+                ['label'=>'Tipo de Armamento','route'=>'home'],
             ],
         ],
         [
             'title' => 'USUARIOS',
             'options' => [
-                'Usuarios',
-                'Roles',
+                ['label'=>'Usuarios','route'=>'home'],
+                ['label'=>'Roles','route'=>'home'],
             ],
-        ], */
+        ],
     ];
 
     public function redirectTo($route)
