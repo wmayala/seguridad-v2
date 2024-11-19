@@ -19,7 +19,7 @@
                                     @foreach ($section['options'] as $option)
                                         <li class="py-1">
                                             <a href="{{ route($option['route']) }}" class="w-full text-start">
-                                                <div class="text-[#111e60] hover:bg-[#111e60] hover:text-white px-3 mx-2 w-100">{{ $option['label'] }}</div>
+                                                <div class="text-[#111e60] hover:bg-[#111e60] hover:text-white p-2 mx-2 w-100">{{ $option['label'] }}</div>
                                             </a>
                                         </li>
                                     @endforeach

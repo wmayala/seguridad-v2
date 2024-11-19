@@ -23,7 +23,7 @@ class Sidebar extends Component
             'title' => 'MANTENIMIENTO',
             'options' => [
                 ['label'=>'Actividades','route'=>'activities.index'],
-                ['label'=>'Instituciones S. F.','route'=>'home'],
+                ['label'=>'Instituciones S. F.','route'=>'institutions.index'],
                 ['label'=>'Empresas','route'=>'home'],
                 ['label'=>'Tipo de Documentos','route'=>'home'],
                 ['label'=>'Tipo de Armamento','route'=>'home'],
