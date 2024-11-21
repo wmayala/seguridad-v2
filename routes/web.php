@@ -10,6 +10,8 @@ use App\Livewire\Institutions\Edit as InstitutionsEdit;
 use App\Livewire\Companies\Index as CompaniesIndex;
 use App\Livewire\Companies\Create as CompaniesCreate;
 use App\Livewire\Companies\Edit as CompaniesEdit;
+use App\Livewire\Users\Index as UsersIndex;
+use App\Livewire\Users\Edit as UsersEdit;
 
 Route::middleware('auth')->group(function()
 {
@@ -29,6 +31,10 @@ Route::middleware('auth')->group(function()
     Route::get('/companies', CompaniesIndex::class)->name('companies.index');
     Route::get('/companies/create', CompaniesCreate::class)->name('companies.create');
     Route::get('/companies/edit/{id}', CompaniesEdit::class)->name('companies.edit');
+
+    // RUTAS USUARIOS
+    Route::get('/users', UsersIndex::class)->name('users.index');
+    Route::get('/users/edit/{id}', UsersEdit::class)->name('users.edit');
 });
 
 require __DIR__.'/auth.php';
