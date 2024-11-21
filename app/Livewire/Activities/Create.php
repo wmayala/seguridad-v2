@@ -23,7 +23,7 @@ class Create extends Component
             'status'=>$this->status,
         ]);
 
-        session()->flash('msg','Actividad creada exitosamente!');
+        session()->flash('success','Actividad creada exitosamente!');
 
         return redirect()->route('activities.index');
     }

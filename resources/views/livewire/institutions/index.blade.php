@@ -28,7 +28,7 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <button wire:click="redirectTo('activities.edit',{{ $institution->id }})" class="px-2 py-1 bg-yellow-400 text-white rounded">Editar</button>
+                                    <button wire:click="redirectTo('institutions.edit',{{ $institution->id }})" class="px-2 py-1 bg-yellow-400 text-white rounded">Editar</button>
                                     <button wire:click="delete({{ $institution->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
                                 </td>
                             </tr>

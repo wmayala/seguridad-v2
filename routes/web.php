@@ -6,6 +6,7 @@ use App\Livewire\Activities\Create as ActivitiesCreate;
 use App\Livewire\Activities\Edit as ActivitiesEdit;
 use App\Livewire\Institutions\Create as InstitutionsCreate;
 use App\Livewire\Institutions\Index as InstitutionsIndex;
+use App\Livewire\Institutions\Edit as InstitutionsEdit;
 
 Route::middleware('auth')->group(function()
 {
@@ -19,6 +20,7 @@ Route::middleware('auth')->group(function()
     // RUTAS INSTITUCIONES
     Route::get('/institutions', InstitutionsIndex::class)->name('institutions.index');
     Route::get('/institutions/create', InstitutionsCreate::class)->name('institutions.create');
+    Route::get('/institutions/edit/{id}', InstitutionsEdit::class)->name('institutions.edit');
 });
 
 require __DIR__.'/auth.php';

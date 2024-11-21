@@ -30,6 +30,9 @@ class Edit extends Component
             'name'=>$this->name,
             'status'=>$this->status,
         ]);
+
+        session()->flash('success','Actividad actualizada exitosamente!');
+
         return redirect()->route('activities.index');
     }
 

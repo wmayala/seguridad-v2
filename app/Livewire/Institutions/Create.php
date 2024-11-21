@@ -23,7 +23,7 @@ class Create extends Component
             'status'=>$this->status,
         ]);
 
-        session()->flash('msg','Institución creada exitosamente!');
+        session()->flash('success','Institución creada exitosamente!');
 
         return redirect()->route('institutions.index');
     }
