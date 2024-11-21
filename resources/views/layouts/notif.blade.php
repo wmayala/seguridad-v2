@@ -27,7 +27,7 @@
     Swal.fire({
         title: "¡Eliminado!",
         text: "{{ session('delete') }}",
-        icon: "success"
+        icon: "danger"
     });
 </script>
 @endif
