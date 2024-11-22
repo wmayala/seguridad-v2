@@ -25,6 +25,7 @@ class Edit extends Component
     public function update()
     {
         $this->validate();
+
         $activity=Activity::findOrFail($this->id);
         $activity->update([
             'name'=>$this->name,
