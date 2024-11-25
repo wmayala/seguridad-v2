@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('institution');
             $table->date('expirationDate');
             $table->date('issueDate');
+            $table->string('photo');
             $table->boolean('status');
             $table->timestamps();
         });

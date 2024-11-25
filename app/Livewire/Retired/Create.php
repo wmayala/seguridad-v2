@@ -25,7 +25,7 @@ class Create extends Component
     {
         $this->validate();
 
-        $photoPath=$this->photo->store('photos','public');
+        $photoPath=$this->photo->store('retired','public');
 
         Retired::create([
             'record'=>$this->record,
