@@ -15,7 +15,7 @@ class Sidebar extends Component
                 ['label'=>'Personal S. F.','route'=>'home'],
                 ['label'=>'Personal Empresas','route'=>'home'],
                 ['label'=>'Vehículos S. F.','route'=>'home'],
-                ['label'=>'Beneficiarios','route'=>'home'],
+                ['label'=>'Beneficiarios','route'=>'beneficiaries.index'],
                 ['label'=>'Firmas Autorizadas','route'=>'home'],
             ],
         ],

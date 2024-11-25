@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Retired\Index as RetiredIndex;
 use App\Livewire\Retired\Create as RetiredCreate;
 use App\Livewire\Retired\Edit as RetiredEdit;
+use App\Livewire\Beneficiary\Index as BeneficiaryIndex;
+use App\Livewire\Beneficiary\Create as BeneficiaryCreate;
+use App\Livewire\Beneficiary\Edit as BeneficiaryEdit;
 use App\Livewire\Activities\Index as ActivitiesIndex;
 use App\Livewire\Activities\Create as ActivitiesCreate;
 use App\Livewire\Activities\Edit as ActivitiesEdit;
@@ -25,6 +28,11 @@ Route::middleware('auth')->group(function()
     Route::get('/retired', RetiredIndex::class)->name('retired.index');
     Route::get('/retired/create', RetiredCreate::class)->name('retired.create');
     Route::get('/retired/edit/{id}', RetiredEdit::class)->name('retired.edit');
+
+    // RUTAS BENEFICIARIOS
+    Route::get('/beneficiary', BeneficiaryIndex::class)->name('beneficiaries.index');
+    Route::get('/beneficiary/create', BeneficiaryCreate::class)->name('beneficiaries.create');
+    Route::get('/beneficiary/edit/{id}', BeneficiaryEdit::class)->name('beneficiaries.edit');
 
     // RUTAS ACTIVIDADES
     Route::get('/activities', ActivitiesIndex::class)->name('activities.index');
