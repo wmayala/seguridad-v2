@@ -3,11 +3,15 @@
 namespace App\Livewire\Retired;
 
 use App\Models\Retired;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Edit extends Component
 {
-    public $id, $record, $name, $position, $dui, $issueDate, $photo, $status;
+    use WithFileUploads;
+
+    public $id, $record, $name, $position, $dui, $issueDate, $photo, $existingPhoto, $status;
 
     protected $rules=[
         'record'=>'required|string',
@@ -26,25 +30,29 @@ class Edit extends Component
         $this->name=$retired->name;
         $this->dui=$retired->dui;
         $this->issueDate=$retired->issueDate;
-        $this->photo=$retired->photo;
+        $this->existingPhoto=$retired->photo;
         $this->status=$retired->status;
     }
 
     public function update()
     {
-        $this->validate();
+        $validatedData=$this->validate();
 
         $retired=Retired::findOrFail($this->id);
 
-        if($this->photo && is_object($this->photo))
+        if($this->photo)
         {
+            if($retired->photo && Storage::disk('public')->exists($retired->photo))
+            {
+                Storage::disk('public')->delete($retired->photo);
+            }
             $photoPath = $this->photo->store('photos', 'public');
+            $validatedData['photo'] = $photoPath;
         }
         else
         {
-            $photoPath = $retired->photo;
+            $validatedData['photo']=$retired->photo;
         }
-
 
         $retired->update([
             'record'=>$this->record,
@@ -52,7 +60,7 @@ class Edit extends Component
             'position'=>'Jubilado',
             'dui'=>$this->dui,
             'issueDate'=>$this->issueDate,
-            'photo'=>$photoPath,
+            'photo'=>$validatedData['photo'],
             'status'=>$this->status,
         ]);
 

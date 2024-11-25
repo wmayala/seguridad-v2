@@ -31,13 +31,26 @@
                                         <x-input-label class="uppercase">Fotografía</x-input-label>
                                         <input type="file" wire:model="photo" id="photo" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
                                         <div wire:loading wire:target="photo">Cargando imagen...</div>
+
                                         @if($photo)
                                             <div class="mt-4">
                                                 <x-input-label class="uppercase">Vista previa</x-input-label>
-                                                <div class="flex justify-center"><img src="{{ asset('storage/'.$photo) }}" alt="" width="140"></div>
+                                                <div class="flex justify-center">
+                                                    <img src="{{ $photo->temporaryUrl() }}" alt="Vista previa" width="140" class="rounded-md shadow-md">
+                                                </div>
+                                            </div>
+                                        @endif
+
+                                        @if(!$photo && $existingPhoto)
+                                            <div class="mt-4">
+                                                <x-input-label class="uppercase">Foto Actual</x-input-label>
+                                                <div class="flex justify-center">
+                                                    <img src="{{ asset('storage/'.$existingPhoto) }}" alt="Foto actual" width="140" class="rounded-md shadow-md">
+                                                </div>
                                             </div>
                                         @endif
                                     </div>
+                                    
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Estado del registro</x-input-label>
                                         <div class="flex justify-center gap-5">
