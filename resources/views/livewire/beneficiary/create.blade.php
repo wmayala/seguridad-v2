@@ -47,7 +47,7 @@
                                         <x-input-label class="uppercase">Institución</x-input-label>
                                         <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" wire:model="institution" id="institution">
                                             <option value="">Seleccionar</option>
-                                            <option value="1">Banco Central de Reserva</option>
+                                            <option value="BCR">Banco Central de Reserva</option>
                                         </select>
                                         @error('institution')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>

@@ -10,7 +10,7 @@ class Sidebar extends Component
         [
             'title' => 'CONTROLES',
             'options' => [
-                ['label'=>'Personal por actividad','route'=>'home'],
+                ['label'=>'Personal por actividad','route'=>'staff.index'],
                 ['label'=>'Jubilados','route'=>'retired.index'],
                 ['label'=>'Personal S. F.','route'=>'home'],
                 ['label'=>'Personal Empresas','route'=>'home'],

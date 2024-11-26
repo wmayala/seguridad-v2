@@ -13,23 +13,23 @@
                     <table class="w-full text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-lg text-white uppercase bg-[#111e60] dark:bg-gray-700 dark:text-gray-400">
                             <th></th>
-                            <th class="p-3">EXPEDIENTE</th>
-                            <th class="p-3">BENEFICIARIO</th>
-                            <th class="p-3">EMPLEADO</th>
-                            <th class="p-3">INSTITUCIÓN</th>
-                            <th class="p-3">VENCIMIENTO</th>
-                            <th class="p-3">ESTADO</th>
+                            <th class="text-center p-3">EXPEDIENTE</th>
+                            <th class="text-center p-3">BENEFICIARIO</th>
+                            <th class="text-center p-3">EMPLEADO</th>
+                            <th class="text-center p-3">INSTITUCIÓN</th>
+                            <th class="text-center p-3">VENCIMIENTO</th>
+                            <th class="text-center p-3">ESTADO</th>
                             <th class="text-center p-3">ACCIONES</th>
                         </thead>
                         <tbody>
                             @foreach ($beneficiaries as $beneficiary)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 hover:text-[#111e60]">
                                 <td class="text-lg p-3"><img src="{{ asset('storage/'.$beneficiary->photo) }}" alt="" width="100"></td>
-                                <td class="text-lg p-3">{{ $beneficiary->record }}</td>
+                                <td class="text-lg text-center p-3">{{ $beneficiary->record }}</td>
                                 <td class="text-lg p-3">{{ $beneficiary->name }}</td>
                                 <td class="text-lg p-3">{{ $beneficiary->empName }}</td>
-                                <td class="text-lg p-3">{{ $beneficiary->institution }}</td>
-                                <td class="text-lg p-3">{{ $beneficiary->expirationDate }}</td>
+                                <td class="text-lg text-center p-3">{{ $beneficiary->institution }}</td>
+                                <td class="text-lg text-center p-3">{{ $beneficiary->expirationDate }}</td>
                                 <td class="text-lg p-3">
                                     @if($beneficiary->status==1)
                                         <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs uppercase text-green-700 ring-1 ring-inset ring-green-600/20">Activo</span>

@@ -46,8 +46,8 @@ class Edit extends Component
             {
                 Storage::disk('public')->delete($retired->photo);
             }
-            $photoPath = $this->photo->store('photos', 'public');
-            $validatedData['photo'] = $photoPath;
+            $photoPath=$this->photo->store('retired', 'public');
+            $validatedData['photo']=$photoPath;
         }
         else
         {
