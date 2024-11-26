@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class StaffByActivity extends Model
 {
     use HasFactory;
-    
+
     protected $fillable=[
         'record',
         'zone',
         'name',
-        'activity',
+        'activity_id',
         'gender',
         'birthPlace',
         'birthDate',

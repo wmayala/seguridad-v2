@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Livewire\Staffbyactivity\Index as StaffIndex;
-
+use App\Livewire\Staffbyactivity\Create as StaffCreate;
+use App\Livewire\Staffbyactivity\Edit as StaffEdit;
 use App\Livewire\Retired\Index as RetiredIndex;
 use App\Livewire\Retired\Create as RetiredCreate;
 use App\Livewire\Retired\Edit as RetiredEdit;
@@ -29,6 +30,8 @@ Route::middleware('auth')->group(function()
 
     // RUTAS PERSONAL POR ACTIVIDAD
     Route::get('/staff', StaffIndex::class)->name('staff.index');
+    Route::get('/staff/create', StaffCreate::class)->name('staff.create');
+    Route::get('/staff/edit/{id}', StaffEdit::class)->name('staff.edit');
 
     // RUTAS JUBILADOS
     Route::get('/retired', RetiredIndex::class)->name('retired.index');

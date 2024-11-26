@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('record');
             $table->boolean('zone');
             $table->string('name');
-            $table->string('activity_id');
+            $table->integer('activity_id');
             $table->boolean('gender');
             $table->string('birthPlace');
             $table->date('birthDate');
