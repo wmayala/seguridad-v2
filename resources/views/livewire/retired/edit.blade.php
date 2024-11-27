@@ -49,8 +49,8 @@
                                                 </div>
                                             </div>
                                         @endif
+
                                     </div>
-                                    
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Estado del registro</x-input-label>
                                         <div class="flex justify-center gap-5">
