@@ -22,7 +22,7 @@ class Create extends Component
         'institution'=>'required|string',
         'expirationDate'=>'required|date',
         'issueDate'=>'required|date',
-        'photo'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
+        'photo'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'status'=>'boolean',
     ];
 

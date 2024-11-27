@@ -5,17 +5,19 @@ namespace App\Livewire\Staffbyactivity;
 use App\Models\Activity;
 use App\Models\StaffByActivity;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Create extends Component
 {
-    public $selectedActivity;
-    public $record, $zone, $name, $activity, $gender, $birthPlace, $birthDate, $address, $phone, $mobile, $dui, $duiPlace, $duiDate, $duiProfession, $driverLicense, $workPlace, $workAddress, $workPhone, $spouse, $motherName, $fatherName, $parentsAddress, $skinColor, $registerDate, $expirationDate, $photo, $status;
+    use WithFileUploads;
+
+    public $record, $zone, $name, $activity_id, $gender, $birthPlace, $birthDate, $address, $phone, $mobile, $dui, $duiPlace, $duiDate, $duiProfession, $driverLicense, $workPlace, $workAddress, $workPhone, $spouse, $motherName, $fatherName, $parentsAddress, $skinColor, $registerDate, $expirationDate, $photo, $status;
 
     protected $rules=[
         'record'=>'required|string',
-        'zone'=>'required|boolean',
+        'zone'=>'required|integer',
         'name'=>'required|string|max:255',
-        'activity'=>'required',
+        'activity_id'=>'required',
         'gender'=>'required|boolean',
         'birthPlace'=>'required|string',
         'birthDate'=>'required|date',
@@ -34,11 +36,11 @@ class Create extends Component
         'motherName'=>'nullable|string',
         'fatherName'=>'nullable|string',
         'parentsAddress'=>'required|string',
-        'skinColor'=>'required|string',
+        'skinColor'=>'nullable|string',
         'registerDate'=>'required|date',
         'expirationDate'=>'nullable|date',
-        'photo'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
-        'status'=>'required|boolean',
+        'photo'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'status'=>'boolean',
     ];
 
     public function create()
@@ -51,6 +53,7 @@ class Create extends Component
             'record'=>$this->record,
             'zone'=>$this->zone,
             'name'=>$this->name,
+            'activity_id'=>$this->activity_id,
             'gender'=>$this->gender,
             'birthPlace'=>$this->birthPlace,
             'birthDate'=>$this->birthDate,

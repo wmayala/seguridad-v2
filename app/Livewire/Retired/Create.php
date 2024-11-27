@@ -17,7 +17,7 @@ class Create extends Component
         'name'=>'required|string|max:255',
         'dui'=>'required|string|max:10',
         'issueDate'=>'required|date',
-        'photo'=>'image|mimes:jpeg,png,jpg,gif|max:2048',
+        'photo'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'status'=>'boolean'
     ];
 

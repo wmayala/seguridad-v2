@@ -27,7 +27,12 @@
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 hover:text-[#111e60]">
                                 <td class="text-lg p-3"><img src="{{ asset('storage/'.$st->photo) }}" alt="" width="100"></td>
                                 <td class="text-lg text-center p-3">{{ $st->record }}</td>
-                                <td class="text-lg p-3">{{ $st->zone }}</td>
+                                <td class="text-lg p-3">
+                                    {{ $st->zone===0?'No Definida':
+                                        ($st->zone===1?'Clase A':
+                                        ($st->zone===2?'Clase B':
+                                        ($st->zone===3?'Clase C':''))) }}
+                                </td>
                                 <td class="text-lg p-3">{{ $st->name }}</td>
                                 <td class="text-lg text-center p-3">{{ $st->dui }}</td>
                                 <td class="text-lg text-center p-3">{{ $st->registerDate }}</td>

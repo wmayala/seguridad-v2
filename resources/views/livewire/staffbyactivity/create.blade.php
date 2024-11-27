@@ -31,7 +31,7 @@
                                                        value="2">
                                                 <label for="zoneB">Clase B</label>
                                             </div>
-                                            <div class="flex gap-2">
+                                            <div class="flex gap-3">
                                                 <input class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
                                                        wire:model="zone"
                                                        type="radio"
@@ -51,16 +51,17 @@
                                     </div>
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Nombre</x-input-label>
-                                        <x-text-input id="name" wire:model="name" placeholder="Escriba el nombre completo"></x-text-input>
+                                        <x-text-input id="name" wire:model="name" placeholder="Nombre completo de la persona"></x-text-input>
                                         @error('name')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Actividad/Cargo</x-input-label>
                                         <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" wire:model="activity_id" id="activity_id">
-                                            <option selected>Seleccionar actividad</option>
+                                            <option value="" selected>Seleccionar</option>
                                             @foreach($activities as $activity)
                                                 <option value="{{ $activity->id }}">{{ $activity->name }}</option>
                                             @endforeach
+                                        </select>
                                         @error('activity_id')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
@@ -71,7 +72,8 @@
                                                        wire:model="gender"
                                                        type="radio"
                                                        id="masculino"
-                                                       value="1">
+                                                       value="1"
+                                                       checked>
                                                 <label for="masculino">Masculino</label>
                                             </div>
                                             <div class="flex gap-2">
@@ -83,10 +85,11 @@
                                                 <label for="femenino">Femenino</label>
                                             </div>
                                         </div>
+                                        @error('gender')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
-                                        <x-input-label class="uppercase">Lugar de Nacimiento</x-input-label>
-                                        <x-text-input id="birthPlace" wire:model="birthPlace" placeholder="Ej.: San Salvador, San Salvador"></x-text-input>
+                                        <x-input-label class="uppercase">Lugar de nacimiento</x-input-label>
+                                        <x-text-input id="birthPlace" wire:model="birthPlace" placeholder="Ej.: San Salvador, San Salvador" autofocus></x-text-input>
                                         @error('birthPlace')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
@@ -95,18 +98,18 @@
                                         @error('birthDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
-                                        <x-input-label class="uppercase">Direccción particular</x-input-label>
+                                        <x-input-label class="uppercase">Dirección particular</x-input-label>
                                         <x-text-input id="address" wire:model="address" placeholder="Ej.: Colonia Las Rosas, calle 1, pasaje 1, casa #1, San Salvador"></x-text-input>
                                         @error('address')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Teléfono</x-input-label>
-                                        <x-text-input id="phone" wire:model="phone" maxlength="8" placeholder="Ej.: 22445566"></x-text-input>
+                                        <x-text-input id="phone" wire:model="phone" maxlength="8" placeholder="Ej.: 22334455"></x-text-input>
                                         @error('phone')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Móvil</x-input-label>
-                                        <x-text-input id="mobile" wire:model="mobile" maxlength="8" placeholder="Ej.: 88779955"></x-text-input>
+                                        <x-text-input id="mobile" wire:model="mobile" maxlength="8" placeholder="Ej.: 77889900"></x-text-input>
                                         @error('mobile')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
@@ -131,12 +134,12 @@
                                     </div>
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Licencia de conducir</x-input-label>
-                                        <x-text-input id="driverLicense" wire:model="driverLicense"  maxlength="14" placeholder="Ej.: 06150809881005"></x-text-input>
+                                        <x-text-input id="driverLicense" wire:model="driverLicense" maxlength="14" placeholder="Ej.: 06145588991001"></x-text-input>
                                         @error('driverLicense')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Lugar de trabajo</x-input-label>
-                                        <x-text-input id="workPlace" wire:model="workPlace" placeholder="Ej.: Company S.A."></x-text-input>
+                                        <x-text-input id="workPlace" wire:model="workPlace" placeholder="Ej.: La Compañía S.A."></x-text-input>
                                         @error('workPlace')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
@@ -146,24 +149,34 @@
                                     </div>
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Teléfono de trabajo</x-input-label>
-                                        <x-text-input id="workPhone" wire:model="workPhone" maxlength="8" placeholder="Ej.: 22445566"></x-text-input>
+                                        <x-text-input id="workPhone" wire:model="workPhone" maxlength="8" placeholder="Ej.: 22334455"></x-text-input>
                                         @error('workPhone')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
-
-
-
                                     <div class="flex flex-col justify-center">
-                                        <x-input-label class="uppercase">Institución</x-input-label>
-                                        <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" wire:model="institution" id="institution">
-                                            <option value="">Seleccionar</option>
-                                            <option value="BCR">Banco Central de Reserva</option>
-                                        </select>
-                                        @error('institution')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
+                                        <x-input-label class="uppercase">Cónyuge</x-input-label>
+                                        <x-text-input id="spouse" wire:model="spouse" placeholder="Nombre completo de cónyuge"></x-text-input>
                                     </div>
                                     <div class="flex flex-col justify-center">
-                                        <x-input-label class="uppercase">Fecha de emisión</x-input-label>
-                                        <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="date" wire:model="issueDate" id="issueDate">
-                                        @error('issueDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
+                                        <x-input-label class="uppercase">Nombre de la madre</x-input-label>
+                                        <x-text-input id="motherName" wire:model="motherName" placeholder="Nombre completo de la madre"></x-text-input>
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Nombre del padre</x-input-label>
+                                        <x-text-input id="fatherName" wire:model="fatherName" placeholder="Nombre completo del padre"></x-text-input>
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Dirección de los padres</x-input-label>
+                                        <x-text-input id="parentsAddress" wire:model="parentsAddress" placeholder="Ej.: Colonia Las Rosas, calle 1, pasaje 1, casa #1, San Salvador"></x-text-input>
+                                    </div>
+                                    @error('parentsAddress')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
+                                    <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Color de piel</x-input-label>
+                                        <x-text-input id="skinColor" wire:model="skinColor" placeholder="Ej.: Trigueño(a)"></x-text-input>
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Fecha de registro</x-input-label>
+                                        <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="date" wire:model="registerDate" id="registerDate">
+                                        @error('registerDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Fecha de vencimiento</x-input-label>
@@ -205,7 +218,7 @@
                                     </div>
                                     <div class="flex justify-center gap-3 mt-5">
                                         <x-primary-button>Guardar</x-primary-button>
-                                        <a href="{{ route('beneficiaries.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-[#111e60]-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                        <a href="{{ route('retired.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-[#111e60]-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                             Cancelar
                                         </a>
                                     </div>
