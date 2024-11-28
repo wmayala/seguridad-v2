@@ -12,7 +12,7 @@ class Sidebar extends Component
             'options' => [
                 ['label'=>'Personal por actividad','route'=>'staff.index'],
                 ['label'=>'Jubilados','route'=>'retired.index'],
-                ['label'=>'Personal S. F.','route'=>'home'],
+                ['label'=>'Personal S. F.','route'=>'sfstaff.index'],
                 ['label'=>'Personal Empresas','route'=>'home'],
                 ['label'=>'Vehículos S. F.','route'=>'home'],
                 ['label'=>'Beneficiarios','route'=>'beneficiaries.index'],

@@ -8,6 +8,9 @@ use App\Livewire\Staffbyactivity\Edit as StaffEdit;
 use App\Livewire\Retired\Index as RetiredIndex;
 use App\Livewire\Retired\Create as RetiredCreate;
 use App\Livewire\Retired\Edit as RetiredEdit;
+use App\Livewire\Sfstaff\Index as SFStaffIndex;
+use App\Livewire\Sfstaff\Create as SFStaffCreate;
+use App\Livewire\Sfstaff\Edit as SFStaffEdit;
 use App\Livewire\Beneficiary\Index as BeneficiaryIndex;
 use App\Livewire\Beneficiary\Create as BeneficiaryCreate;
 use App\Livewire\Beneficiary\Edit as BeneficiaryEdit;
@@ -23,6 +26,7 @@ use App\Livewire\Companies\Edit as CompaniesEdit;
 
 use App\Livewire\Users\Index as UsersIndex;
 use App\Livewire\Users\Edit as UsersEdit;
+use App\Models\SFStaff;
 
 Route::middleware('auth')->group(function()
 {
@@ -37,6 +41,11 @@ Route::middleware('auth')->group(function()
     Route::get('/retired', RetiredIndex::class)->name('retired.index');
     Route::get('/retired/create', RetiredCreate::class)->name('retired.create');
     Route::get('/retired/edit/{id}', RetiredEdit::class)->name('retired.edit');
+
+    // RUTAS PERSONAL SISTEMA FINANCIERO
+    Route::get('/sfstaff', SFStaffIndex::class)->name('sfstaff.index');
+    Route::get('/sfstaff/create', SFStaffCreate::class)->name('sfstaff.create');
+    Route::get('/sfstaff/edit/{id}', SFStaffEdit::class)->name('sfstaff.edit');
 
     // RUTAS BENEFICIARIOS
     Route::get('/beneficiary', BeneficiaryIndex::class)->name('beneficiaries.index');

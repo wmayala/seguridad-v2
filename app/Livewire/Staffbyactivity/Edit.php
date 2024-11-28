@@ -134,7 +134,6 @@ class Edit extends Component
     public function render()
     {
         $activities=Activity::all();
-
         return view('livewire.staffbyactivity.edit',['activities'=>$activities]);
     }
 }
