@@ -3,8 +3,8 @@
         <div class="mx-full sm:px-6 lg:px-8 w-full">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div class="text-[#111e60] text-bold text-3xl mb-5">AGREGAR PERSONAL SISTEMA FINANCIERO</div>
-                        <form wire:submit.prevent="create">
+                    <div class="text-[#111e60] text-bold text-3xl mb-5">AGREGAR PERSONAL DE EMPRESA</div>
+                        <form wire:submit.prevent="create" >
                             <div class="flex justify-center">
                                 <div class="flex flex-col gap-5 w-1/2">
                                     <div class="flex flex-col justify-center">
@@ -60,6 +60,54 @@
                                         @error('position')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Género</x-input-label>
+                                        <div class="flex justify-center gap-5">
+                                            <div class="flex gap-3">
+                                                <input class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                                       wire:model="gender"
+                                                       type="radio"
+                                                       id="masculino"
+                                                       value="1"
+                                                       checked>
+                                                <label for="masculino">Masculino</label>
+                                            </div>
+                                            <div class="flex gap-2">
+                                                <input class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                                       wire:model="gender"
+                                                       type="radio"
+                                                       id="femenino"
+                                                       value="0">
+                                                <label for="femenino">Femenino</label>
+                                            </div>
+                                        </div>
+                                        @error('gender')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Lugar de nacimiento</x-input-label>
+                                        <x-text-input id="birthPlace" wire:model="birthPlace" placeholder="Ej.: San Salvador, San Salvador" autofocus></x-text-input>
+                                        @error('birthPlace')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Fecha de nacimiento</x-input-label>
+                                        <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="date" wire:model="birthDate" id="birthDate">
+                                        @error('birthDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Dirección particular</x-input-label>
+                                        <x-text-input id="address" wire:model="address" placeholder="Ej.: Colonia Las Rosas, calle 1, pasaje 1, casa #1, San Salvador"></x-text-input>
+                                        @error('address')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Teléfono</x-input-label>
+                                        <x-text-input id="phone" wire:model="phone" maxlength="8" placeholder="Ej.: 22334455"></x-text-input>
+                                        @error('phone')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Móvil</x-input-label>
+                                        <x-text-input id="mobile" wire:model="mobile" maxlength="8" placeholder="Ej.: 77889900"></x-text-input>
+                                        @error('mobile')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
+                                    </div>
+                                    <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">DUI</x-input-label>
                                         <x-text-input id="dui" wire:model="dui" maxlength="10" placeholder="Ej.: 12345678-9"></x-text-input>
                                         @error('dui')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
@@ -75,31 +123,62 @@
                                         @error('duiDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
-                                        <x-input-label class="uppercase">Dirección particular</x-input-label>
-                                        <x-text-input id="address" wire:model="address" placeholder="Ej.: Colonia Las Rosas, calle 1, pasaje 1, casa #1, San Salvador"></x-text-input>
-                                        @error('address')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
+                                        <x-input-label class="uppercase">Profesión según DUI</x-input-label>
+                                        <x-text-input id="duiProfession" wire:model="duiProfession" placeholder="Ej.: Empleado"></x-text-input>
+                                        @error('duiProfession')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
-                                        <x-input-label class="uppercase">Lugar de nacimiento</x-input-label>
-                                        <x-text-input id="birthPlace" wire:model="birthPlace" placeholder="Ej.: San Salvador, San Salvador" autofocus></x-text-input>
-                                        @error('birthPlace')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
+                                        <x-input-label class="uppercase">Licencia de conducir</x-input-label>
+                                        <x-text-input id="driverLicense" wire:model="driverLicense" maxlength="14" placeholder="Ej.: 06145588991001"></x-text-input>
+                                        @error('driverLicense')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
-                                        <x-input-label class="uppercase">Fecha de nacimiento</x-input-label>
-                                        <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="date" wire:model="birthDate" id="birthDate">
-                                        @error('birthDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
+                                        <x-input-label class="uppercase">Lugar de trabajo</x-input-label>
+                                        <x-text-input id="workPlace" wire:model="workPlace" placeholder="Ej.: La Compañía S.A."></x-text-input>
+                                        @error('workPlace')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
-                                        <x-input-label class="uppercase">Institución</x-input-label>
-                                        <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" wire:model="institution_id" id="institution_id">
+                                        <x-input-label class="uppercase">Dirección de trabajo</x-input-label>
+                                        <x-text-input id="workAddress" wire:model="workAddress" placeholder="Ej.: San Salvador, San Salvador"></x-text-input>
+                                        @error('workAddress')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Teléfono de trabajo</x-input-label>
+                                        <x-text-input id="workPhone" wire:model="workPhone" maxlength="8" placeholder="Ej.: 22334455"></x-text-input>
+                                        @error('workPhone')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Cónyuge</x-input-label>
+                                        <x-text-input id="spouse" wire:model="spouse" placeholder="Nombre completo de cónyuge"></x-text-input>
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Nombre de la madre</x-input-label>
+                                        <x-text-input id="motherName" wire:model="motherName" placeholder="Nombre completo de la madre"></x-text-input>
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Nombre del padre</x-input-label>
+                                        <x-text-input id="fatherName" wire:model="fatherName" placeholder="Nombre completo del padre"></x-text-input>
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Dirección de los padres</x-input-label>
+                                        <x-text-input id="parentsAddress" wire:model="parentsAddress" placeholder="Ej.: Colonia Las Rosas, calle 1, pasaje 1, casa #1, San Salvador"></x-text-input>
+                                    </div>
+                                    @error('parentsAddress')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
+                                    <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Color de piel</x-input-label>
+                                        <x-text-input id="skinColor" wire:model="skinColor" placeholder="Ej.: Trigueño(a)"></x-text-input>
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Empresa</x-input-label>
+                                        <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" wire:model="company_id" id="company_id">
                                             <option selected>Seleccionar</option>
-                                            @foreach($institutions as $institution)
-                                                <option value="{{ $institution->id }}">{{ $institution->name }}</option>
+                                            @foreach($companies as $company)
+                                                <option value="{{ $company->id }}">{{ $company->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="flex flex-col justify-center">
-                                        <x-input-label class="uppercase">Fecha de emisión</x-input-label>
+                                        <x-input-label class="uppercase">Fecha de registro</x-input-label>
                                         <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="date" wire:model="issueDate" id="issueDate">
                                         @error('issueDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
@@ -143,7 +222,7 @@
                                     </div>
                                     <div class="flex justify-center gap-3 mt-5">
                                         <x-primary-button>Guardar</x-primary-button>
-                                        <a href="{{ route('sfstaff.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-[#111e60]-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                        <a href="{{ route('cstaff.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-[#111e60]-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                             Cancelar
                                         </a>
                                     </div>

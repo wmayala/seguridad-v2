@@ -23,7 +23,7 @@ return new class extends Migration
             $table->date('expirationDate');
             $table->date('issueDate');
             $table->string('photo');
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }
