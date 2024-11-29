@@ -20,6 +20,10 @@ use App\Livewire\Vehicles\Edit as VehiclesEdit;
 use App\Livewire\Beneficiary\Index as BeneficiaryIndex;
 use App\Livewire\Beneficiary\Create as BeneficiaryCreate;
 use App\Livewire\Beneficiary\Edit as BeneficiaryEdit;
+use App\Livewire\Signatures\Index as SignaturesIndex;
+// use App\Livewire\Beneficiary\Create as BeneficiaryCreate;
+// use App\Livewire\Beneficiary\Edit as BeneficiaryEdit;
+
 use App\Livewire\Activities\Index as ActivitiesIndex;
 use App\Livewire\Activities\Create as ActivitiesCreate;
 use App\Livewire\Activities\Edit as ActivitiesEdit;
@@ -65,6 +69,11 @@ Route::middleware('auth')->group(function()
     Route::get('/beneficiary', BeneficiaryIndex::class)->name('beneficiaries.index');
     Route::get('/beneficiary/create', BeneficiaryCreate::class)->name('beneficiaries.create');
     Route::get('/beneficiary/edit/{id}', BeneficiaryEdit::class)->name('beneficiaries.edit');
+
+    // RUTAS FIRMAS AUTORIZADAS
+    Route::get('/signatures', SignaturesIndex::class)->name('signatures.index');
+    //Route::get('/beneficiary/create', BeneficiaryCreate::class)->name('beneficiaries.create');
+    //Route::get('/beneficiary/edit/{id}', BeneficiaryEdit::class)->name('beneficiaries.edit');
 
     // RUTAS ACTIVIDADES
     Route::get('/activities', ActivitiesIndex::class)->name('activities.index');
