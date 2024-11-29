@@ -14,7 +14,7 @@ class Sidebar extends Component
                 ['label'=>'Jubilados','route'=>'retired.index'],
                 ['label'=>'Personal S. F.','route'=>'sfstaff.index'],
                 ['label'=>'Personal Empresas','route'=>'cstaff.index'],
-                ['label'=>'Vehículos S. F.','route'=>'home'],
+                ['label'=>'Vehículos S. F.','route'=>'vehicles.index'],
                 ['label'=>'Beneficiarios','route'=>'beneficiaries.index'],
                 ['label'=>'Firmas Autorizadas','route'=>'home'],
             ],
@@ -25,8 +25,8 @@ class Sidebar extends Component
                 ['label'=>'Actividades','route'=>'activities.index'],
                 ['label'=>'Instituciones S. F.','route'=>'institutions.index'],
                 ['label'=>'Empresas','route'=>'companies.index'],
-                ['label'=>'Tipo de Documentos','route'=>'home'],
-                ['label'=>'Tipo de Armamento','route'=>'home'],
+                /* ['label'=>'Tipo de Documentos','route'=>'home'],
+                ['label'=>'Tipo de Armamento','route'=>'home'], */
             ],
         ],
         [

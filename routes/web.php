@@ -14,6 +14,9 @@ use App\Livewire\Sfstaff\Edit as SFStaffEdit;
 use App\Livewire\Cstaff\Index as CStaffIndex;
 use App\Livewire\Cstaff\Create as CStaffCreate;
 use App\Livewire\Cstaff\Edit as CStaffEdit;
+use App\Livewire\Vehicles\Index as VehiclesIndex;
+use App\Livewire\Vehicles\Create as VehiclesCreate;
+use App\Livewire\Vehicles\Edit as VehiclesEdit;
 use App\Livewire\Beneficiary\Index as BeneficiaryIndex;
 use App\Livewire\Beneficiary\Create as BeneficiaryCreate;
 use App\Livewire\Beneficiary\Edit as BeneficiaryEdit;
@@ -52,6 +55,11 @@ Route::middleware('auth')->group(function()
     Route::get('/cstaff', CStaffIndex::class)->name('cstaff.index');
     Route::get('/cstaff/create', CStaffCreate::class)->name('cstaff.create');
     Route::get('/cstaff/edit/{id}', CStaffEdit::class)->name('cstaff.edit');
+
+    // RUTAS VEHÍCULOS
+    Route::get('/vehicles', VehiclesIndex::class)->name('vehicles.index');
+    Route::get('/vehicles/create', VehiclesCreate::class)->name('vehicles.create');
+    Route::get('/vehicles/edit/{id}', VehiclesEdit::class)->name('vehicles.edit');
 
     // RUTAS BENEFICIARIOS
     Route::get('/beneficiary', BeneficiaryIndex::class)->name('beneficiaries.index');

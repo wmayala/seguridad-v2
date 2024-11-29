@@ -37,6 +37,7 @@ class Create extends Component
         'fatherName'=>'nullable|string',
         'parentsAddress'=>'required|string',
         'skinColor'=>'nullable|string',
+        'company_id'=>'integer',
         'issueDate'=>'required|date',
         'expirationDate'=>'nullable|date',
         'photo'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
