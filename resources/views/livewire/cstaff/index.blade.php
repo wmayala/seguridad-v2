@@ -44,10 +44,10 @@
                                         <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs uppercase text-red-700 ring-1 ring-inset ring-red-600/10">Inactivo</span>
                                     @endif
                                 </td>
-                                {{-- <td class="text-center">
+                                <td class="text-center">
                                     <button wire:click="redirectTo('cstaff.edit',{{ $cstaff->id }})" class="px-2 py-1 bg-yellow-400 text-white rounded">Editar</button>
                                     <button wire:click="delete({{ $cstaff->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
-                                </td> --}}
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
