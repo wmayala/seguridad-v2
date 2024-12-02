@@ -3,15 +3,18 @@
 namespace App\Livewire\Signatures;
 
 use App\Models\AuthSignatures;
+use App\Models\Institution;
 use Livewire\Component;
 
 class Index extends Component
 {
-    public $signatures;
+    public $signatures, $institutions;
 
     public function mount()
     {
         $this->signatures=AuthSignatures::all();
+        $this->institutions=Institution::all();
+
     }
 
     public function redirectTo($route, $param)

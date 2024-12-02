@@ -7,14 +7,15 @@
                         @include('layouts.notif')
                         <div class="text-[#111e60] text-bold text-3xl mb-5">FIRMAS AUTORIZADAS</div>
                         <div>
-                            <a href="{{ route('retired.create') }}" class="inline-flex items-center px-4 py-2 bg-[#111e60] border border-transparent rounded-md font-semibold text-md text-white uppercase tracking-widest hover:bg-[#111e60] focus:bg-[#111e60]-700 active:bg-[#111e60]-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Agregar documento</a>
+                            <a href="{{ route('signatures.create') }}" class="inline-flex items-center px-4 py-2 bg-[#111e60] border border-transparent rounded-md font-semibold text-md text-white uppercase tracking-widest hover:bg-[#111e60] focus:bg-[#111e60]-700 active:bg-[#111e60]-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Agregar documento</a>
                         </div>
                     </div>
                     <table class="w-full text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-lg text-white uppercase bg-[#111e60] dark:bg-gray-700 dark:text-gray-400">
-                            <th></th>
+
                             <th class="text-center p-3">EXPEDIENTE</th>
                             <th class="text-center p-3">INSTITUCIÓN</th>
+                            <th class="text-center p-3">DOCUMENTO</th>
                             <th class="text-center p-3">DESCRIPCIÓN</th>
                             <th class="text-center p-3">EMISIÓN</th>
                             <th class="text-center p-3">VENCIMIENTO</th>
@@ -24,25 +25,34 @@
                         <tbody>
                             @foreach ($signatures as $sign)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 hover:text-[#111e60]">
-                                <td class="text-lg p-3">{{ $sign->record }}</td>
+                                <td class="text-lg text-center p-3">{{ $sign->record }}</td>
                                 <td class="text-lg p-3">
-                                    {{ $sign->institution_id }}
-                                    <br>
-                                    {{ $sign->document }}
+                                    @foreach($institutions as $institution)
+                                        @if($sign->id===$institution->id)
+                                            {{ $institution->name }}
+                                        @endif
+                                    @endforeach
                                 </td>
-                                <td class="text-lg p-3">{{ $sign->description }}</td>
-                                <td class="text-lg p-3">{{ $sign->issueDate }}</td>
-                                <td class="text-lg p-3">{{ $sign->expiration }}</td>
-                                <td class="text-lg p-3">
-                                    @if($ret->status==1)
+                                <td class="text-lg text-center p-3">
+                                    <a href="{{ asset('storage').'/'.$sign->document }}" target="_blank">
+                                        <div class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-small rounded-full text-xs px-3 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" >
+                                            Ver documento
+                                        </div>
+                                    </a>
+                                </td>
+                                <td class="text-lg text-center p-3">{{ $sign->description?'':'N/A' }}</td>
+                                <td class="text-lg text-center p-3">{{ $sign->issueDate }}</td>
+                                <td class="text-lg text-center p-3">{{ $sign->expirationDate }}</td>
+                                <td class="text-lg text-center p-3">
+                                    @if($sign->status==1)
                                         <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs uppercase text-green-700 ring-1 ring-inset ring-green-600/20">Activo</span>
                                     @else
                                         <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs uppercase text-red-700 ring-1 ring-inset ring-red-600/10">Inactivo</span>
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <button wire:click="redirectTo('retired.edit',{{ $ret->id }})" class="px-2 py-1 bg-yellow-400 text-white rounded">Editar</button>
-                                    <button wire:click="delete({{ $ret->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
+                                    <button wire:click="redirectTo('signatures.edit',{{ $sign->id }})" class="px-2 py-1 bg-yellow-400 text-white rounded">Editar</button>
+                                    <button wire:click="delete({{ $sign->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
                                 </td>
                             </tr>
                             @endforeach
