@@ -8,10 +8,16 @@ use Livewire\Component;
 class Index extends Component
 {
     public $SFstaff;
+    public $search='';
 
     public function mount()
     {
         $this->SFstaff=SFStaff::all();
+    }
+
+    public function updatedSearch()
+    {
+        $this->SFstaff=SFStaff::where('name','like','%'.$this->search.'%')->get();
     }
 
     public function redirectTo($route, $param)
@@ -24,7 +30,7 @@ class Index extends Component
         SFStaff::findOrFail($id)->delete();
         $this->SFstaff=SFStaff::all();
     }
-    
+
     public function render()
     {
         return view('livewire.sfstaff.index');

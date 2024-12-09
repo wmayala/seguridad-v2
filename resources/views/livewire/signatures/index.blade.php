@@ -52,7 +52,7 @@
                                 </td>
                                 <td class="text-center">
                                     <button wire:click="redirectTo('signatures.edit',{{ $sign->id }})" class="px-2 py-1 bg-yellow-400 text-white rounded">Editar</button>
-                                    <button wire:click="delete({{ $sign->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
+                                    <button onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()" wire:click="delete({{ $sign->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
                                 </td>
                             </tr>
                             @endforeach

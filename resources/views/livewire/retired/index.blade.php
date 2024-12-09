@@ -10,6 +10,15 @@
                             <a href="{{ route('retired.create') }}" class="inline-flex items-center px-4 py-2 bg-[#111e60] border border-transparent rounded-md font-semibold text-md text-white uppercase tracking-widest hover:bg-[#111e60] focus:bg-[#111e60]-700 active:bg-[#111e60]-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Agregar jubilado</a>
                         </div>
                     </div>
+                    <div class="flex justify-center my-4">
+                        <x-text-input
+                            id="search"
+                            class="w-3/5"
+                            wire:model.live="search"
+                            placeholder="Escriba el nombre del personal a buscar..."
+                            autofocus>
+                        </x-text-input>
+                    </div>
                     <table class="w-full text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-lg text-white uppercase bg-[#111e60] dark:bg-gray-700 dark:text-gray-400">
                             <th></th>
@@ -37,7 +46,7 @@
                                 </td>
                                 <td class="text-center">
                                     <button wire:click="redirectTo('retired.edit',{{ $ret->id }})" class="px-2 py-1 bg-yellow-400 text-white rounded">Editar</button>
-                                    <button wire:click="delete({{ $ret->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
+                                    <button onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()" wire:click="delete({{ $ret->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
                                 </td>
                             </tr>
                             @endforeach

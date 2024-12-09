@@ -8,12 +8,18 @@ use Livewire\Component;
 class Index extends Component
 {
     public $institutions;
+    public $search='';
 
     public function mount()
     {
         $this->institutions=Institution::all();
     }
 
+    public function updatedSearch()
+    {
+        $this->institutions=Institution::where('name','like','%'.$this->search.'%')->get();
+    }
+    
     public function redirectTo($route, $param)
     {
         return redirect()->route($route, $param);

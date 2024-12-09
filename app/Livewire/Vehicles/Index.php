@@ -8,10 +8,16 @@ use Livewire\Component;
 class Index extends Component
 {
     public $vehicles;
+    public $search='';
 
     public function mount()
     {
         $this->vehicles=SFVehicles::all();
+    }
+
+    public function updatedSearch()
+    {
+        $this->vehicles=SFVehicles::where('plate','like','%'.$this->search.'%')->get();
     }
 
     public function redirectTo($route, $param)
