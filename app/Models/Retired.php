@@ -14,5 +14,6 @@ class Retired extends Model
         'issueDate',
         'photo',
         'status',
+        'expirationDate'
     ];
 }

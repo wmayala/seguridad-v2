@@ -11,7 +11,7 @@ class Edit extends Component
 {
     use WithFileUploads;
 
-    public $id, $record, $name, $position, $dui, $issueDate, $photo, $existingPhoto, $status;
+    public $id, $record, $name, $position, $dui, $issueDate, $photo, $existingPhoto, $status, $expirationDate;
 
     protected $rules=[
         'record'=>'required|string',
@@ -32,6 +32,7 @@ class Edit extends Component
         $this->issueDate=$retired->issueDate;
         $this->existingPhoto=$retired->photo;
         $this->status=$retired->status;
+        $this->expirationDate=$retired->expirationDate;
     }
 
     public function update()
