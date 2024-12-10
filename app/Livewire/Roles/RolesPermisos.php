@@ -61,9 +61,6 @@ class RolesPermisos extends Component
         $this->roles = Bouncer::role()->all();
         $this->permisos = Bouncer::ability()->all();
 
-        $usuario = Auth::user();
-        logger('$usuario', [$usuario]);
-
         return view('livewire.roles.roles-permisos');
     }
 }
