@@ -6,11 +6,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use LdapRecord\Laravel\Auth\AuthenticatesWithLdap;
+use LdapRecord\Laravel\Auth\HasLdapUser;
+use LdapRecord\Laravel\Auth\LdapAuthenticatable;
+use Silber\Bouncer\Database\HasRolesAndAbilities;
 
-class User extends Authenticatable
+class User extends Authenticatable implements LdapAuthenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasLdapUser;
+    use Notifiable, AuthenticatesWithLdap;
+    use HasRolesAndAbilities;
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +26,12 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'username',
+        'domain',
+        'guid',
+        'email_verified_at',
         'password',
+        'remember_token',
         'status',
     ];
 
@@ -30,6 +41,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
+        'guid',
         'password',
         'remember_token',
     ];
@@ -45,5 +57,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function guardName()
+    {
+        return 'web';
     }
 }
