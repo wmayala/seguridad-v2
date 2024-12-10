@@ -28,6 +28,11 @@
                                         @error('issueDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Fecha de vencimiento</x-input-label>
+                                        <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="date" wire:model="expirationDate" id="expirationDate">
+                                        @error('expirationDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
+                                    </div>
+                                    <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Fotografía</x-input-label>
                                         <input type="file" wire:model="photo" id="photo" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
                                         <div wire:loading wire:target="photo">Cargando imagen...</div>

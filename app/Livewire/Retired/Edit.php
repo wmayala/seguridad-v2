@@ -18,6 +18,7 @@ class Edit extends Component
         'name'=>'required|string|max:255',
         'dui'=>'required|string|max:10',
         'issueDate'=>'required|date',
+        'expirationDate'=>'required|date',
         'photo'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'status'=>'boolean'
     ];
@@ -28,11 +29,12 @@ class Edit extends Component
         $this->id=$retired->id;
         $this->record=$retired->record;
         $this->name=$retired->name;
+        $this->position=$retired->position;
         $this->dui=$retired->dui;
         $this->issueDate=$retired->issueDate;
+        $this->expirationDate=$retired->expirationDate;
         $this->existingPhoto=$retired->photo;
         $this->status=$retired->status;
-        $this->expirationDate=$retired->expirationDate;
     }
 
     public function update()
@@ -61,6 +63,7 @@ class Edit extends Component
             'position'=>'Jubilado',
             'dui'=>$this->dui,
             'issueDate'=>$this->issueDate,
+            'expirationDate'=>$this->expirationDate,
             'photo'=>$validatedData['photo'],
             'status'=>$this->status,
         ]);

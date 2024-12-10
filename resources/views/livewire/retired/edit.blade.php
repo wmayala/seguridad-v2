@@ -41,6 +41,11 @@
                                     @enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
+                                    <x-input-label class="uppercase">Fecha de vencimiento</x-input-label>
+                                    <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="date" wire:model="expirationDate" id="expirationDate">
+                                    @error('expirationDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
+                                </div>
+                                <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fotografía</x-input-label>
                                     <input type="file" wire:model="photo" id="photo" accept="image/*"
                                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
@@ -85,53 +90,92 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+                                {{-- CARNET FRENTE --}}
+
+                                {{-- HAY QUE AJUSTAR LA FOTO Y CREAR EL CROPPER --}}
+
                                 <div class="flex justify-center gap-3 mt-5">
                                     <div class="grid grid-cols-[auto_1fr] border-4 border-green-600 ">
                                         <div>
-                                            <div class=" border border-black">
+                                            <div class="border border-black">
                                                 <div>
-
-                                                    <img class="max-h-32 w-full object-contain" src="{{url('/images/avatar.jpg')}}" alt="Image"/>
-
-
+                                                    <img class="object-contain h-36 w-32" src="{{ asset('storage/' . $existingPhoto) }}" alt="Image"/>
                                                 </div>
                                             </div>
-                                            <div>{{ $record }}</div>
+                                            <div class="text-center text-xl mt-6">Exp. No.</div>
+                                            <div class="text-center text-2xl font-bold">{{ $record }}</div>
                                         </div>
                                         <div>
-                                            <div class="border border-black w-full pl-2 py-2">logo</div>
+                                            <div class="flex border border-black w-full pl-2 py-2">
+                                                <img src="{{ asset('assets/img/logo_bcr.png') }}" alt="Logo BCR" width="60px">
+                                                <span class="text-xl text-center font-bold uppercase">Banco Central de Reserva de El Salvador</span>
+                                            </div>
                                             <div class="flex flex-row border pl-2  border-black py-2">
                                                 <div>Nombre: </div>
                                                 <div class="flex flex-col pl-3">
-                                                    <span class="text-2xl uppercase">{{ $name }}</span>
-
+                                                    <span class="text-xl uppercase">{{ $name }}</span>
                                                 </div>
                                             </div>
                                             <div class="flex flex-row border pl-2 border-black py-2">
                                                 <div>Cargo: </div>
-                                                <div class="uppercase pl-3 text-2xl">Jubilado</div>
+                                                <div class="uppercase pl-3 text-xl">{{ $position }}</div>
                                             </div>
                                             <div class="flex flew-row justify-between border border-black">
                                                 <div class="flex flex-col pl-2">
                                                     <div>Dui No.</div>
                                                     <div class="text-center">{{ $dui }}</div>
                                                 </div>
-                                                <div class="flex flex-col pl-2">
+                                                <div class="flex flex-col pr-2">
                                                     <div>Vencimiento</div>
                                                     <div class="text-center">{{ $expirationDate }}</div>
                                                 </div>
                                             </div>
                                             <div class="flex flex-col text-center pl-2 w-full border border-black">
-                                                <div>
-                                                    Firma
+                                                <div class="flex justify-center relative h-10">
+                                                    <img class="absolute w-10" src="{{ asset('assets/img/firma-removebg.png') }}" alt="Firma Portador" >
                                                 </div>
-                                                <div>
+                                                <div class="mb-2">
                                                     Firma del Portador
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- FIN CARNET FRENTE --}}
+
+                                {{-- CARNET PARTE TRASERA --}}
+                                <div class="flex justify-center gap-3 mt-5">
+                                    <div class="grid grid-cols-[auto_1fr] border border-gray-900 ">
+                                        <div>
+                                            <div class="flex w-full pl-2 py-2">
+                                                <p class="text-justify mx-2 p-3">
+                                                    Este carnet debe portarlo en forma visible al ingreso y durante su permanencia en el BCR.
+                                                    En caso de extravío o pérdida notificar al Tel.: 2281-8850. El costo de reposición por pérdida
+                                                    es de $10.00
+                                                </p>
+                                            </div>
+                                            <div class="flex flex-col text-center pl-2 w-full">
+                                                <div class="flex justify-center">
+                                                    <img src="{{ asset('assets/img/gs-sign.jpeg') }}" alt="Firma GS" width="275px">
+                                                </div>
+                                                <div class="mb-3">
+                                                    Autorizado
+                                                    <br>
+                                                    Gerencia de Seguridad Bancaria
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
+                                </div>
+                                {{-- FIN CARNET PARTE TRASERA --}}
+
+                                <div class="flex justify-center">
+                                    <button class="px-4 py-2 bg-green-800 text-white rounded-md hover:bg-green-600 font-semibold text-sm uppercase">
+                                        Generar carnet
+                                    </button>
                                 </div>
                                 <div class="flex justify-center gap-3 mt-5">
                                     <x-primary-button>Guardar</x-primary-button>

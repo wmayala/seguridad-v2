@@ -10,13 +10,14 @@ class Create extends Component
 {
     use WithFileUploads;
 
-    public $record, $name, $position, $dui, $issueDate, $photo, $status;
+    public $record, $name, $position, $dui, $issueDate, $expirationDate, $photo, $status;
 
     protected $rules=[
         'record'=>'required|string',
         'name'=>'required|string|max:255',
         'dui'=>'required|string|max:10',
         'issueDate'=>'required|date',
+        'expirationDate'=>'required|date',
         'photo'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'status'=>'boolean'
     ];
@@ -33,6 +34,7 @@ class Create extends Component
             'position'=>'Jubilado',
             'dui'=>$this->dui,
             'issueDate'=>$this->issueDate,
+            'expirationDate'=>$this->expirationDate,
             'photo'=>$photoPath,
             'status'=>$this->status,
         ]);

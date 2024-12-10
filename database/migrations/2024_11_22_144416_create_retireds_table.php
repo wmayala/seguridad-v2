@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('position')->default('JUBILADO');
             $table->string('dui');
             $table->date('issueDate');
+            $table->date('expirationDate');
             $table->string('photo');
             $table->boolean('status')->default(1);
             $table->timestamps();

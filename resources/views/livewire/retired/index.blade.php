@@ -22,22 +22,22 @@
                     <table class="w-full text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-lg text-white uppercase bg-[#111e60] dark:bg-gray-700 dark:text-gray-400">
                             <th></th>
-                            <th class="p-3">EXPEDIENTE</th>
-                            <th class="p-3">NOMBRE</th>
-                            <th class="p-3">DUI</th>
-                            <th class="p-3">EMISIÓN</th>
-                            <th class="p-3">ESTADO</th>
+                            <th class="text-center p-3">EXPEDIENTE</th>
+                            <th class="text-center p-3">NOMBRE</th>
+                            <th class="text-center p-3">DUI</th>
+                            <th class="text-center p-3">EMISIÓN</th>
+                            <th class="text-center p-3">ESTADO</th>
                             <th class="text-center p-3">ACCIONES</th>
                         </thead>
                         <tbody>
                             @foreach ($retired as $ret)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 hover:text-[#111e60]">
                                 <td class="text-lg p-3"><img src="{{ asset('storage/'.$ret->photo) }}" alt="" width="100"></td>
-                                <td class="text-lg p-3">{{ $ret->record }}</td>
+                                <td class="text-center text-lg p-3">{{ $ret->record }}</td>
                                 <td class="text-lg p-3">{{ $ret->name }}</td>
-                                <td class="text-lg p-3">{{ $ret->dui }}</td>
-                                <td class="text-lg p-3">{{ $ret->issueDate }}</td>
-                                <td class="text-lg p-3">
+                                <td class="text-center text-lg p-3">{{ $ret->dui }}</td>
+                                <td class="text-center text-lg p-3">{{ $ret->issueDate }}</td>
+                                <td class="text-center text-lg p-3">
                                     @if($ret->status==1)
                                         <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs uppercase text-green-700 ring-1 ring-inset ring-green-600/20">Activo</span>
                                     @else
