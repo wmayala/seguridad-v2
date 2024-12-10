@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IDCardController;
 use Illuminate\Support\Facades\Route;
 
 use App\Livewire\Staffbyactivity\Index as StaffIndex;
@@ -92,6 +93,9 @@ Route::middleware('auth')->group(function()
     // RUTAS USUARIOS
     Route::get('/users', UsersIndex::class)->name('users.index');
     Route::get('/users/edit/{id}', UsersEdit::class)->name('users.edit');
+
+    // RUTA PARA GENERACIÓN DE CARNET
+    Route::get('/generate-card/{id}',[IDCardController::class, 'retiredCard'])->name('retired-card');
 });
 
 require __DIR__.'/auth.php';

@@ -91,7 +91,6 @@
                                     </div>
                                 </div>
 
-
                                 {{-- CARNET FRENTE --}}
                                 <div class="flex justify-center gap-3 mt-5">
                                     <div class="grid grid-cols-[auto_1fr] border-4 border-green-600 ">
@@ -100,6 +99,8 @@
                                                 <div class="h-40 w-32 border overflow-hidden">
                                                     <img id="originalImage" src="{{ asset('storage/' . $existingPhoto) }}" alt="Imagen original" class="cursor-pointer w-full h-full object-cover">
                                                 </div>
+
+                                                <!-- CROPPER -->
                                                 <div id="cropperModal" class="fixed inset-0 bg-black bg-opacity-50  items-center justify-center hidden z-50">
                                                     <div class="bg-white rounded-lg p-4 w-[90%] md:w-1/2">
                                                     <h2 class="text-xl font-bold mb-4">Ajusta tu imagen</h2>
@@ -112,6 +113,8 @@
                                                     </div>
                                                     </div>
                                                 </div>
+                                                <!-- FIN CROPPER -->
+
                                             </div>
                                             <div class="text-center text-xl mt-6">Exp. No.</div>
                                             <div class="text-center text-2xl font-bold">{{ $record }}</div>
@@ -182,10 +185,13 @@
                                 {{-- FIN CARNET PARTE TRASERA --}}
 
                                 <div class="flex justify-center">
-                                    <button class="px-4 py-2 bg-green-800 text-white rounded-md hover:bg-green-600 font-semibold text-sm uppercase">
+                                    <a href="{{ route('retired-card', $id) }}" class="px-4 py-2 bg-green-800 text-white rounded-md hover:bg-green-600 font-semibold text-sm uppercase">
                                         Generar carnet
-                                    </button>
+                                    </a>
                                 </div>
+
+                                {{ $id }}
+                                
                                 <div class="flex justify-center gap-3 mt-5">
                                     <x-primary-button>Guardar</x-primary-button>
                                     <a href="{{ route('retired.index') }}"
@@ -202,49 +208,4 @@
     </div>
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const originalImage = document.getElementById('originalImage');
-      const imageToCrop = document.getElementById('imageToCrop');
-      const cropperModal = document.getElementById('cropperModal');
-      const cropButton = document.getElementById('cropButton');
-      const cancelButton = document.getElementById('cancelButton');
 
-      let cropper = null;
-
-      // Mostrar el modal y activar Cropper.js al hacer clic en la imagen
-      originalImage.addEventListener('click', () => {
-        cropperModal.classList.remove('hidden'); // Mostrar modal
-        cropper = new Cropper(imageToCrop, {
-          aspectRatio: 1, // Relación de aspecto 1:1
-          viewMode: 1,    // Mantener la imagen dentro del canvas
-        });
-      });
-
-      // Recortar la imagen y actualizar el elemento original
-      cropButton.addEventListener('click', (event) => {
-        event.preventDefault();
-
-        const croppedCanvas = cropper.getCroppedCanvas({
-          width: 256, // Ancho del resultado
-          height: 256, // Altura del resultado
-        });
-
-        // Actualizar la imagen original
-        const croppedDataUrl = croppedCanvas.toDataURL();
-        originalImage.src = croppedDataUrl;
-
-        // Limpiar el modal y destruir el cropper
-        cropper.destroy();
-        cropper = null;
-        cropperModal.classList.add('hidden'); // Ocultar modal
-      });
-
-      // Cancelar y cerrar el modal
-      cancelButton.addEventListener('click', () => {
-        cropper.destroy();
-        cropper = null;
-        cropperModal.classList.add('hidden'); // Ocultar modal
-      });
-    });
-</script>
