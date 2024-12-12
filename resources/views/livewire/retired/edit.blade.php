@@ -93,7 +93,7 @@
 
 
                                 {{-- CARNET FRENTE --}}
-                                <div id="retired-card-front" class="w-[514.25px] h-[322px] border-4 border-green-600">
+                                <div id="retired-card-front" class="w-[514.25px] h-[322px] border-8 border-green-600">
                                     <div class="flex justify-center gap-3">
                                         <div class="grid grid-cols-[auto_1fr]">
                                             <div>
@@ -124,7 +124,7 @@
                                             <div class="mx-2">
                                                 <div class="flex border-b border-black w-full pl-2 py-2">
                                                     <img src="{{ asset('assets/img/logo_bcr.png') }}" alt="Logo BCR" width="60px">
-                                                    <span class="text-xl text-center font-bold uppercase">Banco Central de Reserva de El Salvador</span>
+                                                    <span class="text-lg  text-center font-bold uppercase mx-2">Banco Central de Reserva de El Salvador</span>
                                                 </div>
                                                 <div class="flex flex-row border-b pl-2  border-black py-2">
                                                     <div>Nombre: </div>
@@ -150,7 +150,7 @@
                                                     <div class="flex justify-center relative h-10">
                                                         <img class="absolute w-10" src="{{ asset('assets/img/firma-removebg.png') }}" alt="Firma Portador" >
                                                     </div>
-                                                    <div class="mt-4">
+                                                    <div class="mt-2">
                                                         Firma del Portador
                                                     </div>
                                                 </div>
@@ -161,7 +161,7 @@
                                 {{-- FIN CARNET FRENTE --}}
 
                                 {{-- CARNET REVERSO --}}
-                                <div id="retired-card-back" class="border border-gray-900 w-[514.25px] h-[322px]">
+                                <div id="retired-card-back" class="border border-gray-200 w-[514.25px] h-[322px]">
                                     <div class="flex justify-center gap-3">
                                         <div class="grid grid-cols-[auto_1fr]  ">
                                             <div>
