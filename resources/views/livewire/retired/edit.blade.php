@@ -210,8 +210,3 @@
         </div>
     </div>
 </div>
-
-@section('scripts')
-    <script src="{{ asset('js/print-card.js') }}" ></script>
-@endsection
-
