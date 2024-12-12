@@ -91,19 +91,18 @@
                                     </div>
                                 </div>
 
-
                                 {{-- CARNET FRENTE --}}
-                                <div id="retired-card-front" class="w-[514.25px] h-[322px] border-8 border-green-600">
+                                <div id="retired-card-front" class="w-[517px] h-[325px] border-[12px] border-green-600">
                                     <div class="flex justify-center gap-3">
                                         <div class="grid grid-cols-[auto_1fr]">
                                             <div>
-                                                <div class="border-black ">
+                                                <div class="border border-black ">
                                                     <div class="w-32 h-40 overflow-hidden">
                                                         <img id="originalImage" src="{{ asset('storage/' . $existingPhoto) }}" alt="Imagen original" class="object-cover w-full h-full cursor-pointer">
                                                     </div>
 
                                                     <!-- CROPPER -->
-                                                    <div id="cropperModal" class="fixed inset-0 z-50 items-center justify-center hidden bg-black bg-opacity-50">
+                                                    <div id="cropperModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
                                                         <div class="bg-white rounded-lg p-4 w-[90%] md:w-1/2">
                                                         <h2 class="mb-4 text-xl font-bold">Ajusta tu imagen</h2>
                                                         <div class="w-full h-64 overflow-hidden">
