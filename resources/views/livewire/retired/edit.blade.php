@@ -93,7 +93,7 @@
 
 
                                 {{-- CARNET FRENTE --}}
-                                <div id="retired-card-front" class="w-[514.25px] h-[322px] border-8 border-green-600">
+                                <div id="retired-card-front" class="w-[517px] h-[325px] border-[12px] border-green-600">
                                     <div class="flex justify-center gap-3">
                                         <div class="grid grid-cols-[auto_1fr]">
                                             <div>
@@ -150,7 +150,7 @@
                                                     <div class="flex justify-center relative h-10">
                                                         <img class="absolute w-10" src="{{ asset('assets/img/firma-removebg.png') }}" alt="Firma Portador" >
                                                     </div>
-                                                    <div class="mt-2">
+                                                    <div class="mb-2">
                                                         Firma del Portador
                                                     </div>
                                                 </div>
