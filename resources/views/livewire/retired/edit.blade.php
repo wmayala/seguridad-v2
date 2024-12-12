@@ -137,7 +137,7 @@
                                                     </div>
                                                     <div class="flex flex-row py-1 border-b border-black">
                                                         <div>Cargo: </div>
-                                                        <div class="pl-3 text-lg font-semibold uppercase flex items-center ">{{ $position }}</div>
+                                                        <div class="pl-2 text-lg font-semibold uppercase flex items-center ">{{ $position }}</div>
                                                     </div>
                                                     <div class="flex justify-between py-1 border-b border-black flew-row">
                                                         <div class="flex flex-col pl-2">
