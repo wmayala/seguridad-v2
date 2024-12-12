@@ -1,18 +1,18 @@
-<div class="flex h-dvh overflow-y-auto">
-    <div class="py-6 flex w-full">
-        <div class="mx-full sm:px-6 lg:px-8 w-full">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+<div class="flex overflow-y-auto h-dvh">
+    <div class="flex w-full py-6">
+        <div class="w-full mx-full sm:px-6 lg:px-8">
+            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="text-[#111e60] text-bold text-3xl mb-5">ACTUALIZAR DATOS DE JUBILADO</div>
                     <form wire:submit.prevent="update">
                         <div class="flex justify-center">
-                            <div class="flex flex-col gap-5 w-1/2">
+                            <div class="flex flex-col w-1/2 gap-5">
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Expediente No.</x-input-label>
                                     <x-text-input id="record" wire:model="record" placeholder="###-###"
                                         autofocus></x-text-input>
                                     @error('record')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                                        <span class="text-sm text-red-500">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
@@ -20,7 +20,7 @@
                                     <x-text-input id="name" wire:model="name"
                                         placeholder="Nombre del jubilado"></x-text-input>
                                     @error('name')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                                        <span class="text-sm text-red-500">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
@@ -28,22 +28,22 @@
                                     <x-text-input id="dui" wire:model="dui"
                                         placeholder="12345678-9"></x-text-input>
                                     @error('dui')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                                        <span class="text-sm text-red-500">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fecha de emisión</x-input-label>
                                     <input
-                                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                        class="border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                         type="date" wire:model="issueDate" id="issueDate">
                                     @error('issueDate')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                                        <span class="text-sm text-red-500">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fecha de vencimiento</x-input-label>
-                                    <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="date" wire:model="expirationDate" id="expirationDate">
-                                    @error('expirationDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
+                                    <input class="border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" type="date" wire:model="expirationDate" id="expirationDate">
+                                    @error('expirationDate')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fotografía</x-input-label>
@@ -93,50 +93,50 @@
 
 
                                 {{-- CARNET FRENTE --}}
-                                <div id="retired-card-front" class="w-[514.25px] h-[322px] border-8 border-green-600">
+                                <div id="retired-card-front" class="w-[517px] h-[325px] border-[12px]  border-green-600">
                                     <div class="flex justify-center gap-3">
                                         <div class="grid grid-cols-[auto_1fr]">
                                             <div>
-                                                <div class=" border-black">
-                                                    <div class="h-40 w-32  overflow-hidden">
-                                                        <img id="originalImage" src="{{ asset('storage/' . $existingPhoto) }}" alt="Imagen original" class="cursor-pointer w-full h-full object-cover">
+                                                <div class="border-black ">
+                                                    <div class="w-32 h-40 overflow-hidden">
+                                                        <img id="originalImage" src="{{ asset('storage/' . $existingPhoto) }}" alt="Imagen original" class="object-cover w-full h-full cursor-pointer">
                                                     </div>
 
                                                     <!-- CROPPER -->
-                                                    <div id="cropperModal" class="fixed inset-0 bg-black bg-opacity-50  items-center justify-center hidden z-50">
+                                                    <div id="cropperModal" class="fixed inset-0 z-50 items-center justify-center hidden bg-black bg-opacity-50">
                                                         <div class="bg-white rounded-lg p-4 w-[90%] md:w-1/2">
-                                                        <h2 class="text-xl font-bold mb-4">Ajusta tu imagen</h2>
+                                                        <h2 class="mb-4 text-xl font-bold">Ajusta tu imagen</h2>
                                                         <div class="w-full h-64 overflow-hidden">
                                                             <img id="imageToCrop" src="{{ asset('storage/' . $existingPhoto) }}" alt="Para recortar" class="w-full">
                                                         </div>
                                                         <div class="flex justify-end mt-4 space-x-2">
-                                                            <button id="cancelButton" class="bg-gray-500 text-white px-4 py-2 rounded">Cancelar</button>
-                                                            <button id="cropButton" class="bg-blue-500 text-white px-4 py-2 rounded">Recortar</button>
+                                                            <button id="cancelButton" class="px-4 py-2 text-white bg-gray-500 rounded">Cancelar</button>
+                                                            <button id="cropButton" class="px-4 py-2 text-white bg-blue-500 rounded">Recortar</button>
                                                         </div>
                                                         </div>
                                                     </div>
                                                     <!-- FIN CROPPER -->
 
                                                 </div>
-                                                <div class="text-center text-xl mt-6">Exp. No.</div>
-                                                <div class="text-center text-2xl font-bold">{{ $record }}</div>
+                                                <div class="mt-6 text-xl text-center">Exp. No.</div>
+                                                <div class="text-2xl font-bold text-center">{{ $record }}</div>
                                             </div>
                                             <div class="mx-2">
-                                                <div class="flex border-b border-black w-full pl-2 py-2">
+                                                <div class="flex w-full py-2 pl-2 border-b border-black">
                                                     <img src="{{ asset('assets/img/logo_bcr.png') }}" alt="Logo BCR" width="60px">
-                                                    <span class="text-lg  text-center font-bold uppercase mx-2">Banco Central de Reserva de El Salvador</span>
+                                                    <span class="mx-2 text-lg font-bold text-center uppercase">Banco Central de Reserva de El Salvador</span>
                                                 </div>
-                                                <div class="flex flex-row border-b pl-2  border-black py-2">
+                                                <div class="flex flex-row py-2 pl-2 border-b border-black">
                                                     <div>Nombre: </div>
                                                     <div class="flex flex-col pl-3">
                                                         <span class="text-xl uppercase">{{ $name }}</span>
                                                     </div>
                                                 </div>
-                                                <div class="flex flex-row border-b pl-2 border-black py-2">
+                                                <div class="flex flex-row py-2 pl-2 border-b border-black">
                                                     <div>Cargo: </div>
-                                                    <div class="uppercase pl-3 text-xl">{{ $position }}</div>
+                                                    <div class="pl-3 text-xl uppercase">{{ $position }}</div>
                                                 </div>
-                                                <div class="flex flew-row justify-between border-b border-black py-2">
+                                                <div class="flex justify-between py-2 border-b border-black flew-row">
                                                     <div class="flex flex-col pl-2">
                                                         <div>Dui No.</div>
                                                         <div class="text-center">{{ $dui }}</div>
@@ -146,11 +146,11 @@
                                                         <div class="text-center">{{ $expirationDate }}</div>
                                                     </div>
                                                 </div>
-                                                <div class="flex flex-col text-center pl-2 w-full  border-black">
-                                                    <div class="flex justify-center relative h-10">
+                                                <div class="flex flex-col w-full pl-2 text-center border-black">
+                                                    <div class="relative flex justify-center h-10">
                                                         <img class="absolute w-10" src="{{ asset('assets/img/firma-removebg.png') }}" alt="Firma Portador" >
                                                     </div>
-                                                    <div class="mt-2">
+                                                    <div class="mb-2">
                                                         Firma del Portador
                                                     </div>
                                                 </div>
@@ -165,14 +165,14 @@
                                     <div class="flex justify-center gap-3">
                                         <div class="grid grid-cols-[auto_1fr]  ">
                                             <div>
-                                                <div class="flex w-full pl-2 py-2">
-                                                    <p class="text-justify mx-2 p-3">
+                                                <div class="flex w-full py-2 pl-2">
+                                                    <p class="p-3 mx-2 text-justify">
                                                         Este carnet debe portarlo en forma visible al ingreso y durante su permanencia en el BCR.
                                                         En caso de extravío o pérdida notificar al Tel.: 2281-8850. El costo de reposición por pérdida
                                                         es de $10.00
                                                     </p>
                                                 </div>
-                                                <div class="flex flex-col text-center pl-2 w-full">
+                                                <div class="flex flex-col w-full pl-2 text-center">
                                                     <div class="flex justify-center my-2">
                                                         <img src="{{ asset('assets/img/gs-sign.jpeg') }}" alt="Firma GS" width="275px">
                                                     </div>
@@ -190,7 +190,7 @@
                                 {{-- FIN CARNET REVERSO --}}
 
                                 <div class="flex justify-center">
-                                    <button id="printButton" class="px-4 py-2 bg-green-800 text-white rounded-md hover:bg-green-600 font-semibold text-sm uppercase">
+                                    <button id="printButton" class="px-4 py-2 text-sm font-semibold text-white uppercase bg-green-800 rounded-md hover:bg-green-600">
                                         Generar carnet
                                     </button>
                                 </div>
