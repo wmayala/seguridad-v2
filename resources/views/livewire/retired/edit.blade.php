@@ -93,9 +93,9 @@
 
 
                                 {{-- CARNET FRENTE --}}
-                                <div id="retired-card-front">
-                                    <div class="flex justify-center gap-3 mt-5">
-                                        <div class="grid grid-cols-[auto_1fr] border-4 border-green-600 ">
+                                <div id="retired-card-front" class="w-[514.25px] h-[322px] border-4 border-green-600">
+                                    <div class="flex justify-center gap-3">
+                                        <div class="grid grid-cols-[auto_1fr]">
                                             <div>
                                                 <div class="border border-black">
                                                     <div class="h-40 w-32 border overflow-hidden">
@@ -150,7 +150,7 @@
                                                     <div class="flex justify-center relative h-10">
                                                         <img class="absolute w-10" src="{{ asset('assets/img/firma-removebg.png') }}" alt="Firma Portador" >
                                                     </div>
-                                                    <div class="mb-2">
+                                                    <div class="mb-2 mt-6">
                                                         Firma del Portador
                                                     </div>
                                                 </div>
@@ -161,7 +161,7 @@
                                 {{-- FIN CARNET FRENTE --}}
 
                                 {{-- CARNET REVERSO --}}
-                                <div id="retired-card-back">
+                                <div id="retired-card-back" class="w-[514.25px] h-[322px]">
                                     <div class="flex justify-center gap-3 mt-5">
                                         <div class="grid grid-cols-[auto_1fr] border border-gray-900 ">
                                             <div>
