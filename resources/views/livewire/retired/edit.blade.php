@@ -126,22 +126,20 @@
                                                         <img src="{{ asset('assets/img/logo_bcr.png') }}" alt="Logo BCR" width="60px">
                                                         <span class="mx-2 text-lg font-bold text-center uppercase">Banco Central de Reserva de El Salvador</span>
                                                     </div>
-                                                    <div class="flex flex-row pl-2 border-b border-black">
-                                                        <div>
-                                                            Nombre:
-                                                            <br>
-                                                            <span class="text-lg font-semibold uppercase flex items-center">{{ $name }}</span>
+                                                    <div class="flex flex-col gap-1 pl-2 border-b border-black">
+                                                        <span>Nombre: </span>
+                                                        <span class="text-lg font-semibold uppercase flex items-center">{{ $name }}</span>
 
-                                                        </div>
+
                                                         {{-- <div class="flex flex-col pl-3">
                                                             <span class="text-sm font-semibold uppercase flex items-center">{{ $name }}</span>
                                                         </div> --}}
                                                     </div>
-                                                    <div class="flex flex-row py-2 pl-2 border-b border-black">
+                                                    <div class="flex flex-row py-1 pl-2 border-b border-black">
                                                         <div>Cargo: </div>
                                                         <div class="pl-3 text-lg font-semibold uppercase flex items-center ">{{ $position }}</div>
                                                     </div>
-                                                    <div class="flex justify-between py-2 border-b border-black flew-row">
+                                                    <div class="flex justify-between py-1 border-b border-black flew-row">
                                                         <div class="flex flex-col pl-2">
                                                             <div>Dui No.</div>
                                                             <div class="text-center">{{ $dui }}</div>
@@ -170,7 +168,7 @@
                                         <div class="flex justify-center gap-3">
                                             <div class="grid grid-cols-[auto_1fr]  ">
                                                 <div>
-                                                    <div class="flex w-full py-2 pl-2">
+                                                    <div class="flex w-full py-2">
                                                         <p class="p-3 mx-2 text-justify">
                                                             Este carnet debe portarlo en forma visible al ingreso y durante su permanencia en el BCR.
                                                             En caso de extravío o pérdida notificar al Tel.: 2281-8850. El costo de reposición por pérdida
