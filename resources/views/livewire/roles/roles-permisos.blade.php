@@ -43,14 +43,15 @@
 
                 @if ($nuevoRol)
                     <div>
-                        <input type="text"
+                        <input type="text" wire:model="nombreNuevoRol"
                             class="rounded-md m-3 focus:ring-opacity-25 border-transparent shadow-md dark:border-gray-700 dark:text-gray-900 "
                             placeholder="Escriba nuevo rol">
 
-                        <a
-                            class="p-2 ml-5 transition duration-300 ease-in-out hover:bg-blue-200 rounded-md hover:cursor-pointer shadow-xl bg-blue-100 shadow-blue-500/50 inline-flex hover:shadow-none items-center dark:text-blue-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 mr-3" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                        <a  wire:click.prevent="createNewRol()"
+                            class="p-2 ml-5 transition duration-300 ease-in-out text-white font-bold hover:bg-blue-700 rounded-md hover:cursor-pointer shadow-xl bg-blue-900 shadow-blue-500/50 inline-flex hover:shadow-none items-center dark:text-blue-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 mr-3" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
                             </svg>
                             Guardar
                         </a>
@@ -70,8 +71,8 @@
                         @endforeach
                     </div>
                 </div>
-                
-                @if (Auth::user()->can('modificar-rol'))
+
+                @if (Auth::user()->can('modificar-rol') && $guardar)
                     <div class="flex">
                         <x-primary-button wire:click.prevent="create">Guardar</x-primary-button>
                     </div>
