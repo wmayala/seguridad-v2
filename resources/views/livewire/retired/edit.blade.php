@@ -97,13 +97,13 @@
                                     <div class="flex justify-center gap-3">
                                         <div class="grid grid-cols-[auto_1fr]">
                                             <div>
-                                                <div class=" border-black">
-                                                    <div class="h-40 w-32  overflow-hidden">
+                                                <div class="border border-black ">
+                                                    <div class="h-40 w-32 overflow-hidden">
                                                         <img id="originalImage" src="{{ asset('storage/' . $existingPhoto) }}" alt="Imagen original" class="cursor-pointer w-full h-full object-cover">
                                                     </div>
 
                                                     <!-- CROPPER -->
-                                                    <div id="cropperModal" class="fixed inset-0 bg-black bg-opacity-50  items-center justify-center hidden z-50">
+                                                    <div id="cropperModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
                                                         <div class="bg-white rounded-lg p-4 w-[90%] md:w-1/2">
                                                         <h2 class="text-xl font-bold mb-4">Ajusta tu imagen</h2>
                                                         <div class="w-full h-64 overflow-hidden">
@@ -129,12 +129,12 @@
                                                 <div class="flex flex-row border-b pl-2  border-black py-2">
                                                     <div>Nombre: </div>
                                                     <div class="flex flex-col pl-3">
-                                                        <span class="text-xl uppercase">{{ $name }}</span>
+                                                        <span class="text-sm font-semibold uppercase">{{ $name }}</span>
                                                     </div>
                                                 </div>
                                                 <div class="flex flex-row border-b pl-2 border-black py-2">
                                                     <div>Cargo: </div>
-                                                    <div class="uppercase pl-3 text-xl">{{ $position }}</div>
+                                                    <div class="uppercase pl-3 text-base">{{ $position }}</div>
                                                 </div>
                                                 <div class="flex flew-row justify-between border-b border-black py-2">
                                                     <div class="flex flex-col pl-2">
