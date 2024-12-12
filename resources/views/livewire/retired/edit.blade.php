@@ -97,8 +97,8 @@
                                     <div class="flex justify-center gap-3">
                                         <div class="grid grid-cols-[auto_1fr]">
                                             <div>
-                                                <div class="border border-black">
-                                                    <div class="h-40 w-32 border overflow-hidden">
+                                                <div class=" border-black">
+                                                    <div class="h-40 w-32  overflow-hidden">
                                                         <img id="originalImage" src="{{ asset('storage/' . $existingPhoto) }}" alt="Imagen original" class="cursor-pointer w-full h-full object-cover">
                                                     </div>
 
@@ -121,22 +121,22 @@
                                                 <div class="text-center text-xl mt-6">Exp. No.</div>
                                                 <div class="text-center text-2xl font-bold">{{ $record }}</div>
                                             </div>
-                                            <div>
-                                                <div class="flex border border-black w-full pl-2 py-2">
+                                            <div class="mx-2">
+                                                <div class="flex border-b border-black w-full pl-2 py-2">
                                                     <img src="{{ asset('assets/img/logo_bcr.png') }}" alt="Logo BCR" width="60px">
                                                     <span class="text-xl text-center font-bold uppercase">Banco Central de Reserva de El Salvador</span>
                                                 </div>
-                                                <div class="flex flex-row border pl-2  border-black py-2">
+                                                <div class="flex flex-row border-b pl-2  border-black py-2">
                                                     <div>Nombre: </div>
                                                     <div class="flex flex-col pl-3">
                                                         <span class="text-xl uppercase">{{ $name }}</span>
                                                     </div>
                                                 </div>
-                                                <div class="flex flex-row border pl-2 border-black py-2">
+                                                <div class="flex flex-row border-b pl-2 border-black py-2">
                                                     <div>Cargo: </div>
                                                     <div class="uppercase pl-3 text-xl">{{ $position }}</div>
                                                 </div>
-                                                <div class="flex flew-row justify-between border border-black">
+                                                <div class="flex flew-row justify-between border-b border-black py-2">
                                                     <div class="flex flex-col pl-2">
                                                         <div>Dui No.</div>
                                                         <div class="text-center">{{ $dui }}</div>
@@ -146,11 +146,11 @@
                                                         <div class="text-center">{{ $expirationDate }}</div>
                                                     </div>
                                                 </div>
-                                                <div class="flex flex-col text-center pl-2 w-full border border-black">
+                                                <div class="flex flex-col text-center pl-2 w-full  border-black">
                                                     <div class="flex justify-center relative h-10">
                                                         <img class="absolute w-10" src="{{ asset('assets/img/firma-removebg.png') }}" alt="Firma Portador" >
                                                     </div>
-                                                    <div class="mb-2 mt-6">
+                                                    <div class="mt-4">
                                                         Firma del Portador
                                                     </div>
                                                 </div>
@@ -161,9 +161,9 @@
                                 {{-- FIN CARNET FRENTE --}}
 
                                 {{-- CARNET REVERSO --}}
-                                <div id="retired-card-back" class="w-[514.25px] h-[322px]">
-                                    <div class="flex justify-center gap-3 mt-5">
-                                        <div class="grid grid-cols-[auto_1fr] border border-gray-900 ">
+                                <div id="retired-card-back" class="border border-gray-900 w-[514.25px] h-[322px]">
+                                    <div class="flex justify-center gap-3">
+                                        <div class="grid grid-cols-[auto_1fr]  ">
                                             <div>
                                                 <div class="flex w-full pl-2 py-2">
                                                     <p class="text-justify mx-2 p-3">
@@ -173,7 +173,7 @@
                                                     </p>
                                                 </div>
                                                 <div class="flex flex-col text-center pl-2 w-full">
-                                                    <div class="flex justify-center">
+                                                    <div class="flex justify-center my-2">
                                                         <img src="{{ asset('assets/img/gs-sign.jpeg') }}" alt="Firma GS" width="275px">
                                                     </div>
                                                     <div class="mb-3">
