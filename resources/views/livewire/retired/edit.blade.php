@@ -122,11 +122,11 @@
                                                     <div class="text-2xl font-bold text-center">{{ $record }}</div>
                                                 </div>
                                                 <div class="mx-2">
-                                                    <div class="flex w-full py-2 pl-2 border-b border-black">
+                                                    <div class="flex w-full py-1 border-b border-black">
                                                         <img src="{{ asset('assets/img/logo_bcr.png') }}" alt="Logo BCR" width="60px">
                                                         <span class="mx-2 text-lg font-bold text-center uppercase">Banco Central de Reserva de El Salvador</span>
                                                     </div>
-                                                    <div class="flex flex-col gap-1 pl-2 border-b border-black">
+                                                    <div class="flex flex-col py-1 mb-1 border-b border-black">
                                                         <span>Nombre: </span>
                                                         <span class="text-lg font-semibold uppercase flex items-center">{{ $name }}</span>
 
@@ -135,7 +135,7 @@
                                                             <span class="text-sm font-semibold uppercase flex items-center">{{ $name }}</span>
                                                         </div> --}}
                                                     </div>
-                                                    <div class="flex flex-row py-1 pl-2 border-b border-black">
+                                                    <div class="flex flex-row py-1 border-b border-black">
                                                         <div>Cargo: </div>
                                                         <div class="pl-3 text-lg font-semibold uppercase flex items-center ">{{ $position }}</div>
                                                     </div>
