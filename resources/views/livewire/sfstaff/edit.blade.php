@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Nombre</x-input-label>
-                                        <x-text-input id="name" wire:model="name" placeholder="Nombre completo de la persona"></x-text-input>
+                                        <x-text-input id="name" wire:model.live="name" placeholder="Nombre completo de la persona"></x-text-input>
                                         @error('name')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
@@ -91,8 +91,8 @@
                                     </div>
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Institución</x-input-label>
-                                        <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" wire:model="institution_id" id="institution_id">
-                                            <option selected>Seleccionar</option>
+                                        <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" wire:model.lazy="institution_id" id="institution_id">
+                                            <option value="" selected>Seleccionar</option>
                                             @foreach($institutions as $institution)
                                                 <option value="{{ $institution->id }}">{{ $institution->name }}</option>
                                             @endforeach
@@ -130,8 +130,6 @@
                                                 </div>
                                             </div>
                                         @endif
-
-
                                     </div>
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Estado del registro</x-input-label>
@@ -155,6 +153,115 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="flex flex-col justify-center items-center gap-5">
+                                        {{-- CARNET FRENTE --}}
+                                        <div id="id-card-front" class="w-[517px] h-[325px] border-[12px] border-red-600">
+                                            <div class="flex justify-center gap-3">
+                                                <div class="grid grid-cols-[auto_1fr]">
+                                                    <div>
+                                                        <div class="border border-black ">
+                                                            <div class="w-32 h-40 overflow-hidden">
+                                                                <img id="originalImage" src="{{ asset('storage/' . $existingPhoto) }}" alt="Imagen original" class="object-cover w-full h-full cursor-pointer">
+                                                            </div>
+
+                                                            <!-- CROPPER -->
+                                                            <div id="cropperModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
+                                                                <div class="bg-white rounded-lg p-4 w-[90%] md:w-1/2">
+                                                                <h2 class="mb-4 text-xl font-bold">Ajustar imagen</h2>
+                                                                <div class="w-full h-64 overflow-hidden">
+                                                                    <img id="imageToCrop" src="{{ asset('storage/' . $existingPhoto) }}" alt="Para recortar" class="w-full">
+                                                                </div>
+                                                                <div class="flex justify-end mt-4 space-x-2">
+                                                                    <button id="cancelButton" class="px-4 py-2 text-white bg-gray-600 rounded">Cancelar</button>
+                                                                    <button id="cropButton" class="px-4 py-2 text-white bg-[#111e60]  rounded">Recortar</button>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- FIN CROPPER -->
+
+                                                        </div>
+                                                        <div class="mt-3 text-xl text-center">Exp. No.</div>
+                                                        <div class="text-lg font-bold text-center">{{ $record }}</div>
+                                                        <div class="flex flex-col items-center mt-2">
+                                                            <div>Vencimiento</div>
+                                                            <div class="text-center">{{ date('d-m-Y', strtotime($expirationDate)) }}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <div class="flex w-full py-1 border-b border-black">
+                                                            <img src="{{ asset('assets/img/logo_bcr.png') }}" alt="Logo BCR" width="60px">
+                                                            <span class="mx-2 text-lg font-bold text-center uppercase">Banco Central de Reserva de El Salvador</span>
+                                                        </div>
+                                                        <div class="flex flex-col py-1 mb-1 border-b border-black">
+                                                            <span>Nombre: </span>
+                                                            <span class="text-lg font-semibold uppercase flex items-center">{{ $name }}</span>
+                                                        </div>
+                                                        <div class="flex flex-row py-1 border-b border-black">
+                                                            <div>Institución: </div>
+                                                            <div class="pl-2 text-lg font-semibold uppercase flex items-center ">{{ $institution_name }}</div>
+                                                        </div>
+                                                        <div class="flex flex-row py-1 border-b border-black">
+                                                            <div>Cargo: </div>
+                                                            <div class="pl-2 text-lg font-semibold uppercase flex items-center ">{{ $position }}</div>
+                                                        </div>
+                                                        <div class="flex justify-between py-1 flex-row">
+                                                            <div class="flex flex-col">
+                                                                <div>Dui No.</div>
+                                                                <div class="text-center">{{ $dui }}</div>
+                                                            </div>
+                                                            <div class="flex flex-col justify-center">
+                                                                <div class="relative flex justify-center h-10">
+                                                                    <img class="absolute w-10" src="{{ asset('storage/' . $existingSign) }}" alt="Firma Portador" >
+
+                                                                </div>
+                                                                <div class="mb-2">
+                                                                    Firma del Portador
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- FIN CARNET FRENTE --}}
+
+                                        {{-- CARNET REVERSO --}}
+                                        <div id="id-card-back" class="border border-gray-200 w-[514.25px] h-[322px]">
+                                            <div class="flex justify-center gap-3">
+                                                <div class="grid grid-cols-[auto_1fr]  ">
+                                                    <div>
+                                                        <div class="flex w-full py-2">
+                                                            <p class="p-3 mx-2 text-justify">
+                                                                Este carnet debe portarlo en forma visible al ingreso y durante su permanencia en el BCR.
+                                                                En caso de extravío o pérdida notificar al Tel.: 2281-8850. El costo de reposición por pérdida
+                                                                es de $10.00
+                                                            </p>
+                                                        </div>
+                                                        <div class="flex flex-col w-full pl-2 text-center">
+                                                            <div class="flex justify-center my-2">
+                                                                <img src="{{ asset('assets/img/gs-sign.jpeg') }}" alt="Firma GS" width="275px">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                Autorizado
+                                                                <br>
+                                                                Gerencia de Seguridad Bancaria
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- FIN CARNET REVERSO --}}
+                                    </div>
+
+                                    <div class="flex justify-center">
+                                        <button id="printButton" class="px-4 py-2 text-sm font-semibold text-white uppercase bg-red-800 rounded-md hover:bg-red-600">
+                                            Generar carnet
+                                        </button>
+                                    </div>
+
                                     <div class="flex justify-center gap-3 mt-5">
                                         <x-primary-button>Guardar</x-primary-button>
                                         <a href="{{ route('sfstaff.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-[#111e60]-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">

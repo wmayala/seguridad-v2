@@ -12,7 +12,7 @@ class Edit extends Component
 {
     use WithFileUploads;
 
-    public $id, $record, $zone, $name, $activity_id, $gender, $birthPlace, $birthDate, $address, $phone, $mobile, $dui, $duiPlace, $duiDate, $duiProfession, $driverLicense, $workPlace, $workAddress, $workPhone, $spouse, $motherName, $fatherName, $parentsAddress, $skinColor, $registerDate, $expirationDate, $photo, $existingPhoto, $signature, $existingSign, $status;
+    public $id, $record, $zone, $name, $activity_id, $activity_name, $gender, $birthPlace, $birthDate, $address, $phone, $mobile, $dui, $duiPlace, $duiDate, $duiProfession, $driverLicense, $workPlace, $workAddress, $workPhone, $spouse, $motherName, $fatherName, $parentsAddress, $skinColor, $registerDate, $expirationDate, $photo, $existingPhoto, $signature, $existingSign, $status;
 
     protected $rules=[
         'record'=>'required|string',
@@ -77,6 +77,15 @@ class Edit extends Component
         $this->existingPhoto=$staff->photo;
         $this->existingSign=$staff->signature;
         $this->status=$staff->status;
+
+        $activity=Activity::findOrFail($this->activity_id);
+        $this->activity_name=$activity->name;
+    }
+
+    public function updatedActivityId($id)
+    {
+        $activity=Activity::findOrFail($this->activity_id);
+        $this->activity_name=$activity->name;
     }
 
     public function update()
@@ -140,6 +149,7 @@ class Edit extends Component
 
         return redirect()->route('staff.index');
     }
+
     public function render()
     {
         $activities=Activity::all();

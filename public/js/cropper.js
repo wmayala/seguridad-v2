@@ -36,7 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Cancelar y cerrar el modal
-    cancelButton.addEventListener('click', () => {
+    cancelButton.addEventListener('click', (event) => {
+        event.preventDefault();
         cropper.destroy();
         cropper = null;
         cropperModal.classList.add('hidden'); // Ocultar modal

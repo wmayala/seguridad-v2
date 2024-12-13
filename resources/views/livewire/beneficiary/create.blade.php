@@ -26,10 +26,10 @@
                                         <x-input-label class="uppercase">Parentesco</x-input-label>
                                         <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" wire:model="relationship" id="relationship">
                                             <option value="">Seleccionar</option>
-                                            <option value="1">Esposo(a)</option>
-                                            <option value="2">Hijo(a)</option>
-                                            <option value="3">Hermano(a)</option>
-                                            <option value="4">Padre/Madre</option>
+                                            <option value="Esposo(a)">Esposo(a)</option>
+                                            <option value="Hijo(a)">Hijo(a)</option>
+                                            <option value="Hermano(a)">Hermano(a)</option>
+                                            <option value="Padre/Madre">Padre/Madre</option>
                                         </select>
                                         @error('relationship')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>

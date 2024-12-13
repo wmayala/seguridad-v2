@@ -93,7 +93,7 @@
 
                                 <div class="flex flex-col justify-center items-center gap-5">
                                     {{-- CARNET FRENTE --}}
-                                    <div id="retired-card-front" class="w-[517px] h-[325px] border-[12px] border-green-600">
+                                    <div id="id-card-front" class="w-[517px] h-[325px] border-[12px] border-green-600">
                                         <div class="flex justify-center gap-3">
                                             <div class="grid grid-cols-[auto_1fr]">
                                                 <div>
@@ -105,13 +105,13 @@
                                                         <!-- CROPPER -->
                                                         <div id="cropperModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
                                                             <div class="bg-white rounded-lg p-4 w-[90%] md:w-1/2">
-                                                            <h2 class="mb-4 text-xl font-bold">Ajusta tu imagen</h2>
+                                                            <h2 class="mb-4 text-xl font-bold">Ajustar imagen</h2>
                                                             <div class="w-full h-64 overflow-hidden">
                                                                 <img id="imageToCrop" src="{{ asset('storage/' . $existingPhoto) }}" alt="Para recortar" class="w-full">
                                                             </div>
                                                             <div class="flex justify-end mt-4 space-x-2">
-                                                                <button id="cancelButton" class="px-4 py-2 text-white bg-gray-500 rounded">Cancelar</button>
-                                                                <button id="cropButton" class="px-4 py-2 text-white bg-blue-500 rounded">Recortar</button>
+                                                                <button id="cancelButton" class="px-4 py-2 text-white bg-gray-600 rounded">Cancelar</button>
+                                                                <button id="cropButton" class="px-4 py-2 text-white bg-[#111e60]  rounded">Recortar</button>
                                                             </div>
                                                             </div>
                                                         </div>
@@ -159,7 +159,7 @@
                                     {{-- FIN CARNET FRENTE --}}
 
                                     {{-- CARNET REVERSO --}}
-                                    <div id="retired-card-back" class="border border-gray-200 w-[514.25px] h-[322px]">
+                                    <div id="id-card-back" class="border border-gray-200 w-[514.25px] h-[322px]">
                                         <div class="flex justify-center gap-3">
                                             <div class="grid grid-cols-[auto_1fr]  ">
                                                 <div>

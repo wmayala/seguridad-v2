@@ -12,7 +12,7 @@ class Edit extends Component
 {
     use WithFileUploads;
 
-    public $id, $record, $zone, $name, $position, $dui, $duiPlace, $duiDate, $address, $birthPlace, $birthDate, $institution_id, $issueDate, $expirationDate, $photo, $existingPhoto, $signature, $existingSign, $status;
+    public $id, $record, $zone, $name, $position, $dui, $duiPlace, $duiDate, $address, $birthPlace, $birthDate, $institution_id, $institution_name, $issueDate, $expirationDate, $photo, $existingPhoto, $signature, $existingSign, $status;
 
     protected $rules=[
         'record'=>'required|string',
@@ -53,12 +53,14 @@ class Edit extends Component
         $this->existingPhoto=$sfstaff->photo;
         $this->existingSign=$sfstaff->signature;
         $this->status=$sfstaff->status;
+
+        $institution=Institution::findOrFail($this->institution_id);
+        $this->institution_name=$institution->name;
     }
 
     public function update()
     {
         $validatedData=$this->validate();
-
         $sfstaff=SFStaff::findOrFail($this->id);
 
         if($this->photo)

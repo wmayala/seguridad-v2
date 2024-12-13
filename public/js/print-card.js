@@ -8,8 +8,8 @@ if (printButton) {
     printButton.addEventListener('click', (event) => {
         event.preventDefault();
 
-        const front = document.getElementById('retired-card-front');
-        const back = document.getElementById('retired-card-back');
+        const front = document.getElementById('id-card-front');
+        const back = document.getElementById('id-card-back');
 
         if (!front || !back) {
             console.error("No se encontró uno de los elementos requeridos para la impresión.");

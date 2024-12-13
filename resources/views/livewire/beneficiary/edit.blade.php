@@ -26,10 +26,10 @@
                                         <x-input-label class="uppercase">Parentesco</x-input-label>
                                         <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" wire:model="relationship" id="relationship">
                                             <option value="">Seleccionar</option>
-                                            <option value="1">Esposo(a)</option>
-                                            <option value="2">Hijo(a)</option>
-                                            <option value="3">Hermano(a)</option>
-                                            <option value="4">Padre/Madre</option>
+                                            <option value="Esposo(a)">Esposo(a)</option>
+                                            <option value="Hijo(a)">Hijo(a)</option>
+                                            <option value="Hermano(a)">Hermano(a)</option>
+                                            <option value="Padre/Madre">Padre/Madre</option>
                                         </select>
                                         @error('relationship')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
@@ -107,6 +107,119 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="flex flex-col justify-center items-center gap-5">
+                                        {{-- CARNET FRENTE --}}
+                                        <div id="id-card-front" class="w-[517px] h-[325px] border border-gray-200 p-2">
+                                            <div class="flex justify-center gap-3">
+                                                <div class="grid grid-cols-[auto_1fr]">
+                                                    <div class="flex p-1 ">
+                                                        <img src="{{ asset('assets/img/logo_bcr.png') }}" alt="Logo BCR" width="70px">
+                                                    </div>
+                                                    <div class="flex flex-col w-full py-1">
+                                                        <span class="mx-2 text-lg font-bold text-center uppercase">Centro de Recreación y Deportes del Banco Central de Reserva</span>
+                                                        <span class="text-base font-bold text-center uppercase">Carné de Beneficiario</span>
+                                                    </div>
+                                                    <div>
+                                                        <div class="border border-black ">
+                                                            <div class="w-32 h-40 overflow-hidden">
+                                                                <img id="originalImage" src="{{ asset('storage/' . $existingPhoto) }}" alt="Imagen original" class="object-cover w-full h-full cursor-pointer">
+                                                            </div>
+
+                                                            <!-- CROPPER -->
+                                                            <div id="cropperModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
+                                                                <div class="bg-white rounded-lg p-4 w-[90%] md:w-1/2">
+                                                                    <h2 class="mb-4 text-xl font-bold">Ajustar imagen</h2>
+                                                                    <div class="w-full h-64 overflow-hidden">
+                                                                        <img id="imageToCrop" src="{{ asset('storage/' . $existingPhoto) }}" alt="Para recortar" class="w-full">
+                                                                    </div>
+                                                                    <div class="flex justify-end mt-4 space-x-2">
+                                                                        <button id="cancelButton" class="px-4 py-2 text-white bg-gray-600 rounded">Cancelar</button>
+                                                                        <button id="cropButton" class="px-4 py-2 text-white bg-[#111e60]  rounded">Recortar</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- FIN CROPPER -->
+
+                                                        </div>
+                                                        <div class="text-lg text-center">Exp. No.</div>
+                                                        <div class="text-lg font-bold text-center">{{ $record }}</div>
+                                                    </div>
+                                                    <div class="mx-2">
+                                                        <div class="flex flex-col py-1 border-b border-black">
+                                                            <span>Nombre: </span>
+                                                            <span class="text-lg font-semibold uppercase flex items-center">{{ $name }}</span>
+                                                        </div>
+                                                        <div class="flex flex-row justify-between py-1 border-b border-black">
+                                                            <div><span>Parentesco: </span><span>{{ $relationship }}</span></div>
+                                                            <div><span>Edad: </span><span>{{ $age }}</span></div>
+                                                        </div>
+                                                        <div class="flex flex-col py-1 border-b border-black">
+                                                            <div class="flex flex-row justify-between">
+                                                                <span>Empleado: </span>
+                                                                <div>
+                                                                    <span>No. Empleado: </span>
+                                                                    <span class="font-bold">{{ $empCode }}</span>
+                                                                </div>
+                                                            </div>
+                                                            <span class="text-lg font-semibold uppercase flex items-center">{{ $empName }}</span>
+                                                        </div>
+
+                                                        <div class="flex flex-row justify-between py-1 flew-row">
+                                                            <div class="flex flex-col">
+                                                                <div>Vencimiento</div>
+                                                                <div class="text-center">{{ date('d-m-Y', strtotime($expirationDate)) }}</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex flex-col w-full pl-2 text-center border-black">
+                                                            <div class="relative flex justify-center h-10">
+                                                                <img class="absolute w-10" src="{{ asset('storage/' . $existingSign) }}" alt="Firma Portador" >
+                                                            </div>
+                                                            <div class="mb-2">
+                                                                Firma del Portador
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- FIN CARNET FRENTE --}}
+
+                                        {{-- CARNET REVERSO --}}
+                                        <div id="id-card-back" class="border border-gray-200 w-[514.25px] h-[322px]">
+                                            <div class="flex justify-center gap-3">
+                                                <div class="grid grid-cols-[auto_1fr]  ">
+                                                    <div>
+                                                        <div class="flex w-full py-2">
+                                                            <p class="p-3 mx-2 text-justify">
+                                                                Este carnet debe portarlo en forma visible al ingreso y durante su permanencia en el BCR.
+                                                                En caso de extravío o pérdida notificar al Tel.: 2281-8850. El costo de reposición por pérdida
+                                                                es de $10.00
+                                                            </p>
+                                                        </div>
+                                                        <div class="flex flex-col w-full pl-2 text-center">
+                                                            <div class="flex justify-center my-2">
+                                                                <img src="{{ asset('assets/img/gs-sign.jpeg') }}" alt="Firma GS" width="275px">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                Autorizado
+                                                                <br>
+                                                                Gerencia de Seguridad Bancaria
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- FIN CARNET REVERSO --}}
+                                    </div>
+
+                                    <div class="flex justify-center">
+                                        <button id="printButton" class="px-4 py-2 text-sm font-semibold text-white uppercase bg-cyan-400  rounded-md hover:bg-cyan-800">
+                                            Generar carnet
+                                        </button>
+                                    </div>
+
                                     <div class="flex justify-center gap-3 mt-5">
                                         <x-primary-button>Guardar</x-primary-button>
                                         <a href="{{ route('beneficiaries.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-[#111e60]-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
