@@ -9,7 +9,7 @@
                                 <div class="flex flex-col gap-5 w-1/2">
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Expediente No.</x-input-label>
-                                        <x-text-input id="record" wire:model="record" placeholder="###-###" autofocus></x-text-input>
+                                        <x-text-input id="record" wire:model="record" placeholder="####" autofocus></x-text-input>
                                         @error('record')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
@@ -19,7 +19,7 @@
                                     </div>
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">DUI</x-input-label>
-                                        <x-text-input id="dui" wire:model="dui" placeholder="12345678-9" autofocus></x-text-input>
+                                        <x-text-input id="dui" wire:model="dui" maxlength="10" placeholder="12345678-9" autofocus></x-text-input>
                                         @error('dui')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
@@ -40,6 +40,17 @@
                                             <div class="mt-4">
                                                 <p class="text-sm font-medium text-gray-500">Vista previa:</p>
                                                 <img src="{{ $photo->temporaryUrl() }}" alt="Vista previa" class="w-1/6 h-auto rounded-md shadow-md">
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Firma</x-input-label>
+                                        <input type="file" wire:model="signature" id="signature" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
+                                        <div wire:loading wire:target="signature">Cargando firma...</div>
+                                        @if($signature)
+                                            <div class="mt-4">
+                                                <p class="text-sm font-medium text-gray-500">Vista previa:</p>
+                                                <img src="{{ $signature->temporaryUrl() }}" alt="Vista previa" class="w-1/6 h-auto rounded-md shadow-md">
                                             </div>
                                         @endif
                                     </div>

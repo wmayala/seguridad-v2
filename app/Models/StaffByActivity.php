@@ -36,6 +36,7 @@ class StaffByActivity extends Model
         'registerDate',
         'expirationDate',
         'photo',
+        'signature',
         'status',
     ];
 

@@ -195,6 +195,17 @@
                                         @endif
                                     </div>
                                     <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Firma</x-input-label>
+                                        <input type="file" wire:model="signature" id="signature" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
+                                        <div wire:loading wire:target="signature">Cargando firma...</div>
+                                        @if($signature)
+                                            <div class="mt-4">
+                                                <p class="text-sm font-medium text-gray-500">Vista previa:</p>
+                                                <img src="{{ $signature->temporaryUrl() }}" alt="Vista previa" class="w-1/6 h-auto rounded-md shadow-md">
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Estado del registro</x-input-label>
                                         <div class="flex justify-center gap-5">
                                             <div class="flex gap-3">

@@ -11,7 +11,7 @@ class Create extends Component
 {
     use WithFileUploads;
 
-    public $record, $zone, $name, $activity_id, $gender, $birthPlace, $birthDate, $address, $phone, $mobile, $dui, $duiPlace, $duiDate, $duiProfession, $driverLicense, $workPlace, $workAddress, $workPhone, $spouse, $motherName, $fatherName, $parentsAddress, $skinColor, $registerDate, $expirationDate, $photo, $status;
+    public $record, $zone, $name, $activity_id, $gender, $birthPlace, $birthDate, $address, $phone, $mobile, $dui, $duiPlace, $duiDate, $duiProfession, $driverLicense, $workPlace, $workAddress, $workPhone, $spouse, $motherName, $fatherName, $parentsAddress, $skinColor, $registerDate, $expirationDate, $photo, $signature, $status;
 
     protected $rules=[
         'record'=>'required|string',
@@ -40,6 +40,7 @@ class Create extends Component
         'registerDate'=>'required|date',
         'expirationDate'=>'nullable|date',
         'photo'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'signature'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'status'=>'boolean',
     ];
 
@@ -48,6 +49,7 @@ class Create extends Component
         $this->validate();
 
         $photoPath=$this->photo->store('staff','public');
+        $signPath=$this->signature->store('staff','public');
 
         StaffByActivity::create([
             'record'=>$this->record,
@@ -76,6 +78,7 @@ class Create extends Component
             'registerDate'=>$this->registerDate,
             'expirationDate'=>$this->expirationDate,
             'photo'=>$photoPath,
+            'signature'=>$signPath,
             'status'=>$this->status,
         ]);
 

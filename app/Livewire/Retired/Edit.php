@@ -11,7 +11,7 @@ class Edit extends Component
 {
     use WithFileUploads;
 
-    public $id, $record, $name, $position, $dui, $issueDate, $photo, $existingPhoto, $status, $expirationDate;
+    public $id, $record, $name, $position, $dui, $issueDate, $photo, $existingPhoto, $signature, $existingSign, $status, $expirationDate;
 
     protected $rules=[
         'record'=>'required|string',
@@ -20,6 +20,7 @@ class Edit extends Component
         'issueDate'=>'required|date',
         'expirationDate'=>'required|date',
         'photo'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'signature'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'status'=>'boolean'
     ];
 
@@ -34,6 +35,7 @@ class Edit extends Component
         $this->issueDate=$retired->issueDate;
         $this->expirationDate=$retired->expirationDate;
         $this->existingPhoto=$retired->photo;
+        $this->existingSign=$retired->signature;
         $this->status=$retired->status;
     }
 
@@ -46,16 +48,22 @@ class Edit extends Component
         if($this->photo)
         {
             if($retired->photo && Storage::disk('public')->exists($retired->photo))
-            {
-                Storage::disk('public')->delete($retired->photo);
-            }
+            { Storage::disk('public')->delete($retired->photo); }
             $photoPath=$this->photo->store('retired', 'public');
             $validatedData['photo']=$photoPath;
         }
         else
+        { $validatedData['photo']=$retired->photo; }
+
+        if($this->signature)
         {
-            $validatedData['photo']=$retired->photo;
+            if($retired->signature && Storage::disk('public')->exists($retired->signature))
+            { Storage::disk('public')->delete($retired->signature); }
+            $signPath=$this->signature->store('retired', 'public');
+            $validatedData['signature']=$signPath;
         }
+        else
+        { $validatedData['signature']=$retired->signature; }
 
         $retired->update([
             'record'=>$this->record,
@@ -65,6 +73,7 @@ class Edit extends Component
             'issueDate'=>$this->issueDate,
             'expirationDate'=>$this->expirationDate,
             'photo'=>$validatedData['photo'],
+            'signature'=>$validatedData['signature'],
             'status'=>$this->status,
         ]);
 

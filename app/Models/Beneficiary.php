@@ -17,6 +17,7 @@ class Beneficiary extends Model
         'issueDate',
         'expirationDate',
         'photo',
+        'signature',
         'status',
     ];
 }

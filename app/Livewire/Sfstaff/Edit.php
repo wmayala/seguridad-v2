@@ -12,7 +12,7 @@ class Edit extends Component
 {
     use WithFileUploads;
 
-    public $id, $record, $zone, $name, $position, $dui, $duiPlace, $duiDate, $address, $birthPlace, $birthDate, $institution_id, $issueDate, $expirationDate, $photo, $existingPhoto, $status;
+    public $id, $record, $zone, $name, $position, $dui, $duiPlace, $duiDate, $address, $birthPlace, $birthDate, $institution_id, $issueDate, $expirationDate, $photo, $existingPhoto, $signature, $existingSign, $status;
 
     protected $rules=[
         'record'=>'required|string',
@@ -29,6 +29,7 @@ class Edit extends Component
         'issueDate'=>'required|date',
         'expirationDate'=>'required|date',
         'photo'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'signature'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'status'=>'boolean',
     ];
 
@@ -50,6 +51,7 @@ class Edit extends Component
         $this->issueDate=$sfstaff->issueDate;
         $this->expirationDate=$sfstaff->expirationDate;
         $this->existingPhoto=$sfstaff->photo;
+        $this->existingSign=$sfstaff->signature;
         $this->status=$sfstaff->status;
     }
 
@@ -62,16 +64,22 @@ class Edit extends Component
         if($this->photo)
         {
             if($sfstaff->photo && Storage::disk('public')->exists($sfstaff->photo))
-            {
-                Storage::disk('public')->delete($sfstaff->photo);
-            }
+            { Storage::disk('public')->delete($sfstaff->photo); }
             $photoPath=$this->photo->store('sfstaff', 'public');
             $validatedData['photo']=$photoPath;
         }
         else
+        { $validatedData['photo']=$sfstaff->photo; }
+
+        if($this->signature)
         {
-            $validatedData['photo']=$sfstaff->photo;
+            if($sfstaff->signature && Storage::disk('public')->exists($sfstaff->signature))
+            { Storage::disk('public')->delete($sfstaff->signature); }
+            $signPath=$this->photo->store('sfstaff', 'public');
+            $validatedData['signature']=$signPath;
         }
+        else
+        { $validatedData['signature']=$sfstaff->signature; }
 
         $sfstaff->update([
             'record'=>$this->record,
@@ -88,6 +96,7 @@ class Edit extends Component
             'issueDate'=>$this->issueDate,
             'expirationDate'=>$this->expirationDate,
             'photo'=>$validatedData['photo'],
+            'signature'=>$validatedData['signature'],
             'status'=>$this->status,
         ]);
 

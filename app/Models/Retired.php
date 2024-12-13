@@ -13,6 +13,7 @@ class Retired extends Model
         'dui',
         'issueDate',
         'photo',
+        'signature',
         'status',
         'expirationDate'
     ];

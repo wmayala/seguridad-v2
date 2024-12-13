@@ -12,7 +12,7 @@ class Edit extends Component
 {
     use WithFileUploads;
 
-    public $id, $record, $zone, $name, $activity_id, $gender, $birthPlace, $birthDate, $address, $phone, $mobile, $dui, $duiPlace, $duiDate, $duiProfession, $driverLicense, $workPlace, $workAddress, $workPhone, $spouse, $motherName, $fatherName, $parentsAddress, $skinColor, $registerDate, $expirationDate, $photo, $existingPhoto, $status;
+    public $id, $record, $zone, $name, $activity_id, $gender, $birthPlace, $birthDate, $address, $phone, $mobile, $dui, $duiPlace, $duiDate, $duiProfession, $driverLicense, $workPlace, $workAddress, $workPhone, $spouse, $motherName, $fatherName, $parentsAddress, $skinColor, $registerDate, $expirationDate, $photo, $existingPhoto, $signature, $existingSign, $status;
 
     protected $rules=[
         'record'=>'required|string',
@@ -41,6 +41,7 @@ class Edit extends Component
         'registerDate'=>'required|date',
         'expirationDate'=>'nullable|date',
         'photo'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'signature'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'status'=>'boolean',
     ];
 
@@ -74,6 +75,7 @@ class Edit extends Component
         $this->registerDate=$staff->registerDate;
         $this->expirationDate=$staff->expirationDate;
         $this->existingPhoto=$staff->photo;
+        $this->existingSign=$staff->signature;
         $this->status=$staff->status;
     }
 
@@ -86,16 +88,22 @@ class Edit extends Component
         if($this->photo)
         {
             if($staff->photo && Storage::disk('public')->exists($staff->photo))
-            {
-                Storage::disk('public')->delete($staff->photo);
-            }
+            { Storage::disk('public')->delete($staff->photo); }
             $photoPath=$this->photo->store('staff', 'public');
             $validatedData['photo']=$photoPath;
         }
         else
+        { $validatedData['photo']=$staff->photo; }
+
+        if($this->signature)
         {
-            $validatedData['photo']=$staff->photo;
+            if($staff->signature && Storage::disk('public')->exists($staff->signature))
+            { Storage::disk('public')->delete($staff->signature); }
+            $signPath=$this->signature->store('staff', 'public');
+            $validatedData['signature']=$signPath;
         }
+        else
+        { $validatedData['signature']=$staff->signature; }
 
         $staff->update([
             'record'=>$this->record,
@@ -124,6 +132,7 @@ class Edit extends Component
             'registerDate'=>$this->registerDate,
             'expirationDate'=>$this->expirationDate,
             'photo'=>$validatedData['photo'],
+            'signature'=>$validatedData['signature'],
             'status'=>$this->status,
         ]);
 

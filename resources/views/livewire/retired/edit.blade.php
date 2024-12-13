@@ -9,7 +9,7 @@
                             <div class="flex flex-col w-1/2 gap-5">
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Expediente No.</x-input-label>
-                                    <x-text-input id="record" wire:model="record" placeholder="###-###"
+                                    <x-text-input id="record" wire:model="record" placeholder="####"
                                         autofocus></x-text-input>
                                     @error('record')
                                         <span class="text-sm text-red-500">{{ $message }}</span>
@@ -129,11 +129,6 @@
                                                     <div class="flex flex-col py-1 mb-1 border-b border-black">
                                                         <span>Nombre: </span>
                                                         <span class="text-lg font-semibold uppercase flex items-center">{{ $name }}</span>
-
-
-                                                        {{-- <div class="flex flex-col pl-3">
-                                                            <span class="text-sm font-semibold uppercase flex items-center">{{ $name }}</span>
-                                                        </div> --}}
                                                     </div>
                                                     <div class="flex flex-row py-1 border-b border-black">
                                                         <div>Cargo: </div>
@@ -151,7 +146,7 @@
                                                     </div>
                                                     <div class="flex flex-col w-full pl-2 text-center border-black">
                                                         <div class="relative flex justify-center h-10">
-                                                            <img class="absolute w-10" src="{{ asset('assets/img/firma-removebg.png') }}" alt="Firma Portador" >
+                                                            <img class="absolute w-10" src="{{ asset('storage/' . $existingSign) }}" alt="Firma Portador" >
                                                         </div>
                                                         <div class="mb-2">
                                                             Firma del Portador

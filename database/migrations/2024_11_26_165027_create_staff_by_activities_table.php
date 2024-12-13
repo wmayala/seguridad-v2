@@ -39,6 +39,7 @@ return new class extends Migration
             $table->date('registerDate');
             $table->date('expirationDate');
             $table->string('photo');
+            $table->string('signature');
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

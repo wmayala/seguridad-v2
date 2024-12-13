@@ -10,7 +10,7 @@ class Create extends Component
 {
     use WithFileUploads;
 
-    public $record, $name, $age, $relationship, $empCode, $empName, $institution, $expirationDate, $issueDate, $photo, $status;
+    public $record, $name, $age, $relationship, $empCode, $empName, $institution, $expirationDate, $issueDate, $photo, $signature, $status;
 
     protected $rules=[
         'record'=>'required|string',
@@ -23,6 +23,7 @@ class Create extends Component
         'expirationDate'=>'required|date',
         'issueDate'=>'required|date',
         'photo'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'signature'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'status'=>'boolean',
     ];
 
@@ -31,6 +32,7 @@ class Create extends Component
         $this->validate();
 
         $photoPath=$this->photo->store('beneficiaries','public');
+        $signPath=$this->signature->store('beneficiaries','public');
 
         Beneficiary::create([
             'record'=>$this->record,
@@ -43,6 +45,7 @@ class Create extends Component
             'expirationDate'=>$this->expirationDate,
             'issueDate'=>$this->issueDate,
             'photo'=>$photoPath,
+            'signature'=>$signPath,
             'status'=>$this->status,
         ]);
 
