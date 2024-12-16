@@ -33,7 +33,7 @@ class Sidebar extends Component
             'title' => 'USUARIOS',
             'options' => [
                 ['label'=>'Usuarios','route'=>'users.index'],
-                ['label'=>'Roles','route'=>'home'],
+                ['label'=>'Roles','route'=>'roles.index'],
             ],
         ],
     ];

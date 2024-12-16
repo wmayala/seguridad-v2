@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => env('AUTH_GUARD', 'web'),
-        'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
+        'guard' => 'web',
+        'passwords' => 'users',
     ],
 
     /*
@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'ldap',
         ],
     ],
 
@@ -64,11 +64,26 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'ldap' => [
+            'driver' => 'ldap',
+            'model' => LdapRecord\Models\ActiveDirectory\User::class,
+            'rules' => [
+                LdapRecord\Laravel\Auth\Rules\OnlyImported::class,
+            ],
+            'database' => [
+                'model' => App\Models\User::class,
+                'sync_passwords' => true,
+                'sync_attributes' => [
+                    'name' => 'cn',
+                    'username' => 'samaccountname',
+                    'email' => 'mail',
+                ],
+            ],
+        ],
+        'users' => [
+            'driver' => 'database',
+            'table' => 'users',
+        ],
     ],
 
     /*

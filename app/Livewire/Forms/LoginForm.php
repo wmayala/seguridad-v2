@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
@@ -28,17 +29,34 @@ class LoginForm extends Form
      */
     public function authenticate(): void
     {
-        $this->ensureIsNotRateLimited();
+        $values = $this->only('email', 'password');
 
-        if (! Auth::attempt($this->only(['email', 'password']), $this->remember)) {
-            RateLimiter::hit($this->throttleKey());
+        $credential = [
+            'mail' => $values['email'],
+            'password' => $values['password'],
+        ];
 
+        $activoInactivo = User::where('email', $values['email'])->first();
+
+        if (!is_null($activoInactivo) && $activoInactivo->status === 1) {
+            if (!Auth::guard('web')->attempt($credential, $this->remember)) {
+                RateLimiter::hit($this->throttleKey());
+                throw ValidationException::withMessages([
+                    'form.email' => 'Correo o contraseña incorrectos',
+                ]);
+            }
+
+            $user = Auth::guard('web')->user();
+            session()->put('roleId', $user->role_default);
+
+            RateLimiter::clear($this->throttleKey());
+
+        } else {
             throw ValidationException::withMessages([
-                'form.email' => trans('auth.failed'),
+                'form.email' => 'Usuario no existe o se encuentra deshabilitado',
             ]);
         }
 
-        RateLimiter::clear($this->throttleKey());
     }
 
     /**
@@ -46,7 +64,7 @@ class LoginForm extends Form
      */
     protected function ensureIsNotRateLimited(): void
     {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        if (!RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
             return;
         }
 
@@ -67,6 +85,6 @@ class LoginForm extends Form
      */
     protected function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->email).'|'.request()->ip());
+        return Str::transliterate(Str::lower($this->email) . '|' . request()->ip());
     }
 }

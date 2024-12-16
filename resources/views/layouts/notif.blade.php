@@ -9,9 +9,9 @@
 @elseif(session('danger'))
     <script>
         Swal.fire({
-            title: "¡Listo!",
+            title: "¡Atención!",
             text: "{{ session('danger') }}",
-            icon: "success"
+            icon: "error"
         });
     </script>
 @elseif(session('warning'))

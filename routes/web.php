@@ -34,7 +34,10 @@ use App\Livewire\Companies\Index as CompaniesIndex;
 use App\Livewire\Companies\Create as CompaniesCreate;
 use App\Livewire\Companies\Edit as CompaniesEdit;
 use App\Livewire\Users\Index as UsersIndex;
+use App\Livewire\Users\Create as UsersCreate;
 use App\Livewire\Users\Edit as UsersEdit;
+
+use App\Livewire\Roles\RolesPermisos as RolesIndex;
 
 Route::middleware('auth')->group(function()
 {
@@ -92,10 +95,14 @@ Route::middleware('auth')->group(function()
 
     // RUTAS USUARIOS
     Route::get('/users', UsersIndex::class)->name('users.index');
+    Route::get('/users/create', UsersCreate::class)->name('users.create');
     Route::get('/users/edit/{id}', UsersEdit::class)->name('users.edit');
 
     // RUTA PARA GENERACIÓN DE CARNET
-    Route::get('/generate-card/{id}',[IDCardController::class, 'retiredCard'])->name('retired-card');
+    //Route::get('/generate-card/{id}',[IDCardController::class, 'retiredCard'])->name('retired-card');
+
+    // RUTAS ROLES
+    Route::get('/roles', RolesIndex::class)->name('roles.index');
 });
 
 require __DIR__.'/auth.php';

@@ -1,4 +1,5 @@
 <div class="flex">
+    @include('layouts.notif')
     <div class="py-6 flex w-full">
         <div class="mx-full sm:px-6 lg:px-8 w-full">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -22,6 +23,17 @@
                                         @error('email')<span class="text-red-500 text-xs">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
+                                        <label class="lbl-title" for="rol">Asignar rol:</label>
+                                        <div class="mt-3">
+                                            @foreach ($roles as $rol)
+                                                <input type="checkbox" class="rounded-sm" value="{{ $rol->id }}" wire:model="rolSeleccionados" 
+                                                        @if(in_array($rol->id, $rolSeleccionados)) checked @endif
+                                                    >
+                                                <span class="font-bold mr-5">{{ $rol->name }}</span>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col justify-center mt-5">
                                         <x-input-label class="uppercase">
                                             Estado del registro
                                         </x-input-label>
