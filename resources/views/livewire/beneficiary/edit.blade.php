@@ -113,8 +113,8 @@
                                         <div id="id-card-front" class="w-[517px] h-[325px] border border-gray-200 p-2">
                                             <div class="flex justify-center gap-3">
                                                 <div class="grid grid-cols-[auto_1fr]">
-                                                    <div class="flex p-1 ">
-                                                        <img src="{{ asset('assets/img/logo_bcr.png') }}" alt="Logo BCR" width="70px">
+                                                    <div class="flex justify-center p-1 ">
+                                                        <img src="{{ asset('assets/img/logo_bcr.png') }}" alt="Logo BCR" width="80px" height="80px">
                                                     </div>
                                                     <div class="flex flex-col w-full py-1">
                                                         <span class="mx-2 text-lg font-bold text-center uppercase">Centro de Recreación y Deportes del Banco Central de Reserva</span>
@@ -166,17 +166,17 @@
                                                         </div>
 
                                                         <div class="flex flex-row justify-between py-1 flew-row">
-                                                            <div class="flex flex-col">
+                                                            <div class="flex flex-col mt-2">
                                                                 <div>Vencimiento</div>
                                                                 <div class="text-center">{{ date('d-m-Y', strtotime($expirationDate)) }}</div>
                                                             </div>
-                                                        </div>
-                                                        <div class="flex flex-col w-full pl-2 text-center border-black">
-                                                            <div class="relative flex justify-center h-10">
-                                                                <img class="absolute w-10" src="{{ asset('storage/' . $existingSign) }}" alt="Firma Portador" >
-                                                            </div>
-                                                            <div class="mb-2">
-                                                                Firma del Portador
+                                                            <div class="flex flex-col w-1/2 pl-2 text-center border-black">
+                                                                <div class="relative flex justify-center h-10">
+                                                                    <img class="absolute w-10" src="{{ asset('storage/' . $existingSign) }}" alt="Firma Portador" >
+                                                                </div>
+                                                                <div class="mb-2">
+                                                                    Firma del Portador
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -190,18 +190,23 @@
                                             <div class="flex justify-center gap-3">
                                                 <div class="grid grid-cols-[auto_1fr]  ">
                                                     <div>
-                                                        <div class="flex w-full py-2">
-                                                            <p class="p-3 mx-2 text-justify">
-                                                                Este carnet debe portarlo en forma visible al ingreso y durante su permanencia en el BCR.
-                                                                En caso de extravío o pérdida notificar al Tel.: 2281-8850. El costo de reposición por pérdida
-                                                                es de $10.00
+                                                        <div class="flex w-full pt-2">
+                                                            <p class="p-2 text-sm text-justify">
+                                                                La Comisión Administradora del Centro de Recreación y Deportes del
+                                                                Banco Central de Reserva de El Salvador, hace constar que el portador,
+                                                                cuya fotografía aparece en esta credencial, está autorizado para ingresar
+                                                                a las instalaciones, con CINCO acompañantes, sometiéndose en todo al
+                                                                cumplimiento de la Normativa respectiva y demás disposiciones que se emitan
+                                                                para el uso de las instalaciones. <br>
+                                                                El costo de reposición por pérdida es de $10.00 <br>
+                                                                En caso de extravío o pérdida notificar al 22818850
                                                             </p>
                                                         </div>
-                                                        <div class="flex flex-col w-full pl-2 text-center">
-                                                            <div class="flex justify-center my-2">
-                                                                <img src="{{ asset('assets/img/gs-sign.jpeg') }}" alt="Firma GS" width="275px">
+                                                        <div class="flex flex-col w-full text-center justify-center relative">
+                                                            <div class="flex justify-center p-1">
+                                                                <img src="{{ asset('assets/img/gs-sign.jpeg') }}" alt="Firma GS" width="250px">
                                                             </div>
-                                                            <div class="mb-3">
+                                                            <div class="mb-2 absolute flex justify-center">
                                                                 Autorizado
                                                                 <br>
                                                                 Gerencia de Seguridad Bancaria
