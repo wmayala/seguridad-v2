@@ -202,14 +202,13 @@
                                                                 En caso de extravío o pérdida notificar al 22818850
                                                             </p>
                                                         </div>
-                                                        <div class="flex flex-col w-full text-center justify-center relative">
-                                                            <div class="flex justify-center p-1">
+                                                        <div class="flex flex-col text-center justify-center relative mt-2">
+                                                            <div class="flex justify-center  p-1">
                                                                 <img src="{{ asset('assets/img/gs-sign.jpeg') }}" alt="Firma GS" width="250px">
                                                             </div>
-                                                            <div class="mb-2 absolute flex justify-center">
-                                                                Autorizado
-                                                                <br>
-                                                                Gerencia de Seguridad Bancaria
+                                                            <div class="flex flex-col justify-center absolute bottom-0 left-32 ">
+                                                                <div>Autorizado</div>
+                                                                <div>Gerencia de Seguridad Bancaria</div>
                                                             </div>
                                                         </div>
                                                     </div>
