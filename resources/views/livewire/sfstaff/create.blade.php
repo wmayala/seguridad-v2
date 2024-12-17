@@ -122,13 +122,18 @@
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Firma</x-input-label>
                                         <input type="file" wire:model="signature" id="signature" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
-                                        <div wire:loading wire:target="signature">Cargando imagen...</div>
+                                        <div wire:loading wire:target="signature">Cargando firma...</div>
                                         @if($signature)
                                             <div class="mt-4">
                                                 <p class="text-sm font-medium text-gray-500">Vista previa:</p>
                                                 <img src="{{ $signature->temporaryUrl() }}" alt="Vista previa" class="w-1/6 h-auto rounded-md shadow-md">
                                             </div>
                                         @endif
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Documento <span class="text-xs">(Puede adjuntar 1 PDF)</span></x-input-label>
+                                        <input type="file" wire:model="document" id="document" accept=".pdf" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
+                                        <div wire:loading wire:target="document">Cargando documento...</div>
                                     </div>
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Estado del registro</x-input-label>

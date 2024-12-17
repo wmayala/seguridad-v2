@@ -12,7 +12,7 @@ class Edit extends Component
 {
     use WithFileUploads;
 
-    public $id, $record, $institution_id, $type, $brand, $color, $plate, $issueDate, $expirationDate, $photo, $existingPhoto, $status;
+    public $id, $record, $institution_id, $institution_name, $type, $brand, $color, $plate, $issueDate, $expirationDate, $photo, $existingPhoto, $status;
 
     protected $rules=[
         'record'=>'required|string',
@@ -41,6 +41,9 @@ class Edit extends Component
         $this->expirationDate=$vehicle->expirationDate;
         $this->existingPhoto=$vehicle->photo;
         $this->status=$vehicle->status;
+
+        $institution=Institution::findOrFail($this->institution_id);
+        $this->institution_name=$institution->name;
     }
 
     public function update()

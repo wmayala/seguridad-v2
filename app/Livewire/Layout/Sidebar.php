@@ -25,8 +25,12 @@ class Sidebar extends Component
                 ['label'=>'Actividades','route'=>'activities.index'],
                 ['label'=>'Instituciones S. F.','route'=>'institutions.index'],
                 ['label'=>'Empresas','route'=>'companies.index'],
-                /* ['label'=>'Tipo de Documentos','route'=>'home'],
-                ['label'=>'Tipo de Armamento','route'=>'home'], */
+            ],
+        ],
+        [
+            'title' => 'CONSULTAS',
+            'options' => [
+                ['label'=>'Buscar usuarios','route'=>'home'],
             ],
         ],
         [

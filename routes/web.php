@@ -98,9 +98,6 @@ Route::middleware('auth')->group(function()
     Route::get('/users/create', UsersCreate::class)->name('users.create');
     Route::get('/users/edit/{id}', UsersEdit::class)->name('users.edit');
 
-    // RUTA PARA GENERACIÓN DE CARNET
-    //Route::get('/generate-card/{id}',[IDCardController::class, 'retiredCard'])->name('retired-card');
-
     // RUTAS ROLES
     Route::get('/roles', RolesIndex::class)->name('roles.index');
 });

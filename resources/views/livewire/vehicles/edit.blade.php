@@ -186,7 +186,7 @@
                                                                 <td class="uppercase">{{ $plate }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td colspan="4" class="text-center">EMPRESA: {{ $institution_id }}</td>
+                                                                <td colspan="4" class="text-center">EMPRESA: {{ $institution_name }}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>

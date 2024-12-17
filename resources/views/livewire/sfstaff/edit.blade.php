@@ -132,6 +132,11 @@
                                         @endif
                                     </div>
                                     <div class="flex flex-col justify-center">
+                                        <x-input-label class="uppercase">Documento <span class="text-xs">(Puede adjuntar 1 PDF)</span></x-input-label>
+                                        <input type="file" wire:model="document" id="document" accept=".pdf" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
+                                        <div wire:loading wire:target="document">Cargando documento...</div>
+                                    </div>
+                                    <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Estado del registro</x-input-label>
                                         <div class="flex justify-center gap-5">
                                             <div class="flex gap-3">
