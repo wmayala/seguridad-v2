@@ -15,19 +15,23 @@ class Create extends Component
 
     protected $rules=[
         'record'=>'required|string',
-        'institution_id'=>'integer',
+        'institution_id'=>'required',
         'type'=>'required|string',
         'brand'=>'required|string',
         'color'=>'required|string',
         'plate'=>'required|string',
         'issueDate'=>'required|date',
         'expirationDate'=>'required|date',
-        'photo'=>'nullable|string',
+        'photo'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'status'=>'boolean',
     ];
 
     public function create()
     {
+
+        logger($this->brand);
+
+
         $this->validate();
 
         if($this->photo)
