@@ -78,7 +78,10 @@ class Edit extends Component
         $this->existingSign=$staff->signature;
         $this->status=$staff->status;
 
-        $activity=Activity::findOrFail($this->activity_id);
+        if($this->activity_id)
+        { $activity=Activity::findOrFail($this->activity_id); }
+        else
+        { $activity=Activity::findOrFail(1); }
         $this->activity_name=$activity->name;
     }
 

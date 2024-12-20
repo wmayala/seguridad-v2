@@ -39,12 +39,13 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    @if (Auth::user()->can('modificar-institucion'))
-                                        <button wire:click="redirectTo('institutions.edit',{{ $institution->id }})" class="px-2 py-1 text-white bg-yellow-400 rounded">Editar</button>
-                                    @endif
-
-                                    @if (Auth::user()->can('eliminar-institucion'))
-                                        <button wire:click="delete({{ $institution->id }})" class="px-2 py-1 text-white bg-red-400 rounded">Eliminar</button>
+                                    @if($institution->id!=1000)
+                                        @if (Auth::user()->can('modificar-institucion'))
+                                            <button wire:click="redirectTo('institutions.edit',{{ $institution->id }})" class="px-2 py-1 text-white bg-yellow-400 rounded">Editar</button>
+                                        @endif
+                                        @if (Auth::user()->can('eliminar-institucion'))
+                                            <button wire:click="delete({{ $institution->id }})" class="px-2 py-1 text-white bg-red-400 rounded">Eliminar</button>
+                                        @endif
                                     @endif
                                 </td>
                             </tr>
