@@ -8,11 +8,14 @@ use Livewire\Component;
 class Index extends Component
 {
     public $retired;
+    public $showInactive=1;
     public $search='';
 
     public function mount()
     {
-        $this->retired=Retired::all();
+        $this->retired=$this->showInactive
+            ? Retired::where('status',1)->get()
+            : Retired::all();
     }
 
     public function updatedSearch()
@@ -33,6 +36,8 @@ class Index extends Component
 
     public function render()
     {
+
+
         return view('livewire.retired.index');
     }
 }
