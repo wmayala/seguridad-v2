@@ -24,15 +24,15 @@
                     </div>
                     <div  class="flex justify-end p-3">
                         <div class="flex items-center">
-                            <span class="text-gray-700 mr-3">Ver inactivos</span>
                             <label class="relative inline-flex items-center cursor-pointer">
-                              <input type="checkbox" class="sr-only peer" wire:model.live="showInactive">
-                              <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 peer-focus:ring-offset-2 rounded-full peer peer-checked:bg-blue-500 peer-checked:after:translate-x-5 after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+                                <button
+                                    class="bg-[#111e60] hover:opacity-80  text-white font-bold py-1 px-3 rounded-full"
+                                    wire:click="viewAll">
+                                        <span>Ver todos</span>
+                                </button>
                             </label>
-                            {{-- <span class="text-gray-700 ml-3">On</span> --}}
                         </div>
                     </div>
-
                     <table class="w-full text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-lg text-white uppercase bg-[#111e60] dark:bg-gray-700 dark:text-gray-400">
                             <th></th>
@@ -45,7 +45,6 @@
                         </thead>
                         <tbody>
                             @foreach ($retired as $ret)
-
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 hover:text-[#111e60]">
                                     <td class="text-lg p-3"><img src="{{ asset('storage/'.$ret->photo) }}" alt="" width="100"></td>
                                     <td class="text-center text-lg p-3">{{ $ret->record }}</td>
@@ -69,7 +68,6 @@
                                         @endif
                                     </td>
                                 </tr>
-
                             @endforeach
                         </tbody>
                     </table>

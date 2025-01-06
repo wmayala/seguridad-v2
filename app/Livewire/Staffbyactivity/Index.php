@@ -12,6 +12,11 @@ class Index extends Component
 
     public function mount()
     {
+        $this->staff=StaffByActivity::where('status', 1)->get();
+    }
+
+    public function viewAll()
+    {
         $this->staff=StaffByActivity::all();
     }
 

@@ -36,7 +36,7 @@ class Edit extends Component
         'spouse'=>'nullable|string',
         'motherName'=>'nullable|string',
         'fatherName'=>'nullable|string',
-        'parentsAddress'=>'required|string',
+        'parentsAddress'=>'nullable|string',
         'skinColor'=>'nullable|string',
         'registerDate'=>'required|date',
         'expirationDate'=>'nullable|date',

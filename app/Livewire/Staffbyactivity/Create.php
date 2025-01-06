@@ -7,6 +7,8 @@ use App\Models\StaffByActivity;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
+use function Livewire\store;
+
 class Create extends Component
 {
     use WithFileUploads;
@@ -48,8 +50,17 @@ class Create extends Component
     {
         $this->validate();
 
-        $photoPath=$this->photo->store('staff','public');
-        $signPath=$this->signature->store('staff','public');
+        if($this->photo)
+        {
+            $photoPath=$this->photo->store('staff','public');
+            $signPath=$this->signature->store('staff','public');
+        }
+        else
+        {
+            $photoPath=asset('public/storage/user.png');
+            $signPath=asset('public/storage/signature.png');
+        }
+
 
         StaffByActivity::create([
             'record'=>$this->record,
