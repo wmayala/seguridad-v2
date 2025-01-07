@@ -42,8 +42,13 @@ class Edit extends Component
         $this->existingPhoto=$vehicle->photo;
         $this->status=$vehicle->status;
 
-        $institution=Institution::findOrFail($this->institution_id);
+        if($this->institution_id)
+        { $institution=Institution::findOrFail($this->institution_id); }
+        else
+        { $institution=Institution::findOrFail(1000); }
         $this->institution_name=$institution->name;
+
+        //vsdfsdfsdf
     }
 
     public function update()

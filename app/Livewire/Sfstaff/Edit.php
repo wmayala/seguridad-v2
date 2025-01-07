@@ -54,7 +54,10 @@ class Edit extends Component
         $this->existingSign=$sfstaff->signature;
         $this->status=$sfstaff->status;
 
-        $institution=Institution::findOrFail($this->institution_id);
+        if($this->institution_id)
+        { $institution=Institution::findOrFail($this->institution_id); }
+        else
+        { $institution=Institution::findOrFail(1000); }
         $this->institution_name=$institution->name;
     }
 

@@ -34,7 +34,7 @@ return new class extends Migration
             $table->string('spouse')->nullable();
             $table->string('motherName')->nullable();
             $table->string('fatherName')->nullable();
-            $table->string('parentsAddress');
+            $table->string('parentsAddress')->nullable();
             $table->string('skinColor')->nullable();
             $table->date('registerDate');
             $table->date('expirationDate');

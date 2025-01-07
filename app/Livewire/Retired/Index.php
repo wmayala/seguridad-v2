@@ -12,6 +12,11 @@ class Index extends Component
 
     public function mount()
     {
+        $this->retired=Retired::where('status', 1)->get();
+    }
+
+    public function viewAll()
+    {
         $this->retired=Retired::all();
     }
 

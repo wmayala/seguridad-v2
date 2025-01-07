@@ -36,7 +36,7 @@ class Edit extends Component
         'spouse'=>'nullable|string',
         'motherName'=>'nullable|string',
         'fatherName'=>'nullable|string',
-        'parentsAddress'=>'required|string',
+        'parentsAddress'=>'nullable|string',
         'skinColor'=>'nullable|string',
         'issueDate'=>'required|date',
         'expirationDate'=>'nullable|date',
@@ -79,7 +79,10 @@ class Edit extends Component
         $this->existingSign=$cstaff->signature;
         $this->status=$cstaff->status;
 
-        $company=Company::findOrFail($this->company_id);
+        if($this->company_id)
+        { $company=Company::findOrFail($this->company_id); }
+        else
+        { $company=Company::findOrFail(1); }
         $this->company_name=$company->name;
     }
 

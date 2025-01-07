@@ -39,11 +39,13 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    @if (Auth::user()->can('modificar-actividad'))
-                                        <button wire:click="redirectTo('activities.edit',{{ $activity->id }})" class="px-2 py-1 bg-yellow-400 text-white rounded">Editar</button>
-                                    @endif
-                                    @if (Auth::user()->can('eliminar-actividad'))
-                                        <button wire:click="delete({{ $activity->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
+                                    @if($activity->id!=1)
+                                        @if (Auth::user()->can('modificar-actividad'))
+                                            <button wire:click="redirectTo('activities.edit',{{ $activity->id }})" class="px-2 py-1 bg-yellow-400 text-white rounded">Editar</button>
+                                        @endif
+                                        @if (Auth::user()->can('eliminar-actividad'))
+                                            <button wire:click="delete({{ $activity->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
+                                        @endif
                                     @endif
                                 </td>
                             </tr>
