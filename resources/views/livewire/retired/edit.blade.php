@@ -42,8 +42,12 @@
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fecha de vencimiento</x-input-label>
-                                    <input class="border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" type="date" wire:model.live="expirationDate" id="expirationDate">
-                                    @error('expirationDate')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
+                                    <input
+                                        class="border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                        type="date" wire:model.live="expirationDate" id="expirationDate">
+                                    @error('expirationDate')
+                                        <span class="text-sm text-red-500">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fotografía</x-input-label>
@@ -60,17 +64,23 @@
                                             </div>
                                         </div>
                                     @endif
-
-                                    @if (!$photo && $existingPhoto)
-                                        <div class="mt-4">
-                                            <x-input-label class="uppercase">Foto Actual</x-input-label>
-                                            <div class="flex justify-center">
-                                                <img src="{{ asset('storage/' . $existingPhoto) }}" alt="Foto actual"
-                                                    width="140" class="rounded-md shadow-md">
+                                    @if (file_exists(asset('storage/' . $existingPhoto)))
+                                        @if (!$photo && $existingPhoto)
+                                            <div class="mt-4">
+                                                <x-input-label class="uppercase">Foto Actual</x-input-label>
+                                                <div class="flex justify-center">
+                                                    <img src="{{ asset('storage/' . $existingPhoto) }}"
+                                                        alt="Foto actual" width="140" class="rounded-md shadow-md">
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
+                                    @else
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                        </svg>
                                     @endif
-
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Estado del registro</x-input-label>
@@ -99,54 +109,93 @@
                                                 <div>
                                                     <div class="border border-black ">
                                                         <div class="w-32 h-40 overflow-hidden">
-                                                            <img id="originalImage" src="{{ asset('storage/' . $existingPhoto) }}" alt="Imagen original" class="object-cover w-full h-full cursor-pointer">
+                                                            @if (file_exists(asset('storage/' . $existingPhoto)))
+                                                                <img id="originalImage"
+                                                                    src="{{ asset('storage/' . $existingPhoto) }}"
+                                                                    alt="Imagen original"
+                                                                    class="object-cover w-full h-full cursor-pointer">
+                                                            @else
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                    viewBox="0 0 24 24" stroke-width="1.5"
+                                                                    stroke="currentColor" class="w-12 h-12">
+                                                                    <path stroke-linecap="round"
+                                                                        stroke-linejoin="round"
+                                                                        d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                                                </svg>
+                                                            @endif
                                                         </div>
 
                                                         <!-- CROPPER -->
-                                                        <div id="cropperModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
+                                                        <div id="cropperModal"
+                                                            class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
                                                             <div class="bg-white rounded-lg p-4 w-[90%] md:w-1/2">
-                                                            <h2 class="mb-4 text-xl font-bold">Ajustar imagen</h2>
-                                                            <div class="w-full h-64 overflow-hidden">
-                                                                <img id="imageToCrop" src="{{ asset('storage/' . $existingPhoto) }}" alt="Para recortar" class="w-full">
-                                                            </div>
-                                                            <div class="flex justify-end mt-4 space-x-2">
-                                                                <button id="cancelButton" class="px-4 py-2 text-white bg-gray-600 rounded">Cancelar</button>
-                                                                <button id="cropButton" class="px-4 py-2 text-white bg-[#111e60]  rounded">Recortar</button>
-                                                            </div>
+                                                                <h2 class="mb-4 text-xl font-bold">Ajustar imagen</h2>
+                                                                <div class="w-full h-64 overflow-hidden">
+                                                                    <img id="imageToCrop"
+                                                                        src="{{ asset('storage/' . $existingPhoto) }}"
+                                                                        alt="Para recortar" class="w-full">
+                                                                </div>
+                                                                <div class="flex justify-end mt-4 space-x-2">
+                                                                    <button id="cancelButton"
+                                                                        class="px-4 py-2 text-white bg-gray-600 rounded">Cancelar</button>
+                                                                    <button id="cropButton"
+                                                                        class="px-4 py-2 text-white bg-[#111e60]  rounded">Recortar</button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <!-- FIN CROPPER -->
 
                                                     </div>
                                                     <div class="mt-6 text-xl text-center">Exp. No.</div>
-                                                    <div class="text-2xl font-bold text-center">{{ $record }}</div>
+                                                    <div class="text-2xl font-bold text-center">{{ $record }}
+                                                    </div>
                                                 </div>
                                                 <div class="mx-2">
                                                     <div class="flex w-full py-1 border-b border-black">
-                                                        <img src="{{ asset('assets/img/logo_bcr.png') }}" alt="Logo BCR" width="60px">
-                                                        <span class="mx-2 text-lg font-bold text-center uppercase">Banco Central de Reserva de El Salvador</span>
+                                                        <img src="{{ asset('assets/img/logo_bcr.png') }}"
+                                                            alt="Logo BCR" width="60px">
+                                                        <span
+                                                            class="mx-2 text-lg font-bold text-center uppercase">Banco
+                                                            Central de Reserva de El Salvador</span>
                                                     </div>
                                                     <div class="flex flex-col py-1 mb-1 border-b border-black">
                                                         <span>Nombre: </span>
-                                                        <span class="text-lg font-semibold uppercase flex items-center">{{ $name }}</span>
+                                                        <span
+                                                            class="text-lg font-semibold uppercase flex items-center">{{ $name }}</span>
                                                     </div>
                                                     <div class="flex flex-row py-1 border-b border-black">
                                                         <div>Cargo: </div>
-                                                        <div class="pl-2 text-lg font-semibold uppercase flex items-center ">{{ $position }}</div>
+                                                        <div
+                                                            class="pl-2 text-lg font-semibold uppercase flex items-center ">
+                                                            {{ $position }}</div>
                                                     </div>
-                                                    <div class="flex justify-between py-1 border-b border-black flew-row">
+                                                    <div
+                                                        class="flex justify-between py-1 border-b border-black flew-row">
                                                         <div class="flex flex-col pl-2">
                                                             <div>Dui No.</div>
                                                             <div class="text-center">{{ $dui }}</div>
                                                         </div>
                                                         <div class="flex flex-col pr-2">
                                                             <div>Vencimiento</div>
-                                                            <div class="text-center">{{ date('d-m-Y', strtotime($expirationDate)) }}</div>
+                                                            <div class="text-center">
+                                                                {{ date('d-m-Y', strtotime($expirationDate)) }}</div>
                                                         </div>
                                                     </div>
                                                     <div class="flex flex-col w-full pl-2 text-center border-black">
                                                         <div class="relative flex justify-center h-10">
-                                                            <img class="absolute w-10" src="{{ asset('storage/' . $existingSign) }}" alt="Firma Portador" >
+                                                            @if (file_exists(asset('storage/' . $existingSign)))
+                                                                <img class="absolute w-10"
+                                                                    src="{{ asset('storage/' . $existingSign) }}"
+                                                                    alt="Firma Portador">
+                                                            @else
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                    viewBox="0 0 24 24" stroke-width="1.5"
+                                                                    stroke="currentColor" class="size-6">
+                                                                    <path stroke-linecap="round"
+                                                                        stroke-linejoin="round"
+                                                                        d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                                                </svg>
+                                                            @endif
                                                         </div>
                                                         <div class="mb-2">
                                                             Firma del Portador
@@ -165,14 +214,17 @@
                                                 <div>
                                                     <div class="flex w-full py-2">
                                                         <p class="p-3 mx-2 text-justify">
-                                                            Este carnet debe portarlo en forma visible al ingreso y durante su permanencia en el BCR.
-                                                            En caso de extravío o pérdida notificar al Tel.: 2281-8850. El costo de reposición por pérdida
+                                                            Este carnet debe portarlo en forma visible al ingreso y
+                                                            durante su permanencia en el BCR.
+                                                            En caso de extravío o pérdida notificar al Tel.: 2281-8850.
+                                                            El costo de reposición por pérdida
                                                             es de $10.00
                                                         </p>
                                                     </div>
                                                     <div class="flex flex-col w-full pl-2 text-center">
                                                         <div class="flex justify-center my-2">
-                                                            <img src="{{ asset('assets/img/gs-sign.jpeg') }}" alt="Firma GS" width="275px">
+                                                            <img src="{{ asset('assets/img/gs-sign.jpeg') }}"
+                                                                alt="Firma GS" width="275px">
                                                         </div>
                                                         <div class="mb-3">
                                                             Autorizado
@@ -188,7 +240,8 @@
                                 </div>
 
                                 <div class="flex justify-center">
-                                    <button id="printButton" class="px-4 py-2 text-sm font-semibold text-white uppercase bg-green-800 rounded-md hover:bg-green-600">
+                                    <button id="printButton"
+                                        class="px-4 py-2 text-sm font-semibold text-white uppercase bg-green-800 rounded-md hover:bg-green-600">
                                         Generar carnet
                                     </button>
                                 </div>
