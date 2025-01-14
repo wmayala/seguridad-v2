@@ -11,26 +11,20 @@
                                     <x-input-label class="uppercase">Expediente No.</x-input-label>
                                     <x-text-input id="record" wire:model="record" placeholder="####"
                                         autofocus></x-text-input>
-                                    @error('record')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('record')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Nombre</x-input-label>
                                     <x-text-input id="name" wire:model="name"
                                         placeholder="Nombre del beneficiario"></x-text-input>
-                                    @error('name')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('name')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Edad</x-input-label>
                                     <input
                                         class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                         type="number" id="age" wire:model="age" placeholder="Escriba la edad">
-                                    @error('age')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('age')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Parentesco</x-input-label>
@@ -43,25 +37,19 @@
                                         <option value="Hermano(a)">Hermano(a)</option>
                                         <option value="Padre/Madre">Padre/Madre</option>
                                     </select>
-                                    @error('relationship')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('relationship')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Código de empleado</x-input-label>
                                     <x-text-input id="empCode" wire:model="empCode"
                                         placeholder="Código de empleado"></x-text-input>
-                                    @error('empCode')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('empCode')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Nombre del empleado</x-input-label>
                                     <x-text-input id="empName" wire:model="empName"
                                         placeholder="Nombre del empleado"></x-text-input>
-                                    @error('empName')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('empName')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Institución</x-input-label>
@@ -71,34 +59,27 @@
                                         <option value="">Seleccionar</option>
                                         <option value="BCR">Banco Central de Reserva</option>
                                     </select>
-                                    @error('institution')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('institution')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fecha de emisión</x-input-label>
                                     <input
                                         class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                         type="date" wire:model="issueDate" id="issueDate">
-                                    @error('issueDate')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('issueDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fecha de vencimiento</x-input-label>
                                     <input
                                         class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                         type="date" wire:model="expirationDate" id="expirationDate">
-                                    @error('expirationDate')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('expirationDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fotografía</x-input-label>
                                     <input type="file" wire:model="photo" id="photo" accept="image/*"
                                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
                                     <div wire:loading wire:target="photo">Cargando imagen...</div>
-
                                     @if ($photo)
                                         <div class="mt-4">
                                             <x-input-label class="uppercase">Vista previa</x-input-label>
@@ -108,7 +89,6 @@
                                             </div>
                                         </div>
                                     @endif
-
                                     @if (!$photo && $existingPhoto)
                                         <div class="mt-4">
                                             <x-input-label class="uppercase">Foto Actual</x-input-label>
@@ -143,7 +123,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="flex flex-col justify-center items-center gap-5">
 
                                     {{-- CARNET FRENTE --}}
@@ -201,8 +180,7 @@
                                                     </div>
                                                     <div
                                                         class="flex flex-row justify-between py-1 border-b border-black">
-                                                        <div><span>Parentesco: </span><span>{{ $relationship }}</span>
-                                                        </div>
+                                                        <div><span>Parentesco: </span><span>{{ $relationship }}</span></div>
                                                         <div><span>Edad: </span><span>{{ $age }}</span></div>
                                                     </div>
                                                     <div class="flex flex-col py-1 border-b border-black">
@@ -227,7 +205,7 @@
                                                                     alt="Firma Portador">
                                                             </div>
                                                             <div class="mb-2">
-                                                                Firma del Portador
+                                                                <span>Firma del Portador</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -277,7 +255,6 @@
                                     </div>
                                     {{-- FIN CARNET REVERSO --}}
                                 </div>
-
                                 <div class="flex justify-center">
                                     <button id="printButton"
                                         class="px-4 py-2 text-sm font-semibold text-white uppercase bg-cyan-400  rounded-md hover:bg-cyan-800">

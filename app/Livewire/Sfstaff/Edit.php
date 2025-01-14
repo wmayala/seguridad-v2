@@ -119,7 +119,6 @@ class Edit extends Component
         ]);
 
         session()->flash('success','Personal SF actualizado exitosamente!');
-
         return redirect()->route('sfstaff.index');
     }
 

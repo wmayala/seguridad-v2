@@ -17,14 +17,11 @@ class Create extends Component
     public function create()
     {
         $this->validate();
-
         Activity::create([
             'name'=>$this->name,
             'status'=>$this->status,
         ]);
-
         session()->flash('success','Actividad creada exitosamente!');
-
         return redirect()->route('activities.index');
     }
 

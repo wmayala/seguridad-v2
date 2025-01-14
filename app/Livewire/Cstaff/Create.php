@@ -115,7 +115,6 @@ class Create extends Component
         ]);
 
         session()->flash('success','Personal de empresas agregado exitosamente!');
-
         return redirect()->route('cstaff.index');
     }
 

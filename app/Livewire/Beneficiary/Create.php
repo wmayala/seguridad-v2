@@ -68,7 +68,6 @@ class Create extends Component
         ]);
 
         session()->flash('success','Beneficiario agregado exitosamente!');
-
         return redirect()->route('beneficiaries.index');
     }
 

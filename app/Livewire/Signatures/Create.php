@@ -48,10 +48,7 @@ class Create extends Component
             'status'=>$this->status,
         ]);
 
-        /// recuperar el nombre a partir del id de la institución
-
         session()->flash('success','Documento agregado!');
-
         return redirect()->route('signatures.index');
     }
 

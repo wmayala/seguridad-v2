@@ -24,7 +24,6 @@ class Create extends Component
         ]);
 
         session()->flash('success','Institución creada exitosamente!');
-
         return redirect()->route('institutions.index');
     }
 

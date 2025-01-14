@@ -41,7 +41,6 @@ class Edit extends Component
     public function update()
     {
         $validatedData=$this->validate();
-
         $signature=AuthSignatures::findOrFail($this->id);
 
         if($this->document)
@@ -65,7 +64,6 @@ class Edit extends Component
         ]);
 
         session()->flash('success','Documento actualizado!');
-
         return redirect()->route('signatures.index');
     }
 

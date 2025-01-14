@@ -61,7 +61,6 @@ class Create extends Component
         ]);
 
         session()->flash('success','Jubilado agregado exitosamente!');
-
         return redirect()->route('retired.index');
     }
 

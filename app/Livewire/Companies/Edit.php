@@ -32,7 +32,6 @@ class Edit extends Component
         ]);
 
         session()->flash('success','Empresa actualizada exitosamente!');
-
         return redirect()->route('companies.index');
     }
 

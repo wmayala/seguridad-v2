@@ -33,7 +33,6 @@ class Edit extends Component
         ]);
 
         session()->flash('success','Actividad actualizada exitosamente!');
-
         return redirect()->route('activities.index');
     }
 

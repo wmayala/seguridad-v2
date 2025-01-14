@@ -42,7 +42,6 @@ class Edit extends Component
     public function update()
     {
         $validatedData=$this->validate();
-
         $retired=Retired::findOrFail($this->id);
 
         if($this->photo)
@@ -78,7 +77,6 @@ class Edit extends Component
         ]);
 
         session()->flash('success','Jubilado actualizado exitosamente!');
-
         return redirect()->route('retired.index');
     }
 

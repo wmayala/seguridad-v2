@@ -49,7 +49,6 @@ class Edit extends Component
     public function update()
     {
         $validateData=$this->validate();
-
         $beneficiary=Beneficiary::findOrFail($this->id);
 
         if($this->photo)
@@ -88,7 +87,6 @@ class Edit extends Component
         ]);
 
         session()->flash('success','Beneficiario actualizado exitosamente!');
-
         return redirect()->route('beneficiaries.index');
     }
 

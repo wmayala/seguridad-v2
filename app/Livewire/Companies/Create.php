@@ -24,7 +24,6 @@ class Create extends Component
         ]);
 
         session()->flash('success','Empresa creada exitosamente!');
-
         redirect()->route('companies.index');
     }
 

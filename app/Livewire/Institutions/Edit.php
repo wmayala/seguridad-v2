@@ -32,7 +32,6 @@ class Edit extends Component
         ]);
 
         session()->flash('success','Institución actualizada exitosamente!');
-
         return redirect()->route('institutions.index');
     }
 

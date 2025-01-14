@@ -89,7 +89,6 @@ class Create extends Component
         ]);
 
         session()->flash('success','Personal SF agregado exitosamente!');
-
         return redirect()->route('sfstaff.index');
     }
 

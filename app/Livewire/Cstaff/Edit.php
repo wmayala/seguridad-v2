@@ -91,7 +91,6 @@ class Edit extends Component
     public function update()
     {
         $validatedData=$this->validate();
-
         $cstaff=CompaniesStaff::findOrFail($this->id);
 
         if($this->photo)
@@ -158,7 +157,6 @@ class Edit extends Component
         ]);
 
         session()->flash('success','Personal de empresa actualizado exitosamente!');
-
         return redirect()->route('cstaff.index');
     }
 
