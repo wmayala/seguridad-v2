@@ -11,9 +11,7 @@
                                     <x-input-label class="uppercase">Expediente No.</x-input-label>
                                     <x-text-input id="record" wire:model="record" placeholder="####"
                                         autofocus></x-text-input>
-                                    @error('record')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('record')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Zona restringida</x-input-label>
@@ -48,67 +46,51 @@
                                     <x-input-label class="uppercase">Nombre</x-input-label>
                                     <x-text-input id="name" wire:model.live="name"
                                         placeholder="Nombre completo de la persona"></x-text-input>
-                                    @error('name')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('name')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Cargo</x-input-label>
                                     <x-text-input id="position" wire:model="position"
                                         placeholder="Ej.: Agente de seguridad"></x-text-input>
-                                    @error('position')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('position')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">DUI</x-input-label>
                                     <x-text-input id="dui" wire:model="dui" maxlength="10"
                                         placeholder="Ej.: 12345678-9"></x-text-input>
-                                    @error('dui')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('dui')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Lugar de expedición DUI</x-input-label>
                                     <x-text-input id="duiPlace" wire:model="duiPlace"
                                         placeholder="Ej.: San Salvador, San Salvador"></x-text-input>
-                                    @error('duiPlace')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('duiPlace')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fecha de expedición DUI</x-input-label>
                                     <input
                                         class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                         type="date" wire:model="duiDate" id="duiDate">
-                                    @error('duiDate')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('duiDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Dirección particular</x-input-label>
                                     <x-text-input id="address" wire:model="address"
                                         placeholder="Ej.: Colonia Las Rosas, calle 1, pasaje 1, casa #1, San Salvador"></x-text-input>
-                                    @error('address')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('address')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Lugar de nacimiento</x-input-label>
                                     <x-text-input id="birthPlace" wire:model="birthPlace"
                                         placeholder="Ej.: San Salvador, San Salvador" autofocus></x-text-input>
-                                    @error('birthPlace')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('birthPlace')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fecha de nacimiento</x-input-label>
                                     <input
                                         class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                         type="date" wire:model="birthDate" id="birthDate">
-                                    @error('birthDate')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('birthDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Institución</x-input-label>
@@ -126,25 +108,21 @@
                                     <input
                                         class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                         type="date" wire:model="issueDate" id="issueDate">
-                                    @error('issueDate')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('issueDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fecha de vencimiento</x-input-label>
                                     <input
                                         class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                                         type="date" wire:model="expirationDate" id="expirationDate">
-                                    @error('expirationDate')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
+                                    @error('expirationDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fotografía</x-input-label>
                                     <input type="file" wire:model="photo" id="photo" accept="image/*"
                                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
                                     <div wire:loading wire:target="photo">Cargando imagen...</div>
-                                    @if ($photo)
+                                    @if($photo)
                                         <div class="mt-4">
                                             <x-input-label class="uppercase">Vista previa</x-input-label>
                                             <div class="flex justify-center">
@@ -153,7 +131,7 @@
                                             </div>
                                         </div>
                                     @endif
-                                    @if (!$photo && $existingPhoto)
+                                    @if(!$photo && $existingPhoto)
                                         <div class="mt-4">
                                             <x-input-label class="uppercase">Foto Actual</x-input-label>
                                             <div class="flex justify-center">
@@ -335,5 +313,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>

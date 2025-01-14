@@ -6,7 +6,7 @@
                     <div class="flex justify-between">
                         @include('layouts.notif')
                         <div class="text-[#111e60] text-bold text-3xl mb-5">INSTITUCIONES DEL SISTEMA FINANCIERO</div>
-                        @if (Auth::user()->can('crear-institucion'))
+                        @if(Auth::user()->can('crear-institucion'))
                             <div>
                                 <a href="{{ route('institutions.create') }}" class="inline-flex items-center px-4 py-2 bg-[#111e60] border border-transparent rounded-md font-semibold text-md text-white uppercase tracking-widest hover:bg-[#111e60] focus:bg-[#111e60]-700 active:bg-[#111e60]-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Agregar institución</a>
                             </div>
@@ -28,7 +28,7 @@
                             <th class="p-3 text-center">ACCIONES</th>
                         </thead>
                         <tbody>
-                            @foreach ($institutions as $institution)
+                            @foreach($institutions as $institution)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 hover:text-[#111e60]">
                                 <td class="p-3 text-lg">{{ $institution->name }}</td>
                                 <td class="p-3 text-lg">
@@ -40,10 +40,10 @@
                                 </td>
                                 <td class="text-center">
                                     @if($institution->id!=1000)
-                                        @if (Auth::user()->can('modificar-institucion'))
+                                        @if(Auth::user()->can('modificar-institucion'))
                                             <button wire:click="redirectTo('institutions.edit',{{ $institution->id }})" class="px-2 py-1 text-white bg-yellow-400 rounded">Editar</button>
                                         @endif
-                                        @if (Auth::user()->can('eliminar-institucion'))
+                                        @if(Auth::user()->can('eliminar-institucion'))
                                             <button onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()" wire:click="delete({{ $institution->id }})" class="px-2 py-1 text-white bg-red-400 rounded">Eliminar</button>
                                         @endif
                                     @endif

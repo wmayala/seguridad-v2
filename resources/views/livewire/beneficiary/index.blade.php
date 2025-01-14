@@ -6,8 +6,7 @@
                     <div class="flex justify-between">
                         @include('layouts.notif')
                         <div class="text-[#111e60] text-bold text-3xl mb-5">BENEFICIARIOS</div>
-
-                        @if (Auth::user()->can('crear-beneficiario'))
+                        @if(Auth::user()->can('crear-beneficiario'))
                             <div>
                                 <a href="{{ route('beneficiaries.create') }}" class="inline-flex items-center px-4 py-2 bg-[#111e60] border border-transparent rounded-md font-semibold text-md text-white uppercase tracking-widest hover:bg-[#111e60] focus:bg-[#111e60]-700 active:bg-[#111e60]-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Agregar beneficiario</a>
                             </div>
@@ -22,7 +21,7 @@
                             autofocus>
                         </x-text-input>
                     </div>
-                    <div  class="flex justify-end p-3">
+                    <div class="flex justify-end p-3">
                         <div class="flex items-center">
                             <label class="relative inline-flex items-center cursor-pointer">
                                 <button
@@ -45,7 +44,7 @@
                             <th class="text-center p-3">ACCIONES</th>
                         </thead>
                         <tbody>
-                            @foreach ($beneficiaries as $beneficiary)
+                            @foreach($beneficiaries as $beneficiary)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 hover:text-[#111e60]">
                                 <td class="text-lg p-3"><img src="{{ asset('storage/'.$beneficiary->photo) }}" alt="" width="100"></td>
                                 <td class="text-lg text-center p-3">{{ $beneficiary->record }}</td>
@@ -61,11 +60,10 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    @if (Auth::user()->can('modificar-beneficiario'))
+                                    @if(Auth::user()->can('modificar-beneficiario'))
                                         <button wire:click="redirectTo('beneficiaries.edit',{{ $beneficiary->id }})" class="px-2 py-1 bg-yellow-400 text-white rounded">Editar</button>
                                     @endif
-
-                                    @if (Auth::user()->can('eliminar-beneficiario'))
+                                    @if(Auth::user()->can('eliminar-beneficiario'))
                                         <button onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()" wire:click="delete({{ $beneficiary->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
                                     @endif
                                 </td>

@@ -21,18 +21,18 @@
                                         <div class="flex justify-center gap-8">
                                             <div class="flex gap-2">
                                                 <input class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
-                                                       wire:model="status"
-                                                       type="radio"
-                                                       id="act"
-                                                       value="1">
+                                                    wire:model="status"
+                                                    type="radio"
+                                                    id="act"
+                                                    value="1">
                                                 <label for="act">ACTIVO</label>
                                             </div>
                                             <div class="flex gap-2">
                                                 <input class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
-                                                       wire:model="status"
-                                                       type="radio"
-                                                       id="inact"
-                                                       value="0">
+                                                    wire:model="status"
+                                                    type="radio"
+                                                    id="inact"
+                                                    value="0">
                                                 <label for="inact">INACTIVO</label>
                                             </div>
                                         </div>
