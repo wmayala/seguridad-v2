@@ -196,7 +196,8 @@
                                     </div>
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Firma</x-input-label>
-                                        <input type="file" wire:model="signature" id="signature" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
+                                        <input type="file" wire:model="signature" id="signature" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" required>
+                                        @error('signature')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                         <div wire:loading wire:target="signature">Cargando firma...</div>
                                         @if($signature)
                                             <div class="mt-4">

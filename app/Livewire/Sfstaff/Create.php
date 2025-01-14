@@ -4,6 +4,7 @@ namespace App\Livewire\Sfstaff;
 
 use App\Models\Institution;
 use App\Models\SFStaff;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -11,7 +12,7 @@ class Create extends Component
 {
     use WithFileUploads;
 
-    public $record, $zone, $name, $position, $dui, $duiPlace, $duiDate, $address, $birthPlace, $birthDate, $institution_id, $issueDate, $expirationDate, $photo, $signature, $status;
+    public $record, $zone, $name, $position, $dui, $duiPlace, $duiDate, $address, $birthPlace, $birthDate, $institution_id, $issueDate, $expirationDate, $photo, $signature, $document, $status;
 
     protected $rules=[
         'record'=>'required|string',
@@ -29,15 +30,43 @@ class Create extends Component
         'expirationDate'=>'required|date',
         'photo'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'signature'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'document'=>'nullable|file|max:2048',
         'status'=>'boolean',
     ];
 
     public function create()
     {
-        $this->validate();
+        $validateData=$this->validate();
 
-        $photoPath=$this->photo->store('sfstaff','public');
-        $signPath=$this->signature->store('sfstaff','public');
+        if($this->photo)
+        {
+            if($this->photo && Storage::disk('public')->exists($this->photo))
+            { Storage::disk('public')->delete($this->photo); }
+            $photoPath=$this->photo->store('sfstaff','public');
+            $validateData['photo']=$photoPath;
+        }
+        else
+        { $validateData['photo']=$this->photo; }
+
+        if($this->signature)
+        {
+            if($this->signature && Storage::disk('public')->exists($this->signature))
+            { Storage::disk('public')->delete($this->signature); }
+            $signPath=$this->signature->store('sfstaff','public');
+            $validateData['signature']=$signPath;
+        }
+        else
+        { $validateData['signature']=$this->signature; }
+
+        if($this->document)
+        {
+            if($this->document && Storage::disk('public')->exists($this->document))
+            { Storage::disk('public')->delete($this->document); }
+            $docPath=$this->document->store('sfstaff','public');
+            $validateData['document']=$docPath;
+        }
+        else
+        { $validateData['document']=$this->document; }
 
         SFStaff::create([
             'record'=>$this->record,
@@ -53,8 +82,9 @@ class Create extends Component
             'institution_id'=>$this->institution_id,
             'issueDate'=>$this->issueDate,
             'expirationDate'=>$this->expirationDate,
-            'photo'=>$photoPath,
-            'signature'=>$signPath,
+            'photo'=>$validateData['photo'],
+            'signature'=>$validateData['signature'],
+            'document'=>$validateData['document'],
             'status'=>$this->status,
         ]);
 

@@ -3,6 +3,7 @@
 namespace App\Livewire\Retired;
 
 use App\Models\Retired;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -25,10 +26,27 @@ class Create extends Component
 
     public function create()
     {
-        $this->validate();
+        $validateData=$this->validate();
 
-        $photoPath=$this->photo->store('retired','public');
-        $signPath=$this->signature->store('retired','public');
+        if($this->photo)
+        {
+            if($this->photo && Storage::disk('public')->exists($this->photo))
+            { Storage::disk('public')->delete($this->photo); }
+            $photoPath=$this->photo->store('retired','public');
+            $validateData['photo']=$photoPath;
+        }
+        else
+        { $validateData['photo']=$this->photo; }
+
+        if($this->signature)
+        {
+            if($this->signature && Storage::disk('public')->exists($this->signature))
+            { Storage::disk('public')->delete($this->signature); }
+            $signPath=$this->signature->store('retired','public');
+            $validateData['signature']=$signPath;
+        }
+        else
+        { $validateData['signature']=$this->signature; }
 
         Retired::create([
             'record'=>$this->record,
@@ -37,8 +55,8 @@ class Create extends Component
             'dui'=>$this->dui,
             'issueDate'=>$this->issueDate,
             'expirationDate'=>$this->expirationDate,
-            'photo'=>$photoPath,
-            'signature'=>$signPath,
+            'photo'=>$validateData['photo'],
+            'signature'=>$validateData['signature'],
             'status'=>$this->status,
         ]);
 

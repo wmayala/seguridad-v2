@@ -28,7 +28,7 @@
                                 <button
                                     class="bg-[#111e60] hover:opacity-80  text-white font-bold py-1 px-3 rounded-full"
                                     wire:click="viewAll">
-                                        <span>Ver todos</span>
+                                        <span>Ver inactivos</span>
                                 </button>
                             </label>
                         </div>
@@ -64,7 +64,7 @@
                                         @endif
 
                                         @if (Auth::user()->can('eliminar-jubilado'))
-                                            <button wire:click="delete({{ $ret->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
+                                            <button onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()" wire:click="delete({{ $ret->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
                                         @endif
                                     </td>
                                 </tr>

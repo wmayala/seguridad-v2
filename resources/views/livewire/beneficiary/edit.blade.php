@@ -108,76 +108,62 @@
                                             </div>
                                         </div>
                                     @endif
-                                    @if (file_exists(asset('storage/' . $existingPhoto)))
 
-                                        @if (!$photo && $existingPhoto)
-                                            <div class="mt-4">
-                                                <x-input-label class="uppercase">Foto Actual</x-input-label>
-                                                <div class="flex justify-center">
-                                                    <img src="{{ asset('storage/' . $existingPhoto) }}"
-                                                        alt="Foto actual" width="140" class="rounded-md shadow-md">
-                                                </div>
+                                    @if (!$photo && $existingPhoto)
+                                        <div class="mt-4">
+                                            <x-input-label class="uppercase">Foto Actual</x-input-label>
+                                            <div class="flex justify-center">
+                                                <img src="{{ asset('storage/' . $existingPhoto) }}"
+                                                    class="rounded-md shadow-md"
+                                                    alt="Foto actual"
+                                                    width="140">
                                             </div>
-                                        @endif
-                                    @else
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                        </svg>
+                                        </div>
                                     @endif
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Estado del registro</x-input-label>
                                     <div class="flex justify-center gap-5">
                                         <div class="flex gap-3">
-                                            <input
-                                                class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
-                                                wire:model="status" type="radio" id="act" value="1"
+                                            <input class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                                wire:model="status"
+                                                type="radio"
+                                                id="act"
+                                                value="1"
                                                 checked>
                                             <label for="act">ACTIVO</label>
                                         </div>
                                         <div class="flex gap-2">
-                                            <input
-                                                class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
-                                                wire:model="status" type="radio" id="inact" value="0">
+                                            <input class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                                wire:model="status"
+                                                type="radio"
+                                                id="inact"
+                                                value="0">
                                             <label for="inact">INACTIVO</label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="flex flex-col justify-center items-center gap-5">
+
                                     {{-- CARNET FRENTE --}}
                                     <div id="id-card-front" class="w-[517px] h-[325px] border border-gray-200 p-2">
                                         <div class="flex justify-center gap-3">
                                             <div class="grid grid-cols-[auto_1fr]">
                                                 <div class="flex justify-center p-1 ">
-                                                    <img src="{{ asset('assets/img/logo_bcr.png') }}" alt="Logo BCR"
-                                                        width="80px" height="80px">
+                                                    <img src="{{ asset('assets/img/logo_bcr.png') }}" alt="Logo BCR" width="80px" height="80px">
                                                 </div>
                                                 <div class="flex flex-col w-full py-1">
-                                                    <span class="mx-2 text-lg font-bold text-center uppercase">Centro
-                                                        de Recreación y Deportes del Banco Central de Reserva</span>
-                                                    <span class="text-base font-bold text-center uppercase">Carné de
-                                                        Beneficiario</span>
+                                                    <span class="mx-2 text-lg font-bold text-center uppercase">Centro de Recreación y Deportes del Banco Central de Reserva</span>
+                                                    <span class="text-base font-bold text-center uppercase">Carné de Beneficiario</span>
                                                 </div>
                                                 <div>
                                                     <div class="border border-black ">
                                                         <div class="w-32 h-40 overflow-hidden">
-                                                            @if (file_exists(asset('storage/' . $existingPhoto)))
-                                                                <img id="originalImage"
-                                                                    src="{{ asset('storage/' . $existingPhoto) }}"
-                                                                    alt="Imagen original"
-                                                                    class="object-cover w-full h-full cursor-pointer">
-                                                            @else
-                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                                    viewBox="0 0 24 24" stroke-width="1.5"
-                                                                    stroke="currentColor" class="w-12 h-12">
-                                                                    <path stroke-linecap="round"
-                                                                        stroke-linejoin="round"
-                                                                        d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                                                </svg>
-                                                            @endif
+                                                            <img id="originalImage"
+                                                                src="{{ asset('storage/' . $existingPhoto) }}"
+                                                                alt="Imagen original"
+                                                                class="object-cover w-full h-full cursor-pointer">
                                                         </div>
 
                                                         <!-- CROPPER -->
@@ -191,10 +177,8 @@
                                                                         alt="Para recortar" class="w-full">
                                                                 </div>
                                                                 <div class="flex justify-end mt-4 space-x-2">
-                                                                    <button id="cancelButton"
-                                                                        class="px-4 py-2 text-white bg-gray-600 rounded">Cancelar</button>
-                                                                    <button id="cropButton"
-                                                                        class="px-4 py-2 text-white bg-[#111e60]  rounded">Recortar</button>
+                                                                    <button id="cancelButton" class="px-4 py-2 text-white bg-gray-600 rounded">Cancelar</button>
+                                                                    <button id="cropButton" class="px-4 py-2 text-white bg-[#111e60]  rounded">Recortar</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -208,8 +192,7 @@
                                                 <div class="mx-2">
                                                     <div class="flex flex-col py-1 border-b border-black">
                                                         <span>Nombre: </span>
-                                                        <span
-                                                            class="text-lg font-semibold uppercase flex items-center">{{ $name }}</span>
+                                                        <span class="text-lg font-semibold uppercase flex items-center">{{ $name }}</span>
                                                     </div>
                                                     <div
                                                         class="flex flex-row justify-between py-1 border-b border-black">
@@ -225,32 +208,18 @@
                                                                 <span class="font-bold">{{ $empCode }}</span>
                                                             </div>
                                                         </div>
-                                                        <span
-                                                            class="text-lg font-semibold uppercase flex items-center">{{ $empName }}</span>
+                                                        <span class="text-lg font-semibold uppercase flex items-center">{{ $empName }}</span>
                                                     </div>
-
                                                     <div class="flex flex-row justify-between py-1 flew-row">
                                                         <div class="flex flex-col mt-2">
                                                             <div>Vencimiento</div>
-                                                            <div class="text-center">
-                                                                {{ date('d-m-Y', strtotime($expirationDate)) }}</div>
+                                                            <div class="text-center">{{ date('d-m-Y', strtotime($expirationDate)) }}</div>
                                                         </div>
                                                         <div class="flex flex-col w-1/2 pl-2 text-center border-black">
                                                             <div class="relative flex justify-center h-10">
-                                                                @if (file_exists(asset('storage/' . $existingSign)))
-                                                                    <img class="absolute w-10"
-                                                                        src="{{ asset('storage/' . $existingSign) }}"
-                                                                        alt="Firma Portador">
-                                                                @else
-                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                        fill="none" viewBox="0 0 24 24"
-                                                                        stroke-width="1.5" stroke="currentColor"
-                                                                        class="size-6">
-                                                                        <path stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                                                                    </svg>
-                                                                @endif
+                                                                <img class="absolute w-10"
+                                                                    src="{{ asset('storage/' . $existingSign) }}"
+                                                                    alt="Firma Portador">
                                                             </div>
                                                             <div class="mb-2">
                                                                 Firma del Portador

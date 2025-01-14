@@ -12,9 +12,14 @@ class Index extends Component
 
     public function mount()
     {
+        $this->signatures=AuthSignatures::where('status', 1)->get();
+        $this->institutions=Institution::all();
+    }
+
+    public function viewAll()
+    {
         $this->signatures=AuthSignatures::all();
         $this->institutions=Institution::all();
-
     }
 
     public function redirectTo($route, $param)

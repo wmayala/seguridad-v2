@@ -12,7 +12,7 @@ class Edit extends Component
 {
     use  WithFileUploads;
 
-    public $id, $record, $zone, $name, $position, $gender, $birthPlace, $birthDate, $address, $phone, $mobile, $dui, $duiPlace, $duiDate, $duiProfession, $driverLicense, $workPlace, $workAddress, $workPhone, $spouse, $motherName, $fatherName, $parentsAddress, $skinColor, $company_id, $company_name, $issueDate, $expirationDate, $photo, $existingPhoto, $signature, $existingSign, $status;
+    public $id, $record, $zone, $name, $position, $gender, $birthPlace, $birthDate, $address, $phone, $mobile, $dui, $duiPlace, $duiDate, $duiProfession, $driverLicense, $workPlace, $workAddress, $workPhone, $spouse, $motherName, $fatherName, $parentsAddress, $skinColor, $company_id, $company_name, $issueDate, $expirationDate, $photo, $existingPhoto, $signature, $existingSign, $document, $existingDoc, $status;
 
     protected $rules=[
         'record'=>'required|string',
@@ -42,6 +42,7 @@ class Edit extends Component
         'expirationDate'=>'nullable|date',
         'photo'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'signature'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'document'=>'nullable|file|max:2048',
         'status'=>'boolean',
     ];
 
@@ -77,6 +78,7 @@ class Edit extends Component
         $this->expirationDate=$cstaff->expirationDate;
         $this->existingPhoto=$cstaff->photo;
         $this->existingSign=$cstaff->signature;
+        $this->existingDoc=$cstaff->document;
         $this->status=$cstaff->status;
 
         if($this->company_id)
@@ -112,6 +114,16 @@ class Edit extends Component
         else
         { $validatedData['signature']=$cstaff->signature; }
 
+        if($this->document)
+        {
+            if($cstaff->document && Storage::disk('public')->exists($cstaff->document))
+            { Storage::disk('public')->delete($cstaff->document); }
+            $docPath=$this->document->store('cstaff', 'public');
+            $validatedData['document']=$docPath;
+        }
+        else
+        { $validatedData['document']=$cstaff->document; }
+
         $cstaff->update([
             'record'=>$this->record,
             'zone'=>$this->zone,
@@ -141,6 +153,7 @@ class Edit extends Component
             'expirationDate'=>$this->expirationDate,
             'photo'=>$validatedData['photo'],
             'signature'=>$validatedData['signature'],
+            'document'=>$validatedData['document'],
             'status'=>$this->status,
         ]);
 

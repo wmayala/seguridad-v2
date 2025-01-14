@@ -47,29 +47,22 @@ class Edit extends Component
         else
         { $institution=Institution::findOrFail(1000); }
         $this->institution_name=$institution->name;
-
-        //vsdfsdfsdf
     }
 
     public function update()
     {
         $validatedData=$this->validate();
-
         $vehicle=SFVehicles::findOrFail($this->id);
 
         if($this->photo)
         {
             if($vehicle->photo && Storage::disk('public')->exists($vehicle->photo))
-            {
-                Storage::disk('public')->delete($vehicle->photo);
-            }
+            { Storage::disk('public')->delete($vehicle->photo); }
             $photoPath=$this->photo->store('vehicles', 'public');
             $validatedData['photo']=$photoPath;
         }
         else
-        {
-            $validatedData['photo']=$vehicle->photo;
-        }
+        { $validatedData['photo']=$vehicle->photo; }
 
         $vehicle->update([
             'record'=>$this->record,

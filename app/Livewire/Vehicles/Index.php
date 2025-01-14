@@ -12,6 +12,11 @@ class Index extends Component
 
     public function mount()
     {
+        $this->vehicles=SFVehicles::where('status', 1)->get();
+    }
+
+    public function viewAll()
+    {
         $this->vehicles=SFVehicles::all();
     }
 

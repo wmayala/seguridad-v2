@@ -3,6 +3,7 @@
 namespace App\Livewire\Beneficiary;
 
 use App\Models\Beneficiary;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -29,10 +30,27 @@ class Create extends Component
 
     public function create()
     {
-        $this->validate();
+        $validateData=$this->validate();
 
-        $photoPath=$this->photo->store('beneficiaries','public');
-        $signPath=$this->signature->store('beneficiaries','public');
+        if($this->photo)
+        {
+            if($this->photo && Storage::disk('public')->exists($this->photo))
+            { Storage::disk('public')->delete($this->photo); }
+            $photoPath=$this->photo->store('beneficiaries','public');
+            $validateData['photo']=$photoPath;
+        }
+        else
+        { $validateData['photo']=$this->photo; }
+
+        if($this->signature)
+        {
+            if($this->signature && Storage::disk('public')->exists($this->signature))
+            { Storage::disk('public')->delete($this->signature); }
+            $signPath=$this->signature->store('beneficiaries','public');
+            $validateData['signature']=$signPath;
+        }
+        else
+        { $validateData['signature']=$this->signature; }
 
         Beneficiary::create([
             'record'=>$this->record,
@@ -44,8 +62,8 @@ class Create extends Component
             'institution'=>$this->institution,
             'expirationDate'=>$this->expirationDate,
             'issueDate'=>$this->issueDate,
-            'photo'=>$photoPath,
-            'signature'=>$signPath,
+            'photo'=>$validateData['photo'],
+            'signature'=>$validateData['signature'],
             'status'=>$this->status,
         ]);
 

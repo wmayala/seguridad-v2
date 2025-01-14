@@ -38,6 +38,7 @@ class CompaniesStaff extends Model
         'expirationDate',
         'photo',
         'signature',
+        'document',
         'status'
     ];
 }

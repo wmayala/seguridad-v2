@@ -25,7 +25,7 @@
                                 <button
                                     class="bg-[#111e60] hover:opacity-80  text-white font-bold py-1 px-3 rounded-full"
                                     wire:click="viewAll">
-                                        <span>Ver todos</span>
+                                        <span>Ver inactivos</span>
                                 </button>
                             </label>
                         </div>

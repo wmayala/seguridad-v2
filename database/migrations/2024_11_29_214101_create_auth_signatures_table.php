@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->date('issueDate');
             $table->date('expirationDate');
-            $table->string('document');
+            $table->string('document')->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

@@ -8,22 +8,22 @@
                             <div class="flex justify-center">
                                 <div class="flex flex-col gap-5 w-1/2">
                                     <div class="flex flex-col justify-center">
-                                        <x-input-label class="uppercase">Expediente No.</x-input-label>
+                                        <x-input-label class="uppercase">Expediente No.<span>*</span></x-input-label>
                                         <x-text-input id="record" wire:model="record" placeholder="####" autofocus></x-text-input>
                                         @error('record')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
-                                        <x-input-label class="uppercase">Nombre</x-input-label>
+                                        <x-input-label class="uppercase">Nombre<span>*</span></x-input-label>
                                         <x-text-input id="name" wire:model="name" placeholder="Nombre del beneficiario"></x-text-input>
                                         @error('name')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
-                                        <x-input-label class="uppercase">Edad</x-input-label>
+                                        <x-input-label class="uppercase">Edad<span>*</span></x-input-label>
                                         <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="number" id="age" wire:model="age" placeholder="Escriba la edad">
                                         @error('age')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
-                                        <x-input-label class="uppercase">Parentesco</x-input-label>
+                                        <x-input-label class="uppercase">Parentesco<span>*</span></x-input-label>
                                         <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" wire:model="relationship" id="relationship">
                                             <option value="">Seleccionar</option>
                                             <option value="Esposo(a)">Esposo(a)</option>
@@ -34,17 +34,17 @@
                                         @error('relationship')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
-                                        <x-input-label class="uppercase">Código de empleado</x-input-label>
+                                        <x-input-label class="uppercase">Código de empleado<span>*</span></x-input-label>
                                         <x-text-input id="empCode" wire:model="empCode" placeholder="Código de empleado"></x-text-input>
                                         @error('empCode')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
-                                        <x-input-label class="uppercase">Nombre del empleado</x-input-label>
+                                        <x-input-label class="uppercase">Nombre del empleado<span>*</span></x-input-label>
                                         <x-text-input id="empName" wire:model="empName" placeholder="Nombre del empleado"></x-text-input>
                                         @error('empName')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
-                                        <x-input-label class="uppercase">Institución</x-input-label>
+                                        <x-input-label class="uppercase">Institución<span>*</span></x-input-label>
                                         <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" wire:model="institution" id="institution">
                                             <option value="">Seleccionar</option>
                                             <option value="BCR">Banco Central de Reserva</option>
@@ -52,12 +52,12 @@
                                         @error('institution')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
-                                        <x-input-label class="uppercase">Fecha de emisión</x-input-label>
+                                        <x-input-label class="uppercase">Fecha de emisión<span>*</span></x-input-label>
                                         <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="date" wire:model="issueDate" id="issueDate">
                                         @error('issueDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
-                                        <x-input-label class="uppercase">Fecha de vencimiento</x-input-label>
+                                        <x-input-label class="uppercase">Fecha de vencimiento<span>*</span></x-input-label>
                                         <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="date" wire:model="expirationDate" id="expirationDate">
                                         @error('expirationDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
@@ -73,15 +73,16 @@
                                         @endif
                                     </div>
                                     <div class="flex flex-col justify-center">
-                                        <x-input-label class="uppercase">Firma</x-input-label>
-                                        <input type="file" wire:model="signature" id="signature" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
-                                        <div wire:loading wire:target="signature">Cargando imagen...</div>
+                                        <x-input-label class="uppercase">Firma<span>*</span></x-input-label>
+                                        <input type="file" wire:model="signature" id="signature" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none" required>
+                                        <div wire:loading wire:target="signature">Cargando firma...</div>
                                         @if($signature)
                                             <div class="mt-4">
                                                 <p class="text-sm font-medium text-gray-500">Vista previa:</p>
                                                 <img src="{{ $signature->temporaryUrl() }}" alt="Vista previa" class="w-1/6 h-auto rounded-md shadow-md">
                                             </div>
                                         @endif
+                                        @error('signature')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                     </div>
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Estado del registro</x-input-label>

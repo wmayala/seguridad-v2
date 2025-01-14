@@ -44,7 +44,7 @@
                                             <button wire:click="redirectTo('activities.edit',{{ $activity->id }})" class="px-2 py-1 bg-yellow-400 text-white rounded">Editar</button>
                                         @endif
                                         @if (Auth::user()->can('eliminar-actividad'))
-                                            <button wire:click="delete({{ $activity->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
+                                            <button onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()" wire:click="delete({{ $activity->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
                                         @endif
                                     @endif
                                 </td>

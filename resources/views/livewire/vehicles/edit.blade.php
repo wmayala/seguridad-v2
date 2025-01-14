@@ -61,7 +61,6 @@
                                         <x-input-label class="uppercase">Fotografía</x-input-label>
                                         <input type="file" wire:model="photo" id="photo" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
                                         <div wire:loading wire:target="photo">Cargando imagen...</div>
-
                                         @if($photo)
                                             <div class="mt-4">
                                                 <x-input-label class="uppercase">Vista previa</x-input-label>
@@ -70,7 +69,6 @@
                                                 </div>
                                             </div>
                                         @endif
-
                                         @if(!$photo && $existingPhoto)
                                             <div class="mt-4">
                                                 <x-input-label class="uppercase">Foto Actual</x-input-label>
@@ -79,7 +77,6 @@
                                                 </div>
                                             </div>
                                         @endif
-
                                     </div>
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Estado del registro</x-input-label>
@@ -103,8 +100,8 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="flex flex-col justify-center items-center gap-5">
+
                                         {{-- CARNET FRENTE --}}
                                         <div id="id-card-front" class="w-[517px] h-[325px] border-[12px]">
                                             <div class="flex justify-center gap-3">
@@ -147,9 +144,7 @@
                                                                 El Gerente de Operaciones Financieras del Banco Central de Reserva, autoriza el
                                                                 vehículo cuyas características aparecen en esta tarjeta, para ingresar a zona restringida de carga y descarga de especies monetarias del Departamento de Tesorería.
                                                             </p>
-
                                                         </div>
-
                                                         <div class="flex flex-col w-full text-center border-black">
                                                             <div class="relative flex justify-center h-10">
                                                                 <img class="absolute w-32 " src="{{ asset('assets/img/gof-sign.jpeg') }}" alt="Firma Portador" >
@@ -207,14 +202,13 @@
                                             </div>
                                         </div>
                                         {{-- FIN CARNET REVERSO --}}
-                                    </div>
 
+                                    </div>
                                     <div class="flex justify-center">
                                         <button id="printButton" class="px-4 py-2 text-sm font-semibold text-white uppercase bg-cyan-400  rounded-md hover:bg-cyan-800">
                                             Generar carnet
                                         </button>
                                     </div>
-
                                     <div class="flex justify-center gap-3 mt-5">
                                         <x-primary-button>Guardar</x-primary-button>
                                         <a href="{{ route('vehicles.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-[#111e60]-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">

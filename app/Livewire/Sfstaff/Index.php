@@ -12,9 +12,14 @@ class Index extends Component
 
     public function mount()
     {
-        $this->SFstaff=SFStaff::all();
+        $this->SFstaff=SFStaff::where('status', 1)->get();
     }
 
+    public function viewAll()
+    {
+        $this->SFstaff=SFStaff::all();
+    }
+    
     public function updatedSearch()
     {
         $this->SFstaff=SFStaff::where('name','like','%'.$this->search.'%')->get();

@@ -12,7 +12,7 @@ class Edit extends Component
 {
     use WithFileUploads;
 
-    public $id, $record, $institution_id, $description, $issueDate, $expirationDate, $document, $status;
+    public $id, $record, $institution_id, $description, $issueDate, $expirationDate, $document, $existingDoc, $status;
 
     protected $rules=[
         'record'=>'required|string',
@@ -20,21 +20,21 @@ class Edit extends Component
         'description'=>'nullable|string|max:10',
         'issueDate'=>'required|date',
         'expirationDate'=>'required|date',
-        'document'=>'required|file|max:2048',
+        'document'=>'nullable|file|max:2048',
         'status'=>'boolean'
     ];
 
     public function mount($id)
     {
-
         $signature=AuthSignatures::findOrFail($id);
+
         $this->id=$signature->id;
         $this->record=$signature->record;
         $this->institution_id=$signature->institution_id;
         $this->description=$signature->description;
         $this->issueDate=$signature->issueDate;
         $this->expirationDate=$signature->expirationDate;
-        $this->document=$signature->document;
+        $this->existingDoc=$signature->document;
         $this->status=$signature->status;
     }
 
@@ -47,16 +47,12 @@ class Edit extends Component
         if($this->document)
         {
             if($signature->document && Storage::disk('public')->exists($signature->document))
-            {
-                Storage::disk('public')->delete($signature->document);
-            }
+            { Storage::disk('public')->delete($signature->document); }
             $path=$this->document->store('signatures','public');
             $validatedData['document']=$path;
         }
         else
-        {
-            $validatedData['document']=$signature->document;
-        }
+        { $validatedData['document']=$signature->document; }
 
         $signature->update([
             'record'=>$this->record,

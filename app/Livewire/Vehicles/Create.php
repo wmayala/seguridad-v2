@@ -4,6 +4,7 @@ namespace App\Livewire\Vehicles;
 
 use App\Models\Institution;
 use App\Models\SFVehicles;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -28,20 +29,17 @@ class Create extends Component
 
     public function create()
     {
-
-        logger($this->brand);
-
-
-        $this->validate();
+        $validateData=$this->validate();
 
         if($this->photo)
         {
-            $photoPath=$this->photo->store('vehicles', 'public');
+            if($this->photo && Storage::disk('public')->exists($this->photo))
+            { Storage::disk('public')->delete($this->photo); }
+            $photoPath=$this->photo->store('vehicles','public');
+            $validateData['photo']=$photoPath;
         }
         else
-        {
-            $photoPath='';
-        }
+        { $validateData['photo']=$this->photo; }
 
         SFVehicles::create([
             'record'=>$this->record,
@@ -52,7 +50,7 @@ class Create extends Component
             'plate'=>$this->plate,
             'issueDate'=>$this->issueDate,
             'expirationDate'=>$this->expirationDate,
-            'photo'=>$photoPath,
+            'photo'=>$validateData['photo'],
             'status'=>$this->status,
         ]);
 

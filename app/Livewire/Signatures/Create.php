@@ -4,6 +4,7 @@ namespace App\Livewire\Signatures;
 
 use App\Models\AuthSignatures;
 use App\Models\Institution;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -19,16 +20,23 @@ class Create extends Component
         'description'=>'nullable|string|max:10',
         'issueDate'=>'required|date',
         'expirationDate'=>'required|date',
-        'document'=>'required|file|max:2048',
+        'document'=>'nullable|file|max:2048',
         'status'=>'boolean'
     ];
 
     public function create()
     {
-        $this->validate();
+        $validateData=$this->validate();
 
-        $path=$this->document->store('signatures', 'public');
-
+        if($this->document)
+        {
+            if($this->document && Storage::disk('public')->exists($this->document))
+            { Storage::disk('public')->delete($this->document); }
+            $docPath=$this->document->store('signatures','public');
+            $validateData['document']=$docPath;
+        }
+        else
+        { $validateData['document']=$this->document; }
 
         AuthSignatures::create([
             'record'=>$this->record,
@@ -36,7 +44,7 @@ class Create extends Component
             'description'=>$this->description,
             'issueDate'=>$this->issueDate,
             'expirationDate'=>$this->expirationDate,
-            'document'=>$path,
+            'document'=>$validateData['document'],
             'status'=>$this->status,
         ]);
 

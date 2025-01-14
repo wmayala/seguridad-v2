@@ -10,9 +10,19 @@
                             <a href="{{ route('signatures.create') }}" class="inline-flex items-center px-4 py-2 bg-[#111e60] border border-transparent rounded-md font-semibold text-md text-white uppercase tracking-widest hover:bg-[#111e60] focus:bg-[#111e60]-700 active:bg-[#111e60]-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Agregar documento</a>
                         </div>
                     </div>
+                    <div  class="flex justify-end p-3">
+                        <div class="flex items-center">
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <button
+                                    class="bg-[#111e60] hover:opacity-80  text-white font-bold py-1 px-3 rounded-full"
+                                    wire:click="viewAll">
+                                        <span>Ver inactivos</span>
+                                </button>
+                            </label>
+                        </div>
+                    </div>
                     <table class="w-full text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-lg text-white uppercase bg-[#111e60] dark:bg-gray-700 dark:text-gray-400">
-
                             <th class="text-center p-3">EXPEDIENTE</th>
                             <th class="text-center p-3">INSTITUCIÓN</th>
                             <th class="text-center p-3">DOCUMENTO</th>
@@ -28,7 +38,7 @@
                                 <td class="text-lg text-center p-3">{{ $sign->record }}</td>
                                 <td class="text-lg p-3">
                                     @foreach($institutions as $institution)
-                                        @if($sign->id===$institution->id)
+                                        @if($sign->institution_id===$institution->id)
                                             {{ $institution->name }}
                                         @endif
                                     @endforeach

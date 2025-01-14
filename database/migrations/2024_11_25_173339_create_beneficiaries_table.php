@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('institution');
             $table->date('expirationDate');
             $table->date('issueDate');
-            $table->string('photo');
-            $table->string('signature');
+            $table->string('photo')->nullable();
+            $table->string('signature')->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

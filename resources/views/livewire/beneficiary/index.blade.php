@@ -22,6 +22,17 @@
                             autofocus>
                         </x-text-input>
                     </div>
+                    <div  class="flex justify-end p-3">
+                        <div class="flex items-center">
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <button
+                                    class="bg-[#111e60] hover:opacity-80  text-white font-bold py-1 px-3 rounded-full"
+                                    wire:click="viewAll">
+                                        <span>Ver inactivos</span>
+                                </button>
+                            </label>
+                        </div>
+                    </div>
                     <table class="w-full text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-lg text-white uppercase bg-[#111e60] dark:bg-gray-700 dark:text-gray-400">
                             <th></th>
@@ -55,7 +66,7 @@
                                     @endif
 
                                     @if (Auth::user()->can('eliminar-beneficiario'))
-                                        <button wire:click="delete({{ $beneficiary->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
+                                        <button onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()" wire:click="delete({{ $beneficiary->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
                                     @endif
                                 </td>
                             </tr>

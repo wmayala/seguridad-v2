@@ -12,6 +12,11 @@ class Index extends Component
 
     public function mount()
     {
+        $this->beneficiaries=Beneficiary::where('status', 1)->get();
+    }
+
+    public function viewAll()
+    {
         $this->beneficiaries=Beneficiary::all();
     }
 
@@ -19,7 +24,7 @@ class Index extends Component
     {
         $this->beneficiaries=Beneficiary::where('name','like','%'.$this->search.'%')->get();
     }
-    
+
     public function redirectTo($route, $param)
     {
         return redirect()->route($route, $param);

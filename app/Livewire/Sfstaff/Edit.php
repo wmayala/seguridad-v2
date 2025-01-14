@@ -12,7 +12,7 @@ class Edit extends Component
 {
     use WithFileUploads;
 
-    public $id, $record, $zone, $name, $position, $dui, $duiPlace, $duiDate, $address, $birthPlace, $birthDate, $institution_id, $institution_name, $issueDate, $expirationDate, $photo, $existingPhoto, $signature, $existingSign, $status;
+    public $id, $record, $zone, $name, $position, $dui, $duiPlace, $duiDate, $address, $birthPlace, $birthDate, $institution_id, $institution_name, $issueDate, $expirationDate, $photo, $existingPhoto, $signature, $existingSign, $document, $existingDoc, $docPath, $status;
 
     protected $rules=[
         'record'=>'required|string',
@@ -30,6 +30,7 @@ class Edit extends Component
         'expirationDate'=>'required|date',
         'photo'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'signature'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'document'=>'nullable|file|max:2048',
         'status'=>'boolean',
     ];
 
@@ -52,6 +53,7 @@ class Edit extends Component
         $this->expirationDate=$sfstaff->expirationDate;
         $this->existingPhoto=$sfstaff->photo;
         $this->existingSign=$sfstaff->signature;
+        $this->existingDoc=$sfstaff->document;
         $this->status=$sfstaff->status;
 
         if($this->institution_id)
@@ -86,6 +88,16 @@ class Edit extends Component
         else
         { $validatedData['signature']=$sfstaff->signature; }
 
+        if($this->document)
+        {
+            if($sfstaff->document && Storage::disk('public')->exists($sfstaff->document))
+            { Storage::disk('public')->delete($sfstaff->document); }
+            $docPath=$this->photo->store('sfstaff', 'public');
+            $validatedData['document']=$docPath;
+        }
+        else
+        { $validatedData['document']=$sfstaff->document; }
+
         $sfstaff->update([
             'record'=>$this->record,
             'zone'=>$this->zone,
@@ -102,6 +114,7 @@ class Edit extends Component
             'expirationDate'=>$this->expirationDate,
             'photo'=>$validatedData['photo'],
             'signature'=>$validatedData['signature'],
+            'document'=>$validatedData['document'],
             'status'=>$this->status,
         ]);
 

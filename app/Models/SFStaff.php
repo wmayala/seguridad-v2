@@ -25,6 +25,7 @@ class SFStaff extends Model
         'expirationDate',
         'photo',
         'signature',
+        'document',
         'status'
     ];
 }

@@ -4,6 +4,7 @@ namespace App\Livewire\Staffbyactivity;
 
 use App\Models\Activity;
 use App\Models\StaffByActivity;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -48,18 +49,27 @@ class Create extends Component
 
     public function create()
     {
-        $this->validate();
+        $validateData=$this->validate();
 
         if($this->photo)
         {
+            if($this->photo && Storage::disk('public')->exists($this->photo))
+            { Storage::disk('public')->delete($this->photo); }
             $photoPath=$this->photo->store('staff','public');
-            $signPath=$this->signature->store('staff','public');
+            $validateData['photo']=$photoPath;
         }
         else
+        { $validateData['photo']=$this->photo; }
+
+        if($this->signature)
         {
-            $photoPath=asset('public/storage/user.png');
-            $signPath=asset('public/storage/signature.png');
+            if($this->signature && Storage::disk('public')->exists($this->signature))
+            { Storage::disk('public')->delete($this->signature); }
+            $signPath=$this->signature->store('staff','public');
+            $validateData['signature']=$signPath;
         }
+        else
+        { $validateData['signature']=$this->signature; }
 
 
         StaffByActivity::create([
@@ -88,8 +98,8 @@ class Create extends Component
             'skinColor'=>$this->skinColor,
             'registerDate'=>$this->registerDate,
             'expirationDate'=>$this->expirationDate,
-            'photo'=>$photoPath,
-            'signature'=>$signPath,
+            'photo'=>$validateData['photo'],
+            'signature'=>$validateData['signature'],
             'status'=>$this->status,
         ]);
 

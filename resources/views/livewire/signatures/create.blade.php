@@ -40,6 +40,7 @@
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Documento</x-input-label>
                                         <input type="file" wire:model="document" id="document" accept=".pdf" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
+                                        @error('document')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                         <div wire:loading wire:target="document">Cargando documento...</div>
                                     </div>
                                     <div class="flex flex-col justify-center">
