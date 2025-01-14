@@ -33,7 +33,7 @@ class Index extends Component
     public function delete($id)
     {
         Retired::findOrFail($id)->delete();
-        $this->retired=Retired::all();
+        $this->mount();
     }
 
     public function render()

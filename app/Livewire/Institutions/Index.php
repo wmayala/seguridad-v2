@@ -19,7 +19,7 @@ class Index extends Component
     {
         $this->institutions=Institution::where('name','like','%'.$this->search.'%')->get();
     }
-    
+
     public function redirectTo($route, $param)
     {
         return redirect()->route($route, $param);
@@ -28,7 +28,7 @@ class Index extends Component
     public function delete($id)
     {
         Institution::findOrFail($id)->delete();
-        $this->institutions=Institution::all();
+        $this->mount();
     }
 
     public function render()

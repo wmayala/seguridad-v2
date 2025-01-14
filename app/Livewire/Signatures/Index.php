@@ -30,7 +30,7 @@ class Index extends Component
     public function delete($id)
     {
         AuthSignatures::findOrFail($id)->delete();
-        $this->signatures=AuthSignatures::all();
+        $this->mount();
     }
 
     public function render()

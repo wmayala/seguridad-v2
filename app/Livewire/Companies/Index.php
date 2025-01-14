@@ -28,7 +28,7 @@ class Index extends Component
     public function delete($id)
     {
         Company::findOrFail($id)->delete();
-        $this->companies=Company::all();
+        $this->mount();
     }
 
     public function render()

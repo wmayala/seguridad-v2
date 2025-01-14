@@ -33,7 +33,7 @@ class Index extends Component
     public function delete($id)
     {
         Beneficiary::findOrFail($id)->delete();
-        $this->beneficiaries=Beneficiary::all();
+        $this->mount();
     }
 
     public function render()

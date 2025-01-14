@@ -33,7 +33,7 @@ class Index extends Component
     public function delete($id)
     {
         SFVehicles::findOrFail($id)->delete();
-        $this->vehicles=SFVehicles::all();
+        $this->mount();
     }
 
     public function render()

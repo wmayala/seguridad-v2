@@ -19,7 +19,7 @@ class Index extends Component
     {
         $this->SFstaff=SFStaff::all();
     }
-    
+
     public function updatedSearch()
     {
         $this->SFstaff=SFStaff::where('name','like','%'.$this->search.'%')->get();
@@ -33,7 +33,7 @@ class Index extends Component
     public function delete($id)
     {
         SFStaff::findOrFail($id)->delete();
-        $this->SFstaff=SFStaff::all();
+        $this->mount();
     }
 
     public function render()

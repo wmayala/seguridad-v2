@@ -33,7 +33,7 @@ class Index extends Component
     public function delete($id)
     {
         StaffByActivity::findOrFail($id)->delete();
-        $this->staff=StaffByActivity::all();
+        $this->mount();
     }
 
     public function render()

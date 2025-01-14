@@ -33,6 +33,6 @@ class Index extends Component
     public function delete($id)
     {
         Activity::findOrFail($id)->delete();
-        $this->activities=Activity::all();
+        $this->mount();
     }
 }

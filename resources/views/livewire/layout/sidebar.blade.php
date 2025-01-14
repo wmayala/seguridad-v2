@@ -7,7 +7,7 @@
                         <div class="border-b border-gray-300">
                             <!-- Título de la Sección -->
                             <button @click="openSection = openSection === {{ $index }} ? null : {{ $index }}"
-                                    class="w-full px-4 py-2 text-left font-bold bg-gray-100 hover:bg-gray-200 focus:outline-none">
+                                    class="w-full px-4 py-2 text-left font-bold bg-gray-200 hover:bg-gray-300 focus:outline-none">
                                 {{ $section['title'] }}
                             </button>
 

@@ -45,8 +45,9 @@
                                 </td>
                                 <td class="text-lg text-center p-3">
                                     <a href="{{ asset('storage').'/'.$sign->document }}" target="_blank">
-                                        <div class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-small rounded-full text-xs px-3 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" >
-                                            Ver documento
+                                        <div class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-[#111e60] hover:text-white focus:ring-4 focus:ring-gray-100 font-small rounded-full text-md px-3 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" >
+
+                                            <i class="fa fa-file-text-o" aria-hidden="true"></i>
                                         </div>
                                     </a>
                                 </td>
