@@ -100,10 +100,15 @@
                                                 <div>
                                                     <div class="border border-black ">
                                                         <div class="w-32 h-40 overflow-hidden">
-                                                            <img id="originalImage"
-                                                                src="{{ asset('storage/' . $existingPhoto) }}"
-                                                                alt="Imagen original"
-                                                                class="object-cover w-full h-full cursor-pointer">
+                                                            @if($photo)
+                                                                <img id="originalImage" src="{{ $photo->temporaryUrl() }}"
+                                                                    alt="Nueva imagen"
+                                                                    class="object-cover w-full h-full cursor-pointer">
+                                                            @else
+                                                                <img id="originalImage" src="{{ asset('storage/' . $existingPhoto) }}"
+                                                                    alt="Imagen existente"
+                                                                    class="object-cover w-full h-full cursor-pointer">
+                                                            @endif
                                                         </div>
 
                                                         <!-- CROPPER -->
