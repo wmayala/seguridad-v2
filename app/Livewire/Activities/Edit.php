@@ -9,11 +9,13 @@ class Edit extends Component
 {
     public $id, $name, $status;
 
+    // VALIDACIONES
     protected $rules=[
         'name'=>'required|string|max:255',
         'status'=>'boolean',
     ];
 
+    // FUNCIÓN PARA INICIALIZAR VALORES EN EL FORMULARIO DESDE LA BD
     public function mount($id)
     {
         $activity=Activity::findOrFail($id);
@@ -22,6 +24,7 @@ class Edit extends Component
         $this->status=$activity->status;
     }
 
+    // FUNCIÓN DE ACTUALIZACIÓN
     public function update()
     {
         $this->validate();

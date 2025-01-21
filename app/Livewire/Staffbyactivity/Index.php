@@ -2,11 +2,14 @@
 
 namespace App\Livewire\Staffbyactivity;
 
+use Livewire\WithPagination;
 use App\Models\StaffByActivity;
 use Livewire\Component;
 
 class Index extends Component
 {
+    use WithPagination;
+
     public $staff;
     public $search='';
 

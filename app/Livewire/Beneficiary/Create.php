@@ -13,6 +13,7 @@ class Create extends Component
 
     public $record, $name, $age, $relationship, $empCode, $empName, $institution, $expirationDate, $issueDate, $photo, $signature, $status;
 
+    // VALIDACIÓN
     protected $rules=[
         'record'=>'required|string',
         'name'=>'required|string|max:255',
@@ -28,10 +29,13 @@ class Create extends Component
         'status'=>'boolean',
     ];
 
+    // FUNCIÓN PARA CREAR UN NUEVO BENEFICIARIO
     public function create()
     {
+        // VERIFICA SI LOS DATOS CUMPLEN LA VALIDACIÓN
         $validateData=$this->validate();
 
+        // VALIDA SI EXISTE ALGÚN ARCHIVO DE FOTOGRAFÍA Y FIRMA
         if($this->photo)
         {
             if($this->photo && Storage::disk('public')->exists($this->photo))

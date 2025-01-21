@@ -78,7 +78,6 @@ class Edit extends Component
         ]);
 
         session()->flash('success','Vehículo actualizado exitosamente!');
-
         return redirect()->route('vehicles.index');
     }
 

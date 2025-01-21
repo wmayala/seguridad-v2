@@ -59,7 +59,7 @@
                 @endif
 
                 <div>
-                    <div class="grid gap-y-3 my-10 grid-cols-2 sm:grid-cols-4 ">
+                    <div class="grid gap-y-3 my-10 grid-cols-2 sm:grid-cols-3 ">
                         @foreach ($permisos as $permiso)
                             <div class="flex items-start space-x-3 py-2 ">
                                 <input type="checkbox" value="{{ $permiso->id }}" wire:model="permisosSeleccionados"

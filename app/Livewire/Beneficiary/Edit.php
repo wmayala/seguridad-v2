@@ -13,6 +13,7 @@ class Edit extends Component
 
     public $id, $record, $name, $age, $relationship, $empCode, $empName, $institution, $expirationDate, $issueDate, $photo, $existingPhoto, $signature, $existingSign, $status;
 
+    // VALIDACIONES
     protected $rules=[
         'record'=>'required|string',
         'name'=>'required|string|max:255',
@@ -28,6 +29,7 @@ class Edit extends Component
         'status'=>'boolean',
     ];
 
+    // CARGA DE TODA LA INFORMACIÓN DEL BENEFICIARIO
     public function mount($id)
     {
         $beneficiary=Beneficiary::findOrFail($id);
@@ -46,11 +48,13 @@ class Edit extends Component
         $this->status=$beneficiary->status;
     }
 
+    // ACTUALIZACIÓN DE DATOS SI LOS HUBIERE
     public function update()
     {
         $validateData=$this->validate();
         $beneficiary=Beneficiary::findOrFail($this->id);
 
+        // SI LA FOTO O FIRMA EXISTE, LA MANTIENE SINO LA ACTUALIZA
         if($this->photo)
         {
             if($beneficiary->photo && Storage::disk('public')->exists($beneficiary->photo))

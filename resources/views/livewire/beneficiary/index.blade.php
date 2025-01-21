@@ -51,7 +51,7 @@
                                 <td class="text-lg p-3">{{ $beneficiary->name }}</td>
                                 <td class="text-lg p-3">{{ $beneficiary->empName }}</td>
                                 <td class="text-lg text-center p-3">{{ $beneficiary->institution }}</td>
-                                <td class="text-lg text-center p-3">{{ $beneficiary->expirationDate }}</td>
+                                <td class="text-lg text-center p-3">{{ date('d-m-Y', strtotime($beneficiary->expirationDate)) }}</td>
                                 <td class="text-lg p-3">
                                     @if($beneficiary->status==1)
                                         <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs uppercase text-green-700 ring-1 ring-inset ring-green-600/20">Activo</span>

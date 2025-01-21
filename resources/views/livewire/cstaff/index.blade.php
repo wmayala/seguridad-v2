@@ -55,8 +55,8 @@
                                 </td>
                                 <td class="text-lg p-3">{{ $cstaff->name }}</td>
                                 <td class="text-lg text-center p-3">{{ $cstaff->dui }}</td>
-                                <td class="text-lg text-center p-3">{{ $cstaff->issueDate }}</td>
-                                <td class="text-lg text-center p-3">{{ $cstaff->expirationDate }}</td>
+                                <td class="text-lg text-center p-3">{{ date('d-m-Y', strtotime($cstaff->issueDate)) }}</td>
+                                <td class="text-lg text-center p-3">{{ date('d-m-Y', strtotime($cstaff->expirationDate)) }}</td>
                                 <td class="text-lg p-3">
                                     @if($cstaff->status==1)
                                         <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs uppercase text-green-700 ring-1 ring-inset ring-green-600/20">Activo</span>

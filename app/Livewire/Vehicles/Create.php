@@ -55,7 +55,6 @@ class Create extends Component
         ]);
 
         session()->flash('success','Vehículo agregado exitosamente!');
-
         return redirect()->route('vehicles.index');
     }
 

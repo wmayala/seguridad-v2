@@ -49,7 +49,7 @@
                                     <td class="text-center text-lg p-3">{{ $ret->record }}</td>
                                     <td class="text-lg p-3">{{ $ret->name }}</td>
                                     <td class="text-center text-lg p-3">{{ $ret->dui }}</td>
-                                    <td class="text-center text-lg p-3">{{ $ret->issueDate }}</td>
+                                    <td class="text-center text-lg p-3">{{ date('d-m-Y', strtotime($ret->issueDate)) }}</td>
                                     <td class="text-center text-lg p-3">
                                         @if($ret->status==1)
                                             <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs uppercase text-green-700 ring-1 ring-inset ring-green-600/20">Activo</span>

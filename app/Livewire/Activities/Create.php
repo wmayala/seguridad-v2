@@ -9,11 +9,13 @@ class Create extends Component
 {
     public $name, $status;
 
+    // VALIDACIONES
     protected $rules=[
         'name'=>'required|string|max:255',
         'status'=>'boolean',
     ];
 
+    // FUNCIÓN PARA CREAR NUEVA ACTIVIDAD
     public function create()
     {
         $this->validate();
