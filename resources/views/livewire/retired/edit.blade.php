@@ -9,50 +9,32 @@
                             <div class="flex flex-col w-1/2 gap-5">
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Expediente No.</x-input-label>
-                                    <x-text-input id="record" wire:model="record" placeholder="####"
-                                        autofocus></x-text-input>
-                                    @error('record')
-                                        <span class="text-sm text-red-500">{{ $message }}</span>
-                                    @enderror
+                                    <x-text-input id="record" wire:model="record" placeholder="####" autofocus></x-text-input>
+                                    @error('record')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Nombre</x-input-label>
-                                    <x-text-input id="name" wire:model.live="name"
-                                        placeholder="Nombre del jubilado"></x-text-input>
-                                    @error('name')
-                                        <span class="text-sm text-red-500">{{ $message }}</span>
-                                    @enderror
+                                    <x-text-input id="name" wire:model.live="name" placeholder="Nombre del jubilado"></x-text-input>
+                                    @error('name')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">DUI</x-input-label>
-                                    <x-text-input id="dui" wire:model="dui"
-                                        placeholder="12345678-9"></x-text-input>
-                                    @error('dui')
-                                        <span class="text-sm text-red-500">{{ $message }}</span>
-                                    @enderror
+                                    <x-text-input id="dui" wire:model="dui" placeholder="12345678-9"></x-text-input>
+                                    @error('dui')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fecha de emisión</x-input-label>
-                                    <input
-                                        class="border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                                        type="date" wire:model.live="issueDate" id="issueDate">
-                                    @error('issueDate')
-                                        <span class="text-sm text-red-500">{{ $message }}</span>
-                                    @enderror
+                                    <input class="border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" type="date" wire:model.live="issueDate" id="issueDate">
+                                    @error('issueDate')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fecha de vencimiento</x-input-label>
-                                    <input
-                                        class="border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                                        type="date" wire:model.live="expirationDate" id="expirationDate">
-                                    @error('expirationDate')
-                                        <span class="text-sm text-red-500">{{ $message }}</span>
-                                    @enderror
+                                    <input class="border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" type="date" wire:model.live="expirationDate" id="expirationDate">
+                                    @error('expirationDate')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fotografía</x-input-label>
-                                    <input type="file" wire:model="photo" id="photo" accept="image/*"
-                                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
+                                    <input type="file" wire:model="photo" id="photo" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
                                     <div wire:loading wire:target="photo">Cargando imagen...</div>
                                     @if ($photo)
                                         <div class="mt-4">
@@ -77,15 +59,13 @@
                                     <x-input-label class="uppercase">Estado del registro</x-input-label>
                                     <div class="flex justify-center gap-5">
                                         <div class="flex gap-3">
-                                            <input
-                                                class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                            <input class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
                                                 wire:model="status" type="radio" id="act" value="1"
                                                 checked>
                                             <label for="act">ACTIVO</label>
                                         </div>
                                         <div class="flex gap-2">
-                                            <input
-                                                class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                            <input class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
                                                 wire:model="status" type="radio" id="inact" value="0">
                                             <label for="inact">INACTIVO</label>
                                         </div>
@@ -103,28 +83,36 @@
                                                             @if($photo)
                                                                 <img id="originalImage" src="{{ $photo->temporaryUrl() }}"
                                                                     alt="Nueva imagen"
-                                                                    class="object-cover w-full h-full cursor-pointer">
+                                                                    class="object-cover w-full h-full cursor-pointer"
+                                                                    >
                                                             @else
                                                                 <img id="originalImage" src="{{ asset('storage/' . $existingPhoto) }}"
                                                                     alt="Imagen existente"
-                                                                    class="object-cover w-full h-full cursor-pointer">
+                                                                    class="object-cover w-full h-full cursor-pointer"
+                                                                    >
                                                             @endif
                                                         </div>
 
                                                         <!-- CROPPER -->
                                                         <div id="cropperModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
-                                                            <div class="bg-white rounded-lg p-4 w-[90%] md:w-1/2">
+                                                            <div class="bg-white rounded-lg p-4 w-[90%] md:w-fit">
                                                                 <h2 class="mb-4 text-xl font-bold">Ajustar imagen</h2>
-                                                                <div class="w-full h-64 overflow-hidden">
-                                                                    <img id="imageToCrop"
-                                                                        src="{{ asset('storage/' . $existingPhoto) }}"
-                                                                        alt="Para recortar" class="w-full">
-                                                                </div>
+
+                                                                @if($photo)
+                                                                    <img id="imageToCrop" src="{{ $photo->temporaryUrl() }}"
+                                                                        alt="Nueva imagen"
+                                                                        class="object-cover cursor-pointer"
+                                                                        width="140">
+                                                                @else
+                                                                    <img id="imageToCrop" src="{{ asset('storage/' . $existingPhoto) }}"
+                                                                        alt="Imagen existente"
+                                                                        class="object-cover cursor-pointer"
+                                                                        width="140">
+                                                                @endif
+
                                                                 <div class="flex justify-end mt-4 space-x-2">
-                                                                    <button id="cancelButton"
-                                                                        class="px-4 py-2 text-white bg-gray-600 rounded">Cancelar</button>
-                                                                    <button id="cropButton"
-                                                                        class="px-4 py-2 text-white bg-[#111e60]  rounded">Recortar</button>
+                                                                    <button id="cancelButton" class="px-4 py-2 text-white bg-gray-600 rounded">Cancelar</button>
+                                                                    <button id="cropButton" class="px-4 py-2 text-white bg-[#111e60]  rounded">Recortar</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -132,49 +120,39 @@
 
                                                     </div>
                                                     <div class="mt-6 text-xl text-center">Exp. No.</div>
-                                                    <div class="text-2xl font-bold text-center">{{ $record }}
-                                                    </div>
+                                                    <div class="text-2xl font-bold text-center">{{ $record }}</div>
                                                 </div>
                                                 <div class="mx-2">
                                                     <div class="flex w-full py-1 border-b border-black">
                                                         <img src="{{ asset('assets/img/logo_bcr.png') }}"
                                                             alt="Logo BCR" width="60px">
-                                                        <span
-                                                            class="mx-2 text-lg font-bold text-center uppercase">Banco
-                                                            Central de Reserva de El Salvador</span>
+                                                        <span class="mx-2 text-lg font-bold text-center uppercase">Banco Central de Reserva de El Salvador</span>
                                                     </div>
                                                     <div class="flex flex-col py-1 mb-1 border-b border-black">
                                                         <span>Nombre: </span>
-                                                        <span
-                                                            class="text-lg font-semibold uppercase flex items-center">{{ $name }}</span>
+                                                        <span class="text-lg font-semibold uppercase flex items-center">{{ $name }}</span>
                                                     </div>
                                                     <div class="flex flex-row py-1 border-b border-black">
                                                         <div>Cargo: </div>
-                                                        <div
-                                                            class="pl-2 text-lg font-semibold uppercase flex items-center ">
-                                                            {{ $position }}</div>
+                                                        <div class="pl-2 text-lg font-semibold uppercase flex items-center ">{{ $position }}</div>
                                                     </div>
-                                                    <div
-                                                        class="flex justify-between py-1 border-b border-black flew-row">
+                                                    <div class="flex justify-between py-1 border-b border-black flew-row">
                                                         <div class="flex flex-col pl-2">
                                                             <div>Dui No.</div>
                                                             <div class="text-center">{{ $dui }}</div>
                                                         </div>
                                                         <div class="flex flex-col pr-2">
                                                             <div>Vencimiento</div>
-                                                            <div class="text-center">
-                                                                {{ date('d-m-Y', strtotime($expirationDate)) }}</div>
+                                                            <div class="text-center">{{ date('d-m-Y', strtotime($expirationDate)) }}</div>
                                                         </div>
                                                     </div>
                                                     <div class="flex flex-col w-full pl-2 text-center border-black">
                                                         <div class="relative flex justify-center h-10">
-                                                            <img class="absolute w-10"
+                                                            <img class="absolute object-cover w-1/3 h-full"
                                                                 src="{{ asset('storage/' . $existingSign) }}"
                                                                 alt="Firma Portador">
                                                         </div>
-                                                        <div class="mb-2">
-                                                            Firma del Portador
-                                                        </div>
+                                                        <div class="mb-2">Firma del Portador</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -215,12 +193,10 @@
                                 </div>
 
                                 <div class="flex justify-center">
-                                    <button id="printButton"
-                                        class="px-4 py-2 text-sm font-semibold text-white uppercase bg-green-800 rounded-md hover:bg-green-600">
+                                    <button id="printButton" class="px-4 py-2 text-sm font-semibold text-white uppercase bg-green-800 rounded-md hover:bg-green-600">
                                         Generar carnet
                                     </button>
                                 </div>
-
                                 <div class="flex justify-center gap-3 mt-5">
                                     <x-primary-button>Guardar</x-primary-button>
                                     <a href="{{ route('retired.index') }}"

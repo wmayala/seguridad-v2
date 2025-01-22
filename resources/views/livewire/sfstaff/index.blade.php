@@ -57,8 +57,8 @@
                                 <td class="text-lg p-3">{{ $sf->name }}</td>
                                 <td class="text-lg p-3">{{ $sf->position }}</td>
                                 <td class="text-lg text-center p-3">{{ $sf->dui }}</td>
-                                <td class="text-lg text-center p-3">{{ $sf->issueDate }}</td>
-                                <td class="text-lg text-center p-3">{{ $sf->expirationDate }}</td>
+                                <td class="text-lg text-center p-3">{{ date('d-m-Y', strtotime($sf->issueDate)) }}</td>
+                                <td class="text-lg text-center p-3">{{ date('d-m-Y', strtotime($sf->expirationDate)) }}</td>
                                 <td class="text-lg p-3">
                                     @if($sf->status==1)
                                         <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs uppercase text-green-700 ring-1 ring-inset ring-green-600/20">Activo</span>

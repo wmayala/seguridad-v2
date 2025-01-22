@@ -190,13 +190,19 @@
                                                         <!-- CROPPER -->
                                                         <div id="cropperModal"
                                                             class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
-                                                            <div class="bg-white rounded-lg p-4 w-[90%] md:w-1/2">
+                                                            <div class="bg-white rounded-lg p-4 w-[90%] md:w-fit">
                                                                 <h2 class="mb-4 text-xl font-bold">Ajustar imagen</h2>
-                                                                <div class="w-full h-64 overflow-hidden">
-                                                                    <img id="imageToCrop"
-                                                                        src="{{ asset('storage/' . $existingPhoto) }}"
-                                                                        alt="Para recortar" class="w-full">
-                                                                </div>
+                                                                @if($photo)
+                                                                    <img id="imageToCrop" src="{{ $photo->temporaryUrl() }}"
+                                                                        alt="Nueva imagen"
+                                                                        class="object-cover cursor-pointer"
+                                                                        width="140">
+                                                                @else
+                                                                    <img id="imageToCrop" src="{{ asset('storage/' . $existingPhoto) }}"
+                                                                        alt="Imagen existente"
+                                                                        class="object-cover cursor-pointer"
+                                                                        width="140">
+                                                                @endif
                                                                 <div class="flex justify-end mt-4 space-x-2">
                                                                     <button id="cancelButton"
                                                                         class="px-4 py-2 text-white bg-gray-600 rounded">Cancelar</button>
@@ -249,7 +255,7 @@
                                                         </div>
                                                         <div class="flex flex-col justify-center">
                                                             <div class="relative flex justify-center h-10">
-                                                                <img class="absolute w-10"
+                                                                <img class="absolute object-cover w-1/3 h-full"
                                                                     src="{{ asset('storage/' . $existingSign) }}"
                                                                     alt="Firma Portador">
                                                             </div>

@@ -50,8 +50,8 @@
                                 <td class="text-lg text-center p-3">{{ $vehicle->type }}</td>
                                 <td class="text-lg text-center p-3">{{ $vehicle->brand }}</td>
                                 <td class="text-lg text-center p-3">{{ $vehicle->color }}</td>
-                                <td class="text-lg text-center p-3">{{ $vehicle->issueDate }}</td>
-                                <td class="text-lg text-center p-3">{{ $vehicle->expirationDate }}</td>
+                                <td class="text-lg text-center p-3">{{ date('d-m-Y', strtotime($vehicle->issueDate)) }}</td>
+                                <td class="text-lg text-center p-3">{{ date('d-m-Y', strtotime($vehicle->expirationDate)) }}</td>
                                 <td class="text-lg p-3">
                                     @if($vehicle->status==1)
                                         <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs uppercase text-green-700 ring-1 ring-inset ring-green-600/20">Activo</span>

@@ -305,13 +305,19 @@
                                                         <!-- CROPPER -->
                                                         <div id="cropperModal"
                                                             class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
-                                                            <div class="bg-white rounded-lg p-4 w-[90%] md:w-1/2">
+                                                            <div class="bg-white rounded-lg p-4 w-[90%] md:w-fit">
                                                                 <h2 class="mb-4 text-xl font-bold">Ajustar imagen</h2>
-                                                                <div class="w-full h-64 overflow-hidden">
-                                                                    <img id="imageToCrop"
-                                                                        src="{{ asset('storage/' . $existingPhoto) }}"
-                                                                        alt="Para recortar" class="w-full">
-                                                                </div>
+                                                                @if($photo)
+                                                                    <img id="imageToCrop" src="{{ $photo->temporaryUrl() }}"
+                                                                        alt="Nueva imagen"
+                                                                        class="object-cover cursor-pointer"
+                                                                        width="140">
+                                                                @else
+                                                                    <img id="imageToCrop" src="{{ asset('storage/' . $existingPhoto) }}"
+                                                                        alt="Imagen existente"
+                                                                        class="object-cover cursor-pointer"
+                                                                        width="140">
+                                                                @endif
                                                                 <div class="flex justify-end mt-4 space-x-2">
                                                                     <button id="cancelButton"
                                                                         class="px-4 py-2 text-white bg-gray-600 rounded">Cancelar</button>
@@ -338,7 +344,7 @@
                                                     <div class="flex flex-col py-1 mb-1 border-b border-black">
                                                         <span>Nombre: </span>
                                                         <span
-                                                            class="text-lg font-semibold uppercase flex items-center">{{ $name }}</span>
+                                                            class="text-lg font-semibold truncate text-ellipsis uppercase flex items-center">{{ $name }}</span>
                                                     </div>
                                                     <div class="flex flex-row items-center py-1 border-b border-black">
                                                         <div>Cargo: </div>
@@ -360,7 +366,7 @@
                                                     </div>
                                                     <div class="flex flex-col w-full pl-2 text-center border-black">
                                                         <div class="relative flex justify-center h-10">
-                                                            <img class="absolute w-10"
+                                                            <img class="absolute object-cover w-1/3 h-full"
                                                                 src="{{ asset('storage/' . $existingSign) }}"
                                                                 alt="Firma Portador">
                                                         </div>
