@@ -25,7 +25,9 @@ class Index extends Component
     // BÚSQUEDA POR NOMBRE EN TIEMPO REAL
     public function updatedSearch()
     {
-        $this->beneficiaries=Beneficiary::where('name','like','%'.$this->search.'%')->get();
+        $this->search?
+            $this->beneficiaries=Beneficiary::where('name','like','%'.$this->search.'%')->get():
+            $this->beneficiaries=Beneficiary::where('status', 1)->get();
     }
 
     // REDIRECCIÓN A LA PÁGINA DE EDICIÓN

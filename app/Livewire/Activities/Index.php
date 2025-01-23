@@ -22,7 +22,9 @@ class Index extends Component
     // FUNCION QUE ACTUALIZA EN TIEMPO REAL LA BÚSQUEDA POR NOMBRE DE ACTIVIDAD */
     public function updatedSearch()
     {
-        $this->activities=Activity::where('name','like','%'.$this->search.'%')->get();
+        $this->search?
+            $this->activities=Activity::where('name','like','%'.$this->search.'%')->get():
+            $this->activities=Activity::where('status', 1)->get();
     }
 
     // REDIRECCIÓN A PÁGINA DE EDICIÓN JUNTO CON EL PARÁMETRO DEL ID DEL REGISTRO

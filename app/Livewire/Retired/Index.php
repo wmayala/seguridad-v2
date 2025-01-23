@@ -22,7 +22,9 @@ class Index extends Component
 
     public function updatedSearch()
     {
-        $this->retired=Retired::where('name','like','%'.$this->search.'%')->get();
+        $this->search?
+            $this->retired=Retired::where('name','like','%'.$this->search.'%')->get():
+            $this->retired=Retired::where('status', 1)->get();
     }
 
     public function redirectTo($route, $param)

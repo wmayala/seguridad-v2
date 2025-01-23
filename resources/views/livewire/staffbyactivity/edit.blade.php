@@ -344,7 +344,7 @@
                                                     <div class="flex flex-col py-1 mb-1 border-b border-black">
                                                         <span>Nombre: </span>
                                                         <span
-                                                            class="text-lg font-semibold truncate text-ellipsis uppercase flex items-center">{{ $name }}</span>
+                                                            class="text-lg font-semibold truncate text-ellipsis uppercase flex items-center mb-1">{{ $name }}</span>
                                                     </div>
                                                     <div class="flex flex-row items-center py-1 border-b border-black">
                                                         <div>Cargo: </div>

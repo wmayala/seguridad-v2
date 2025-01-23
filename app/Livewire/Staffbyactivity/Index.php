@@ -25,7 +25,9 @@ class Index extends Component
 
     public function updatedSearch()
     {
-        $this->staff=StaffByActivity::where('name','like','%'.$this->search.'%')->get();
+        $this->search?
+            $this->staff=StaffByActivity::where('name','like','%'.$this->search.'%')->get():
+            $this->staff=StaffByActivity::where('status', 1)->get();
     }
 
     public function redirectTo($route, $param)

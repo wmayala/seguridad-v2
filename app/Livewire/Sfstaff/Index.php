@@ -22,7 +22,9 @@ class Index extends Component
 
     public function updatedSearch()
     {
-        $this->SFstaff=SFStaff::where('name','like','%'.$this->search.'%')->get();
+        $this->search?
+            $this->SFstaff=SFStaff::where('name','like','%'.$this->search.'%')->get():
+            $this->SFstaff=SFStaff::where('status', 1)->get();
     }
 
     public function redirectTo($route, $param)

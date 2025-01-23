@@ -12,12 +12,14 @@ class Index extends Component
 
     public function mount()
     {
-        $this->companies=Company::all();
+        $this->companies=Company::where('status', 1)->get();
     }
 
     public function updatedSearch()
     {
-        $this->companies=Company::where('name','like','%'.$this->search.'%')->get();
+        $this->search?
+            $this->companies=Company::where('name','like','%'.$this->search.'%')->get():
+            $this->companies=Company::where('status', 1)->get();
     }
 
     public function redirectTo($route, $param)
