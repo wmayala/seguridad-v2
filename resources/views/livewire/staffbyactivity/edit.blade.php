@@ -341,7 +341,7 @@
                                                             class="mx-2 text-lg font-bold text-center uppercase">Banco
                                                             Central de Reserva de El Salvador</span>
                                                     </div>
-                                                    <div class="flex flex-col py-1 mb-1 border-b border-black">
+                                                    <div class="flex flex-col py-1 border-b border-black">
                                                         <span>Nombre: </span>
                                                         <span
                                                             class="text-lg font-semibold truncate text-ellipsis uppercase flex items-center mb-1">{{ $name }}</span>
