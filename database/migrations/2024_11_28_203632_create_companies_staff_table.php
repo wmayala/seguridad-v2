@@ -39,7 +39,7 @@ return new class extends Migration
             $table->integer('company_id');
             $table->date('issueDate');
             $table->date('expirationDate');
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->string('signature');
             $table->string('document')->nullable();
             $table->boolean('status')->default(1);

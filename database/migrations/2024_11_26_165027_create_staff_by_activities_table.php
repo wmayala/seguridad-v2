@@ -38,7 +38,7 @@ return new class extends Migration
             $table->string('skinColor')->nullable();
             $table->date('registerDate');
             $table->date('expirationDate');
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->string('signature');
             $table->boolean('status')->default(1);
             $table->timestamps();

@@ -96,6 +96,8 @@ class Edit extends Component
         $validatedData=$this->validate();
         $staff=StaffByActivity::findOrFail($this->id);
 
+        //dd($staff);
+
         if($this->photo)
         {
             if($staff->photo && Storage::disk('public')->exists($staff->photo))

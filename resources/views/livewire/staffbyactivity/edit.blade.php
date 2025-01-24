@@ -354,11 +354,11 @@
                                                         </div>
                                                     </div>
                                                     <div class="flex justify-between py-1 border-b border-black">
-                                                        <div class="flex flex-col pl-2">
+                                                        <div class="flex flex-col">
                                                             <div>Dui No.</div>
                                                             <div class="text-center">{{ $dui }}</div>
                                                         </div>
-                                                        <div class="flex flex-col pr-2">
+                                                        <div class="flex flex-col">
                                                             <div>Vencimiento</div>
                                                             <div class="text-center">
                                                                 {{ date('d-m-Y', strtotime($expirationDate)) }}</div>
