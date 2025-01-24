@@ -136,7 +136,7 @@
                                                             {{ $name }}
                                                         </div>
                                                     </div>
-                                                    <div class="flex flex-col py-1 border-b border-black">
+                                                    <div class="flex gap-2 py-1 border-b border-black">
                                                         <div>Cargo: </div>
                                                         <div class="text-lg h-[30px] font-semibold truncate text-ellipsis uppercase">
                                                             {{ $position }}
@@ -152,15 +152,14 @@
                                                             <div class="text-center">{{ date('d-m-Y', strtotime($expirationDate)) }}</div>
                                                         </div>
                                                     </div>
-                                                    <div class="flex flex-col gap-3 w-full pl-2 text-center border-black">
-                                                        <div class="relative flex justify-center h-8">
-                                                            <img class="absolute object-cover w-1/4 h-full"
+                                                    <div class="flex gap-2 w-full text-center border-black">
+                                                        <div>Firma: </div>
+                                                        <div class="relative flex justify-center w-full h-[68px]  ">
+                                                            <img class="absolute object-cover w-max  h-full"
                                                                 src="{{ asset('storage/' . $existingSign) }}"
                                                                 alt="Firma Portador">
                                                         </div>
-                                                        <div class="relative flex justify-center">
-                                                            <div class="absolute bottom-0">Firma del Portador</div>
-                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>

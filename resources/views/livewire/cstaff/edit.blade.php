@@ -301,7 +301,7 @@
                                         <div class="flex justify-center gap-3">
                                             <div class="grid grid-cols-[auto_1fr]">
                                                 <div>
-                                                    <div class="border border-black ml-2">
+                                                    <div class="border border-black">
                                                         <div class="w-32 h-40 overflow-hidden">
                                                             @if($photo)
                                                                 <img id="originalImage" src="{{ $photo->temporaryUrl() }}"
@@ -376,14 +376,12 @@
                                                                 {{ date('d-m-Y', strtotime($expirationDate)) }}</div>
                                                         </div>
                                                     </div>
-                                                    <div class="flex flex-col gap-3 w-full text-center border-black">
-                                                        <div class="relative flex justify-center h-10">
-                                                            <img class="absolute object-cover w-full h-full"
+                                                    <div class="flex gap-2 w-full text-center border-black">
+                                                        <div>Firma: </div>
+                                                        <div class="relative flex justify-center w-full h-[68px]  ">
+                                                            <img class="absolute object-cover w-max  h-full"
                                                                 src="{{ asset('storage/' . $existingSign) }}"
                                                                 alt="Firma Portador">
-                                                        </div>
-                                                        <div class="relative flex justify-center">
-                                                            <div class="absolute bottom-0">Firma del Portador</div>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -208,9 +208,9 @@
                                                     <span class="text-sm font-semibold">Nota: Al caducar, deberá devolverse a la Gerencia de Seguridad del BCR</span>
                                                 </div>
                                                 <div class="flex">
-                                                    <div class="flex flex-col justify-center w-1/2 mx-3">
-                                                        <img src="{{ asset('assets/img/gs-sign.jpeg') }}" alt="Firma GS" width="250px">
-                                                        <span class="border-t border-black text-center">Vo. Bo. Gerencia de Seguridad</span>
+                                                    <div class="relative flex flex-col justify-center w-1/2 mx-3">
+                                                        <img class="absolute bottom-0" src="{{ asset('assets/img/gs-sign.jpeg') }}" alt="Firma GS" width="250px">
+                                                        <span class="absolute bottom-1 border-t border-black text-center">Vo. Bo. Gerencia de Seguridad</span>
                                                     </div>
                                                     <div class="w-1/2 mt-5">
                                                         <div class="text-center">Vencimiento: <strong>{{ date('d-m-Y', strtotime($expirationDate)) }}</strong></div>

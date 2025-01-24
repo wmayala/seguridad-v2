@@ -175,7 +175,7 @@
                                             <div class="grid grid-cols-[auto_1fr]">
                                                 <div>
                                                     <div class="border border-black ">
-                                                        <div class="w-30 h-40 overflow-hidden">
+                                                        <div class="w-32 h-40 overflow-hidden">
                                                             @if($photo)
                                                                 <img id="originalImage" src="{{ $photo->temporaryUrl() }}"
                                                                     alt="Nueva imagen"
@@ -204,10 +204,8 @@
                                                                         width="140">
                                                                 @endif
                                                                 <div class="flex justify-end mt-4 space-x-2">
-                                                                    <button id="cancelButton"
-                                                                        class="px-4 py-2 text-white bg-gray-600 rounded">Cancelar</button>
-                                                                    <button id="cropButton"
-                                                                        class="px-4 py-2 text-white bg-[#111e60]  rounded">Recortar</button>
+                                                                    <button id="cancelButton" class="px-4 py-2 text-white bg-gray-600 rounded">Cancelar</button>
+                                                                    <button id="cropButton" class="px-4 py-2 text-white bg-[#111e60]  rounded">Recortar</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -249,15 +247,15 @@
                                                             {{ $position }}
                                                         </div>
                                                     </div>
-                                                    <div class="flex gap-5 py-1">
-                                                        <div class="flex flex-col">
+                                                    <div class="flex gap-2 py-1">
+                                                        <div class="flex flex-col w-1/2">
                                                             <div class="text-sm">Dui No.:</div>
-                                                            <div class="text-center">{{ $dui }}</div>
+                                                            <div class="">{{ $dui }}</div>
                                                         </div>
-                                                        <div class="flex gap-1 justify-center">
-                                                            <div class="text-sm">Firma:</div>
-                                                            <div class="flex justify-center h-12  ">
-                                                                <img class="object-cover w-full h-full"
+                                                        <div class="flex gap-1 justify-center w-full">
+                                                            <div class="text-sm">Firma: </div>
+                                                            <div class="flex justify-center w-full h-12   ">
+                                                                <img class="object-cover w-max  h-full"
                                                                     src="{{ asset('storage/' . $existingSign) }}"
                                                                     alt="Firma Portador">
                                                             </div>
