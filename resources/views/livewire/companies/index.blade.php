@@ -6,7 +6,7 @@
                     <div class="flex justify-between">
                         @include('layouts.notif')
                         <div class="text-[#111e60] text-bold text-3xl mb-5">EMPRESAS</div>
-                        @if(Auth::user()->can('crear-compania'))
+                        @if(Auth::user()->can('crear-empresa'))
                             <div>
                                 <a href="{{ route('companies.create') }}" class="inline-flex items-center px-4 py-2 bg-[#111e60] border border-transparent rounded-md font-semibold text-md text-white uppercase tracking-widest hover:bg-[#111e60] focus:bg-[#111e60]-700 active:bg-[#111e60]-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Agregar empresa</a>
                             </div>
@@ -40,10 +40,10 @@
                                 </td>
                                 <td class="text-center">
                                     @if($company->id!=1)
-                                        @if(Auth::user()->can('modificar-compania'))
+                                        @if(Auth::user()->can('modificar-empresa'))
                                             <button wire:click="redirectTo('companies.edit',{{ $company->id }})" class="px-2 py-1 bg-yellow-400 text-white rounded">Editar</button>
                                         @endif
-                                        @if(Auth::user()->can('eliminar-compania'))
+                                        @if(Auth::user()->can('eliminar-empresa'))
                                             <button onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()" wire:click="delete({{ $company->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
                                         @endif
                                     @endif

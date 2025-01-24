@@ -6,9 +6,11 @@
                     <div class="flex justify-between">
                         @include('layouts.notif')
                         <div class="text-[#111e60] text-bold text-3xl mb-5">PERSONAL POR ACTIVIDAD</div>
-                        <div>
-                            <a href="{{ route('staff.create') }}" class="inline-flex items-center px-4 py-2 bg-[#111e60] border border-transparent rounded-md font-semibold text-md text-white uppercase tracking-widest hover:bg-[#111e60] focus:bg-[#111e60]-700 active:bg-[#111e60]-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Agregar personal</a>
-                        </div>
+                        @if(Auth::user()->can('crear-personal-actividad'))
+                            <div>
+                                <a href="{{ route('staff.create') }}" class="inline-flex items-center px-4 py-2 bg-[#111e60] border border-transparent rounded-md font-semibold text-md text-white uppercase tracking-widest hover:bg-[#111e60] focus:bg-[#111e60]-700 active:bg-[#111e60]-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Agregar personal</a>
+                            </div>
+                        @endif
                     </div>
                     <div class="flex justify-center my-4">
                         <x-text-input
@@ -65,8 +67,12 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <button wire:click="redirectTo('staff.edit',{{ $st->id }})" class="px-2 py-1 bg-yellow-400 text-white rounded">Editar</button>
-                                    <button onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()" wire:click="delete({{ $st->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
+                                    @if(Auth::user()->can('modificar-personal-actividad'))
+                                        <button wire:click="redirectTo('staff.edit',{{ $st->id }})" class="px-2 py-1 bg-yellow-400 text-white rounded">Editar</button>
+                                    @endif
+                                    @if(Auth::user()->can('eliminar-personal-actividad'))
+                                        <button onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()" wire:click="delete({{ $st->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
