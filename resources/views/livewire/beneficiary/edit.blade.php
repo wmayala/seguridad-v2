@@ -182,36 +182,35 @@
                                                 <div class="mx-2">
                                                     <div class="flex flex-col py-1 border-b border-black">
                                                         <span>Nombre: </span>
-                                                        <span class="text-lg font-semibold uppercase flex items-center">{{ $name }}</span>
+                                                        <span class="text-lg font-semibold uppercase mb-1">{{ $name }}</span>
                                                     </div>
-                                                    <div
-                                                        class="flex flex-row justify-between py-1 border-b border-black">
-                                                        <div><span>Parentesco: </span><span>{{ $relationship }}</span></div>
-                                                        <div><span>Edad: </span><span>{{ $age }}</span></div>
+                                                    <div class="flex justify-between py-1 border-b border-black">
+                                                        <div class="mb-1">Parentesco: {{ $relationship }}</div>
+                                                        <div class="mb-1">Edad: {{ $age }}</div>
                                                     </div>
                                                     <div class="flex flex-col py-1 border-b border-black">
-                                                        <div class="flex flex-row justify-between">
-                                                            <span>Empleado: </span>
+                                                        <div class="flex justify-between">
+                                                            <div>Empleado: </div>
                                                             <div>
                                                                 <span>No. Empleado: </span>
                                                                 <span class="font-bold">{{ $empCode }}</span>
                                                             </div>
                                                         </div>
-                                                        <span class="text-lg font-semibold uppercase flex items-center">{{ $empName }}</span>
+                                                        <div class="text-lg font-semibold uppercase mb-1">{{ $empName }}</div>
                                                     </div>
                                                     <div class="flex flex-row justify-between py-1 flew-row">
-                                                        <div class="flex flex-col mt-2">
+                                                        <div class="flex flex-col">
                                                             <div>Vencimiento</div>
                                                             <div class="text-center">{{ date('d-m-Y', strtotime($expirationDate)) }}</div>
                                                         </div>
-                                                        <div class="flex flex-col w-1/2 pl-2 text-center border-black">
+                                                        <div class="flex flex-col gap-2 w-1/2 text-center border-black">
                                                             <div class="relative flex justify-center h-10">
-                                                                <img class="absolute object-cover w-1/3 h-full"
+                                                                <img class="absolute object-cover w-1/4 h-full"
                                                                     src="{{ asset('storage/' . $existingSign) }}"
                                                                     alt="Firma Portador">
                                                             </div>
-                                                            <div class="mb-2">
-                                                                <span>Firma del Portador</span>
+                                                            <div class="relative flex justify-center">
+                                                                <div class="absolute bottom-0">Firma del Portador</div>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -126,15 +126,21 @@
                                                     <div class="flex w-full py-1 border-b border-black">
                                                         <img src="{{ asset('assets/img/logo_bcr.png') }}"
                                                             alt="Logo BCR" width="60px">
-                                                        <span class="mx-2 text-lg font-bold text-center uppercase">Banco Central de Reserva de El Salvador</span>
+                                                        <div class="mx-2 text-lg font-bold text-center uppercase">
+                                                            Banco Central de Reserva de El Salvador
+                                                        </div>
                                                     </div>
-                                                    <div class="flex flex-col py-1 mb-1 border-b border-black">
-                                                        <span>Nombre: </span>
-                                                        <span class="text-lg font-semibold uppercase flex items-center">{{ $name }}</span>
+                                                    <div class="flex flex-col w-full py-1 border-b border-black">
+                                                        <div>Nombre: </div>
+                                                        <div class="text-lg h-[30px] font-semibold truncate text-ellipsis uppercase">
+                                                            {{ $name }}
+                                                        </div>
                                                     </div>
-                                                    <div class="flex flex-row py-1 border-b border-black">
+                                                    <div class="flex flex-col py-1 border-b border-black">
                                                         <div>Cargo: </div>
-                                                        <div class="pl-2 text-lg font-semibold uppercase flex items-center ">{{ $position }}</div>
+                                                        <div class="text-lg h-[30px] font-semibold truncate text-ellipsis uppercase">
+                                                            {{ $position }}
+                                                        </div>
                                                     </div>
                                                     <div class="flex justify-between py-1 border-b border-black flew-row">
                                                         <div class="flex flex-col pl-2">
@@ -147,8 +153,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="flex flex-col w-full pl-2 text-center border-black">
-                                                        <div class="relative flex justify-center h-10">
-                                                            <img class="absolute object-cover w-1/3 h-full"
+                                                        <div class="relative flex justify-center h-8">
+                                                            <img class="absolute object-cover w-1/4 h-full"
                                                                 src="{{ asset('storage/' . $existingSign) }}"
                                                                 alt="Firma Portador">
                                                         </div>

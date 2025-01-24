@@ -182,7 +182,7 @@
                                                     <div class="uppercase text-center text-lg font-bold mt-2">Características del vehículo</div>
                                                 </div>
                                                 <div class="flex justify-center px-3">
-                                                    <table class="w-full border-b border-black">
+                                                    <table class="w-full border-b pb-2 border-black">
                                                         <tbody>
                                                             <tr>
                                                                 <td class="">CLASE:</td>
@@ -197,7 +197,9 @@
                                                                 <td class="uppercase">{{ $plate }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td colspan="4" class="text-center">EMPRESA: {{ $institution_name }}</td>
+                                                                <td colspan="4" class="text-center">
+                                                                    <div class="mb-2">EMPRESA: {{ $institution_name }}</div>
+                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>

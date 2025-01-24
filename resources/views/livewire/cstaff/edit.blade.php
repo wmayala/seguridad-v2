@@ -353,24 +353,24 @@
                                                             class="mx-2 text-lg font-bold text-center uppercase">Banco
                                                             Central de Reserva de El Salvador</span>
                                                     </div>
-                                                    <div class="flex flex-col py-1 mb-1 border-b border-black">
-                                                        <span>Nombre: </span>
-                                                        <span
-                                                            class="text-lg font-semibold uppercase flex items-center">{{ $name }}</span>
+                                                    <div class="flex flex-col w-full py-1 border-b border-black">
+                                                        <div>Nombre: </div>
+                                                        <div class="text-lg font-semibold uppercase flex items-center mb-1">
+                                                            {{ $name }}
+                                                        </div>
                                                     </div>
-                                                    <div class="flex flex-row items-center py-1 border-b border-black">
+                                                    <div class="flex flex-col py-1 border-b border-black">
                                                         <div>Empresa: </div>
-                                                        <div
-                                                            class="pl-2 w-[300px] h-[40px] truncate text-ellipsis text-lg font-semibold uppercase flex items-center ">
-                                                            {{ $company_name }}</div>
+                                                        <div class="text-lg h-[30px] font-semibold truncate text-ellipsis uppercase">
+                                                            {{ $company_name }}
+                                                        </div>
                                                     </div>
-                                                    <div
-                                                        class="flex justify-between py-1 border-b border-black flew-row">
+                                                    <div class="flex justify-between py-1 border-b border-black">
                                                         <div class="flex flex-col">
                                                             <div>Dui No.</div>
                                                             <div class="text-center">{{ $dui }}</div>
                                                         </div>
-                                                        <div class="flex flex-col pr-2">
+                                                        <div class="flex flex-col">
                                                             <div>Vencimiento</div>
                                                             <div class="text-center">
                                                                 {{ date('d-m-Y', strtotime($expirationDate)) }}</div>
@@ -398,7 +398,7 @@
                                             <div class="grid grid-cols-[auto_1fr]  ">
                                                 <div>
                                                     <div class="flex w-full py-2">
-                                                        <p class="p-3 mx-2 text-justify">
+                                                        <p class="mx-3 text-justify">
                                                             Este carnet debe portarlo en forma visible al ingreso y
                                                             durante su permanencia en el BCR.
                                                             En caso de extravío o pérdida notificar al Tel.: 2281-8850.

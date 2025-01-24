@@ -175,7 +175,7 @@
                                             <div class="grid grid-cols-[auto_1fr]">
                                                 <div>
                                                     <div class="border border-black ">
-                                                        <div class="w-32 h-40 overflow-hidden">
+                                                        <div class="w-30 h-40 overflow-hidden">
                                                             @if($photo)
                                                                 <img id="originalImage" src="{{ $photo->temporaryUrl() }}"
                                                                     alt="Nueva imagen"
@@ -227,26 +227,27 @@
                                                     <div class="flex w-full py-1 border-b border-black">
                                                         <img src="{{ asset('assets/img/logo_bcr.png') }}"
                                                             alt="Logo BCR" width="60px">
-                                                        <span
-                                                            class="mx-2 text-lg font-bold text-center uppercase">Banco
-                                                            Central de Reserva de El Salvador</span>
+                                                        <span class="mx-2 text-lg font-bold text-center uppercase">
+                                                            Banco Central de Reserva de El Salvador
+                                                        </span>
                                                     </div>
-                                                    <div class="flex flex-col py-1 mb-1 border-b border-black">
-                                                        <span>Nombre: </span>
-                                                        <span
-                                                            class="text-lg font-semibold uppercase flex items-center">{{ $name }}</span>
+                                                    <div class="flex flex-col w-full py-1 border-b border-black">
+                                                        <div class="text-sm">Nombre: </div>
+                                                        <div class="text-lg h-[30px] font-semibold truncate text-ellipsis uppercase">
+                                                            {{ $name }}
+                                                        </div>
                                                     </div>
-                                                    <div class="flex flex-row py-1 border-b border-black">
-                                                        <div>Institución: </div>
-                                                        <div
-                                                            class="pl-2 text-lg font-semibold uppercase flex items-center ">
-                                                            {{ $institution_name }}</div>
+                                                    <div class="flex flex-col py-1 border-b border-black">
+                                                        <div class="text-sm">Institución: </div>
+                                                        <div class="text-lg h-[30px] font-semibold truncate text-ellipsis uppercase">
+                                                            {{ $institution_name }}
+                                                        </div>
                                                     </div>
-                                                    <div class="flex flex-row py-1 border-b border-black">
-                                                        <div>Cargo: </div>
-                                                        <div
-                                                            class="pl-2 text-lg font-semibold uppercase flex items-center ">
-                                                            {{ $position }}</div>
+                                                    <div class="flex flex-col py-1 border-b border-black">
+                                                        <div class="text-sm">Cargo: </div>
+                                                        <div class="text-base h-[30px] font-semibold truncate text-ellipsis uppercase">
+                                                            {{ $position }}
+                                                        </div>
                                                     </div>
                                                     <div class="flex justify-between py-1 flex-row">
                                                         <div class="flex flex-col">
@@ -254,12 +255,12 @@
                                                             <div class="text-center">{{ $dui }}</div>
                                                         </div>
                                                         <div class="flex flex-col justify-center">
-                                                            <div class="relative flex justify-center h-10">
+                                                            <div class="relative flex justify-center h-7 ">
                                                                 <img class="absolute object-cover w-1/3 h-full"
                                                                     src="{{ asset('storage/' . $existingSign) }}"
                                                                     alt="Firma Portador">
                                                             </div>
-                                                            <div class="mb-2">
+                                                            <div class="mb-2 text-sm">
                                                                 Firma del Portador
                                                             </div>
                                                         </div>
