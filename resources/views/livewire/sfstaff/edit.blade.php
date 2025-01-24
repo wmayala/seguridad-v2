@@ -233,13 +233,13 @@
                                                     </div>
                                                     <div class="flex flex-col w-full py-1 border-b border-black">
                                                         <div class="text-sm">Nombre: </div>
-                                                        <div class="text-lg h-[30px] font-semibold truncate text-ellipsis uppercase">
+                                                        <div class="text-base h-[30px] font-semibold truncate text-ellipsis uppercase">
                                                             {{ $name }}
                                                         </div>
                                                     </div>
                                                     <div class="flex flex-col py-1 border-b border-black">
                                                         <div class="text-sm">Institución: </div>
-                                                        <div class="text-lg h-[30px] font-semibold truncate text-ellipsis uppercase">
+                                                        <div class="text-base h-[30px] font-semibold truncate text-ellipsis uppercase">
                                                             {{ $institution_name }}
                                                         </div>
                                                     </div>
@@ -249,19 +249,17 @@
                                                             {{ $position }}
                                                         </div>
                                                     </div>
-                                                    <div class="flex justify-between py-1 flex-row">
+                                                    <div class="flex gap-5 py-1">
                                                         <div class="flex flex-col">
-                                                            <div>Dui No.</div>
+                                                            <div class="text-sm">Dui No.:</div>
                                                             <div class="text-center">{{ $dui }}</div>
                                                         </div>
-                                                        <div class="flex flex-col justify-center">
-                                                            <div class="relative flex justify-center h-7 ">
-                                                                <img class="absolute object-cover w-1/3 h-full"
+                                                        <div class="flex gap-1 justify-center">
+                                                            <div class="text-sm">Firma:</div>
+                                                            <div class="flex justify-center h-12  ">
+                                                                <img class="object-cover w-full h-full"
                                                                     src="{{ asset('storage/' . $existingSign) }}"
                                                                     alt="Firma Portador">
-                                                            </div>
-                                                            <div class="mb-2 text-sm">
-                                                                Firma del Portador
                                                             </div>
                                                         </div>
                                                     </div>
