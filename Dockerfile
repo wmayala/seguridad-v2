@@ -62,8 +62,8 @@ RUN chown -R www-data:www-data /var/www/html \
     && composer update \
     && npm run build
 RUN echo culr.cainfo="/etc/cacert.pem" >> /usr/local/etc/php/conf.d/docker-php-curl-ca-cert.ini
-RUN chmod -R 755 /storage
-RUN unlink storage
+RUN chmod -R 775 storage/
+# RUN unlink storage
 RUN php artisan storage:link
 
 # COPY verificador-worker.conf /etc/supervisor/conf.d/
