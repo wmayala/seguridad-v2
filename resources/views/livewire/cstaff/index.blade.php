@@ -79,6 +79,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $CStaff->links() }}
                 </div>
             </div>
         </div>

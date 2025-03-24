@@ -10,24 +10,18 @@ class Index extends Component
 {
     use WithPagination;
 
-    public $staff;
-    public $search='';
-
-    public function mount()
-    {
-        $this->staff=StaffByActivity::where('status', 1)->get();
-    }
+    public $showAll = false;
+    public $search = '';
 
     public function viewAll()
     {
-        $this->staff=StaffByActivity::all();
+        $this->showAll = true;
+        $this->resetPage();
     }
 
     public function updatedSearch()
     {
-        $this->search?
-            $this->staff=StaffByActivity::where('name','like','%'.$this->search.'%')->get():
-            $this->staff=StaffByActivity::where('status', 1)->get();
+        $this->resetPage();
     }
 
     public function redirectTo($route, $param)
@@ -38,11 +32,23 @@ class Index extends Component
     public function delete($id)
     {
         StaffByActivity::findOrFail($id)->delete();
-        $this->mount();
+        $this->resetPage();
     }
 
     public function render()
     {
-        return view('livewire.staffbyactivity.index');
+        $query = StaffByActivity::query();
+
+        if($this->search) {
+            $query->where('name', 'like', '%' . $this->search . '%');
+        }
+
+        if(!$this->showAll) {
+            $query->where('status', 1);
+        }
+
+        $staff = $query->paginate(15);
+
+        return view('livewire.staffbyactivity.index', compact('staff'));
     }
 }

@@ -71,6 +71,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $beneficiaries->links() }}
                 </div>
             </div>
         </div>

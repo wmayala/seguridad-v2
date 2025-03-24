@@ -287,7 +287,7 @@
                                     {{-- CARNET FRENTE --}}
                                     <div id="id-card-front" class="w-[517px] h-[325px] border border-gray-200 p-2">
                                         <div class="flex justify-center gap-3">
-                                            <div class="grid grid-cols-[auto_1fr]">
+                                            <div class="grid grid-cols-[130px_361px]">
                                                 <div>
                                                     <div class="border border-black ">
                                                         <div class="w-32 h-40 overflow-hidden">
@@ -333,7 +333,7 @@
                                                     <div class="text-2xl font-bold text-center">{{ $record }}
                                                     </div>
                                                 </div>
-                                                <div class="mx-2">
+                                                <div class="ml-2">
                                                     <div class="flex w-full py-1 border-b border-black">
                                                         <img src="{{ asset('assets/img/logo_bcr.png') }}"
                                                             alt="Logo BCR" width="60px">
@@ -349,7 +349,7 @@
                                                     </div>
                                                     <div class="flex flex-col py-1 border-b border-black">
                                                         <div>Cargo: </div>
-                                                        <div class="text-lg h-[30px] font-semibold truncate text-ellipsis uppercase">
+                                                        <div class="{{ strlen($activity_name) <= 35 ? 'text-lg' : 'text-base' }} h-[30px] font-semibold truncate text-ellipsis uppercase">
                                                             {{ $activity_name }}
                                                         </div>
                                                     </div>
@@ -364,14 +364,12 @@
                                                                 {{ date('d-m-Y', strtotime($expirationDate)) }}</div>
                                                         </div>
                                                     </div>
-                                                    <div class="flex flex-col gap-3 w-full text-center border-black">
-                                                        <div class="relative flex justify-center h-10">
-                                                            <img class="absolute object-cover w-1/3 h-full"
+                                                    <div class="flex gap-2 w-full text-center border-black">
+                                                        <div>Firma: </div>
+                                                        <div class="relative flex justify-center w-full h-[63px]">
+                                                            <img class="absolute object-cover w-max h-full p-1"
                                                                 src="{{ asset('storage/' . $existingSign) }}"
                                                                 alt="Firma Portador">
-                                                        </div>
-                                                        <div class="relative flex justify-center">
-                                                            <div class="absolute bottom-0">Firma del Portador</div>
                                                         </div>
                                                     </div>
                                                 </div>

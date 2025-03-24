@@ -2,10 +2,10 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
-        server: {
+        /* server: {
             host: 'https://seguridadbancaria-dev.bcr.gob.sv',
             https: true
-        },
+        }, */
     plugins: [
 
         laravel({

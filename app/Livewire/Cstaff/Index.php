@@ -2,29 +2,26 @@
 
 namespace App\Livewire\Cstaff;
 
+use Livewire\WithPagination;
 use App\Models\CompaniesStaff;
 use Livewire\Component;
 
 class Index extends Component
 {
-    public $CStaff;
-    public $search='';
+    use WithPagination;
 
-    public function mount()
-    {
-        $this->CStaff=CompaniesStaff::where('status', 1)->get();
-    }
+    public $showAll = false;
+    public $search = '';
 
     public function viewAll()
     {
-        $this->CStaff=CompaniesStaff::all();
+        $this->showAll = true;
+        $this->resetPage();
     }
 
     public function updatedSearch()
     {
-        $this->search?
-            $this->CStaff=CompaniesStaff::where('name','like','%'.$this->search.'%')->get():
-            $this->CStaff=CompaniesStaff::where('status', 1)->get();
+        $this->resetPage();
     }
 
     public function redirectTo($route, $param)
@@ -35,11 +32,23 @@ class Index extends Component
     public function delete($id)
     {
         CompaniesStaff::findOrFail($id)->delete();
-        $this->mount();
+        $this->resetPage();
     }
 
     public function render()
     {
-        return view('livewire.cstaff.index');
+        $query = CompaniesStaff::query();
+
+        if($this->search) {
+            $query->where('name', 'like', '%' . $this->search . '%');
+        }
+
+        if(!$this->showAll) {
+            $query->where('status', 1);
+        }
+
+        $CStaff = $query->paginate(15);
+
+        return view('livewire.cstaff.index', compact('CStaff'));
     }
 }

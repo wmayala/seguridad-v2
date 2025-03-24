@@ -70,6 +70,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $retired->links() }}
                 </div>
             </div>
         </div>

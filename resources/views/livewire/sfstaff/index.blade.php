@@ -80,6 +80,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $SFstaff->links() }}
                 </div>
             </div>
         </div>

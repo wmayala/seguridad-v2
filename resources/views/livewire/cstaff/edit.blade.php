@@ -299,7 +299,7 @@
                                     {{-- CARNET FRENTE --}}
                                     <div id="id-card-front" class="w-[517px] h-[325px] border border-gray-200 p-2">
                                         <div class="flex justify-center gap-3">
-                                            <div class="grid grid-cols-[auto_1fr]">
+                                            <div class="grid grid-cols-[130px_361px]">
                                                 <div>
                                                     <div class="border border-black">
                                                         <div class="w-32 h-40 overflow-hidden">

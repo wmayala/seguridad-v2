@@ -78,7 +78,7 @@
                             @endforeach
                         </tbody>
                     </table>
-
+                    {{ $staff->links() }}
                 </div>
             </div>
         </div>

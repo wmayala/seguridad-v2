@@ -4,47 +4,51 @@ namespace App\Livewire\Beneficiary;
 
 use App\Models\Beneficiary;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
-    public $beneficiaries;
-    public $search='';
+    use WithPagination;
 
-    // CARGA DE REGISTROS LOS CUALES TENGAN ESTADO ACTIVO
-    public function mount()
-    {
-        $this->beneficiaries=Beneficiary::where('status', 1)->get();
-    }
+    public $showAll = false;
+    public $search = '';
 
-    // FUNCIÓN PARA HABILITAR LA VISTA DE TODOS LOS BENEFICIARIOS ACTIVOS/INACTIVOS
     public function viewAll()
     {
-        $this->beneficiaries=Beneficiary::all();
+        $this->showAll = true;
+        $this->resetPage();
     }
 
-    // BÚSQUEDA POR NOMBRE EN TIEMPO REAL
     public function updatedSearch()
     {
-        $this->search?
-            $this->beneficiaries=Beneficiary::where('name','like','%'.$this->search.'%')->get():
-            $this->beneficiaries=Beneficiary::where('status', 1)->get();
+        $this->resetPage();
     }
 
-    // REDIRECCIÓN A LA PÁGINA DE EDICIÓN
     public function redirectTo($route, $param)
     {
         return redirect()->route($route, $param);
     }
 
-    // ELIMINAR REGISTRO
     public function delete($id)
     {
         Beneficiary::findOrFail($id)->delete();
-        $this->mount();
+        $this->resetPage();
     }
 
     public function render()
     {
-        return view('livewire.beneficiary.index');
+        $query = Beneficiary::query();
+
+        if($this->search) {
+            $query->where('name', 'like', '%' . $this->search . '%');
+        }
+
+        if(!$this->showAll) {
+            $query->where('status', 1);
+        }
+
+        $beneficiaries = $query->paginate(15);
+
+        return view('livewire.beneficiary.index', compact('beneficiaries'));
     }
 }

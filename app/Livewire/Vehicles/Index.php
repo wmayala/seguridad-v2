@@ -4,27 +4,24 @@ namespace App\Livewire\Vehicles;
 
 use App\Models\SFVehicles;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
-    public $vehicles;
-    public $search='';
+    use WithPagination;
 
-    public function mount()
-    {
-        $this->vehicles=SFVehicles::where('status', 1)->get();
-    }
+    public $showAll = false;
+    public $search = '';
 
     public function viewAll()
     {
-        $this->vehicles=SFVehicles::all();
+        $this->showAll = true;
+        $this->resetPage();
     }
 
     public function updatedSearch()
     {
-        $this->search?
-            $this->vehicles=SFVehicles::where('plate','like','%'.$this->search.'%')->get():
-            $this->vehicles=SFVehicles::where('status', 1)->get();
+        $this->resetPage();
     }
 
     public function redirectTo($route, $param)
@@ -35,11 +32,23 @@ class Index extends Component
     public function delete($id)
     {
         SFVehicles::findOrFail($id)->delete();
-        $this->mount();
+        $this->resetPage();
     }
 
     public function render()
     {
-        return view('livewire.vehicles.index');
+        $query = SFVehicles::query();
+
+        if($this->search) {
+            $query->where('name', 'like', '%' . $this->search . '%');
+        }
+
+        if(!$this->showAll) {
+            $query->where('status', 1);
+        }
+
+        $vehicles = $query->paginate(15);
+
+        return view('livewire.vehicles.index', compact('vehicles'));
     }
 }
