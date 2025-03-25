@@ -52,6 +52,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $institutions->links() }}
                 </div>
             </div>
         </div>

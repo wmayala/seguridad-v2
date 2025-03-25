@@ -22,7 +22,7 @@ new class extends Component
     <!-- Logo -->
     <div class="shrink-0 flex justify-center p-3 w-1/6">
         <a href="{{ route('home') }}" wire:navigate>
-            <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+            <x-application-logo class="block h-4 w-auto fill-current text-gray-800" />
         </a>
     </div>
 
