@@ -2,6 +2,7 @@
     <div class="flex flex-col justify-center">
         <div class="ml-6 mb-4  flex justify-center gap-3">
             <div class="w-1/2 flex flex-col justify-center">
+                <div class="text-[#303845] text-bold text-3xl my-5">CONSULTAS POR CATEGORÍA</div>
                 <x-input-label class="uppercase">Buscar</x-input-label>
                 <x-text-input
                     id="search"
@@ -16,7 +17,7 @@
         <div class="flex justify-center gap-6 mb-4">
             @foreach($categories as $key=>$label)
             <div class="flex gap-2">
-                <input class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                <input class="bg-gray-50 border border-[#303845] rounded-lg focus:ring-[#303845] focus:border-[#303845] p-2.5"
                        wire:model="selectedCategory"
                        type="radio"
                        id="{{ $label }}"
@@ -26,10 +27,10 @@
             @endforeach
         </div>
         <div class="flex justify-center gap-3 mb-4">
-            <x-primary-button class="w-1/6" wire:click="filterResults">
+            <x-primary-button class="bg-[#303845] w-1/6" wire:click="filterResults">
                 <div class="w-full">Buscar</div>
             </x-primary-button>
-            <button wire:click="clearInputs" class="px-2 py-1 bg-red-400 text-white rounded w-1/6">Limpiar</button>
+            <button wire:click="clearInputs" class="px-2 py-1 bg-gray-600 text-white rounded-full w-1/6 hover:opacity-75">Limpiar</button>
         </div>
     </div>
     <div class="flex justify-center mb-4">
@@ -60,7 +61,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="4" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 hover:text-[#111e60]">
+                        <td colspan="4" class="bg-white border-b hover:bg-gray-200 hover:text-[#111e60]">
                             No se encontraron resultados
                         </td>
                     </tr>

@@ -47,7 +47,7 @@ class Index extends Component
             $query->where('status', 1);
         }
 
-        $vehicles = $query->paginate(15);
+        $vehicles = $query->paginate(10);
 
         return view('livewire.vehicles.index', compact('vehicles'));
     }

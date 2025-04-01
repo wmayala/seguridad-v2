@@ -1,9 +1,9 @@
 <div class="flex h-dvh overflow-y-auto">
     <div class="py-6 flex w-full">
         <div class="mx-full sm:px-6 lg:px-8 w-full">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-[#F5F7FE] overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div class="text-[#111e60] text-bold text-3xl mb-5">ACTUALIZAR ACTIVIDAD</div>
+                    <div class="text-[#303845] text-bold text-3xl mb-5">ACTUALIZAR ACTIVIDAD</div>
                         <form wire:submit.prevent="update">
                             <div class="flex justify-center">
                                 <div class="flex flex-col gap-5 w-1/2">
@@ -16,7 +16,7 @@
                                         <x-input-label class="uppercase"><span>Estado del registro</span></x-input-label>
                                         <div class="flex justify-center gap-8">
                                             <div class="flex gap-2">
-                                                <input class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                                <input class="bg-gray-50 border border-[#303845] rounded-lg focus:ring-[#303845] focus:border-[#303845] p-2.5"
                                                     wire:model="status"
                                                     type="radio"
                                                     id="act"
@@ -24,7 +24,7 @@
                                                 <label for="act">ACTIVO</label>
                                             </div>
                                             <div class="flex gap-2">
-                                                <input class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                                <input class="bg-gray-50 border border-[#303845] rounded-lg focus:ring-[#303845] focus:border-[#303845] p-2.5"
                                                     wire:model="status"
                                                     type="radio"
                                                     id="inact"
@@ -35,7 +35,7 @@
                                     </div>
                                     <div class="flex justify-center gap-3 mt-5">
                                         <x-primary-button><span>Guardar</span></x-primary-button>
-                                        <a href="{{ route('activities.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-500 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-[#111e60]-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                        <a href="{{ route('activities.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-500 border rounded-full font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-[#111e60]-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                             Cancelar
                                         </a>
                                     </div>

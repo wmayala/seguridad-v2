@@ -16,7 +16,7 @@ new class extends Component
     }
 }; ?>
 
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 h-32 flex">
+<nav x-data="{ open: false }" class="bg-[#303845] border-b border-[#3C4557] h-32 flex">
     <!-- Primary Navigation Menu -->
 
     <!-- Logo -->

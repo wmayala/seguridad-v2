@@ -1,6 +1,6 @@
 <div>
     @include('layouts.notif')
-    <form class="container flex flex-col mx-auto space-y-12">
+    <form class="container flex flex-col mx-auto space-y-12 bg-[#F5F7FE]">
         <div class="grid grid-cols-12 rounded-md shadow-md  shadow-gray-300  p-4">
             <div class="col-span-full sm:col-span-3 border-r-2 border-r-gray-200 mr-5">
                 <div class="space-y-2 col-span-full lg:col-span-1">
@@ -11,7 +11,7 @@
             </div>
             <div class="col-span-full sm:col-span-9">
                 <div>
-                    <select wire:model="selectedRol" class="rounded-md  focus:ring-opacity-25 border-transparent shadow-md"
+                    <select wire:model="selectedRol" class="rounded-md focus:border-[#303845] focus:ring-[#303845] focus:ring-opacity-25 border-transparent shadow-md"
                             autocomplete="rol" name="roles" id="roles" wire:change="cambiarRol()">
 
                         <option value="0" disabled selected>Seleccione rol</option>
@@ -22,7 +22,7 @@
 
                     @if (Auth::user()->can('crear-rol'))
                         @if (!$nuevoRol)
-                            <a wire:click="formNuevoRol(true)" class="p-2 ml-5 transition duration-300 ease-in-out hover:bg-green-200 rounded-md hover:cursor-pointer shadow-xl bg-green-100 shadow-green-500/50 inline-flex hover:shadow-none items-center dark:text-green-700">
+                            <a wire:click="formNuevoRol(true)" class="p-2 ml-5 transition duration-300 ease-in-out hover:opacity-75 rounded-md hover:cursor-pointer shadow-md bg-[#303845] text-white shadow-[#303845] inline-flex hover:shadow-none items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 mr-3" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                                     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
@@ -44,11 +44,11 @@
                 @if ($nuevoRol)
                     <div>
                         <input type="text" wire:model="nombreNuevoRol"
-                            class="rounded-md m-3 focus:ring-opacity-25 border-transparent shadow-md dark:border-gray-700 dark:text-gray-900 "
+                            class="rounded-md m-3 focus:ring-opacity-25 border-transparent shadow-md focus:border-[#303845] focus:ring-[#303845]"
                             placeholder="Escriba nuevo rol">
 
                         <a  wire:click.prevent="createNewRol()"
-                            class="p-2 ml-5 transition duration-300 ease-in-out text-white font-bold hover:bg-blue-700 rounded-md hover:cursor-pointer shadow-xl bg-blue-900 shadow-blue-500/50 inline-flex hover:shadow-none items-center dark:text-blue-700">
+                            class="p-2 ml-5 transition duration-300 ease-in-out text-white font-bold hover:bg-[#303845] rounded-md hover:cursor-pointer shadow-md bg-[#303845] shadow-[#303845] inline-flex hover:shadow-none items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 mr-3" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>

@@ -1,9 +1,9 @@
 <div class="flex h-dvh overflow-y-auto">
     <div class="py-6 flex w-full">
         <div class="mx-full sm:px-6 lg:px-8 w-full">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-[#F5F7FE] overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div class="text-[#111e60] text-bold text-3xl mb-5">ACTUALIZAR BENEFICIARIO</div>
+                    <div class="text-[#303845] text-bold text-3xl mb-5">ACTUALIZAR BENEFICIARIO</div>
                     <form wire:submit.prevent="update">
                         <div class="flex justify-center">
                             <div class="flex flex-col gap-5 w-1/2">
@@ -22,14 +22,14 @@
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Edad</x-input-label>
                                     <input
-                                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                        class="border-gray-300 focus:border-[#303845] focus:ring-[#303845] rounded-md shadow-sm"
                                         type="number" id="age" wire:model="age" placeholder="Escriba la edad">
                                     @error('age')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Parentesco</x-input-label>
                                     <select
-                                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                        class="border-gray-300 focus:border-[#303845] focus:ring-[#303845] rounded-md shadow-sm"
                                         wire:model="relationship" id="relationship">
                                         <option value="">Seleccionar</option>
                                         <option value="Esposo(a)">Esposo(a)</option>
@@ -54,7 +54,7 @@
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Institución</x-input-label>
                                     <select
-                                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                        class="border-gray-300 focus:border-[#303845] focus:ring-[#303845] rounded-md shadow-sm"
                                         wire:model="institution" id="institution">
                                         <option value="">Seleccionar</option>
                                         <option value="BCR">Banco Central de Reserva</option>
@@ -64,21 +64,21 @@
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fecha de emisión</x-input-label>
                                     <input
-                                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                        class="border-gray-300 focus:border-[#303845] focus:ring-[#303845] rounded-md shadow-sm"
                                         type="date" wire:model="issueDate" id="issueDate">
                                     @error('issueDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fecha de vencimiento</x-input-label>
                                     <input
-                                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                        class="border-gray-300 focus:border-[#303845] focus:ring-[#303845] rounded-md shadow-sm"
                                         type="date" wire:model="expirationDate" id="expirationDate">
                                     @error('expirationDate')<span class="text-red-500 text-sm">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fotografía</x-input-label>
                                     <input type="file" wire:model="photo" id="photo" accept="image/*"
-                                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
+                                    class="file:mr-4 file:rounded-full file:border-0 file:bg-[#303845] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-[#F5F7FE] hover:file:opacity-85">
                                     <div wire:loading wire:target="photo">Cargando imagen...</div>
                                     @if ($photo)
                                         <div class="mt-4">
@@ -126,7 +126,7 @@
                                 <div class="flex flex-col justify-center items-center gap-5">
 
                                     {{-- CARNET FRENTE --}}
-                                    <div id="id-card-front" class="w-[517px] h-[325px] border border-gray-200 p-2">
+                                    <div id="id-card-front" class="w-[517px] h-[325px] bg-white border border-gray-200 p-2">
                                         <div class="flex justify-center gap-3">
                                             <div class="grid grid-cols-[auto_1fr]">
                                                 <div class="flex justify-center p-1 ">
@@ -180,38 +180,40 @@
                                                     </div>
                                                 </div>
                                                 <div class="mx-2">
-                                                    <div class="flex flex-col py-1 border-b border-black">
-                                                        <span>Nombre: </span>
-                                                        <span class="text-lg font-semibold uppercase mb-1">{{ $name }}</span>
+                                                    <div class="flex gap-2 py-1 border-b border-black">
+                                                        <span>Nombre:</span>
+                                                        <span class="{{ strlen($name) <= 25 ? 'text-lg' : 'text-base' }} h-[45px] font-semibold uppercase mb-1">{{ $name }}</span>
                                                     </div>
-                                                    <div class="flex justify-between py-1 border-b border-black">
+                                                    <div class="flex justify-between items-center py-1 border-b border-black h-[40px]">
                                                         <div class="mb-1">Parentesco: {{ $relationship }}</div>
                                                         <div class="mb-1">Edad: {{ $age }}</div>
                                                     </div>
                                                     <div class="flex flex-col py-1 border-b border-black">
-                                                        <div class="flex justify-between">
+                                                        <div class="flex justify-between h-[25px]">
                                                             <div>Empleado: </div>
                                                             <div>
                                                                 <span>No. Empleado: </span>
                                                                 <span class="font-bold">{{ $empCode }}</span>
                                                             </div>
                                                         </div>
-                                                        <div class="text-lg font-semibold uppercase mb-1">{{ $empName }}</div>
+                                                        <div class="{{ strlen($empName) <= 25 ? 'text-lg' : 'text-base' }} font-semibold uppercase">{{ $empName }}</div>
                                                     </div>
-                                                    <div class="flex flex-row justify-between py-1 flew-row">
-                                                        <div class="flex flex-col">
+                                                    <div class="flex gap-2 py-1">
+                                                        <div class="flex flex-col w-full">
                                                             <div>Vencimiento</div>
-                                                            <div class="text-center">{{ date('d-m-Y', strtotime($expirationDate)) }}</div>
+                                                            <div class="">{{ date('d-m-Y', strtotime($expirationDate)) }}</div>
                                                         </div>
-                                                        <div class="flex flex-col gap-2 w-1/2 text-center border-black">
-                                                            <div class="relative flex justify-center h-10">
-                                                                <img class="absolute object-cover w-1/4 h-full"
+                                                        <div class="flex gap-2 w-full text-center border-black">
+                                                            <div>Firma:</div>
+                                                            <div class="relative flex justify-center w-full h-[45px]">
+
+                                                                <img class="absolute object-cover w-max h-full"
                                                                     src="{{ asset('storage/' . $existingSign) }}"
                                                                     alt="Firma Portador">
                                                             </div>
-                                                            <div class="relative flex justify-center">
+                                                            {{-- <div class="relative flex justify-center">
                                                                 <div class="absolute bottom-0">Firma del Portador</div>
-                                                            </div>
+                                                            </div> --}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -221,12 +223,12 @@
                                     {{-- FIN CARNET FRENTE --}}
 
                                     {{-- CARNET REVERSO --}}
-                                    <div id="id-card-back" class="border border-gray-200 w-[514.25px] h-[322px]">
+                                    <div id="id-card-back" class="bg-white border border-gray-200 w-[514.25px] h-[322px]">
                                         <div class="flex justify-center gap-3">
                                             <div class="grid grid-cols-[auto_1fr]  ">
                                                 <div>
                                                     <div class="flex w-full pt-2">
-                                                        <p class="p-2 text-sm text-justify">
+                                                        <p class="p-3 text-sm text-justify">
                                                             La Comisión Administradora del Centro de Recreación y
                                                             Deportes del
                                                             Banco Central de Reserva de El Salvador, hace constar que el
@@ -262,7 +264,7 @@
                                 </div>
                                 <div class="flex justify-center">
                                     <button id="printButton"
-                                        class="px-4 py-2 text-sm font-semibold text-white uppercase bg-cyan-400  rounded-md hover:bg-cyan-800">
+                                        class="px-4 py-2 text-sm font-semibold text-white uppercase bg-cyan-400 rounded-full hover:bg-cyan-800">
                                         Generar carnet
                                     </button>
                                 </div>
@@ -270,7 +272,7 @@
                                 <div class="flex justify-center gap-3 mt-5">
                                     <x-primary-button>Guardar</x-primary-button>
                                     <a href="{{ route('beneficiaries.index') }}"
-                                        class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-[#111e60]-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                        class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-full font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-[#303845]-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[#303845] focus:ring-offset-2 transition ease-in-out duration-150">
                                         Cancelar
                                     </a>
                                 </div>

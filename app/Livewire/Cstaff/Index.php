@@ -47,7 +47,7 @@ class Index extends Component
             $query->where('status', 1);
         }
 
-        $CStaff = $query->paginate(15);
+        $CStaff = $query->paginate(10);
 
         return view('livewire.cstaff.index', compact('CStaff'));
     }

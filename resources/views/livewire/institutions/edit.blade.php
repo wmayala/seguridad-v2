@@ -20,7 +20,7 @@
                                         </x-input-label>
                                         <div class="flex justify-center gap-8">
                                             <div class="flex gap-2">
-                                                <input class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                                <input class="bg-gray-50 border border-[#303845] rounded-lg focus:ring-[#303845] focus:border-[#303845] p-2.5"
                                                     wire:model="status"
                                                     type="radio"
                                                     id="act"
@@ -28,7 +28,7 @@
                                                 <label for="act">ACTIVO</label>
                                             </div>
                                             <div class="flex gap-2">
-                                                <input class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                                <input class="bg-gray-50 border border-[#303845] rounded-lg focus:ring-[#303845] focus:border-[#303845] p-2.5"
                                                     wire:model="status"
                                                     type="radio"
                                                     id="inact"
@@ -41,7 +41,7 @@
                                         <x-primary-button>
                                             Guardar
                                         </x-primary-button>
-                                        <a href="{{ route('institutions.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-500 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-[#111e60]-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                        <a href="{{ route('institutions.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-500 border rounded-full font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-[#111e60]-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[#303845] focus:ring-offset-2 transition ease-in-out duration-150">
                                             Cancelar
                                         </a>
                                     </div>

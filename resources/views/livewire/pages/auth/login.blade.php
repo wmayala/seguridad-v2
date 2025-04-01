@@ -32,7 +32,7 @@ new #[Layout('layouts.guest')] class extends Component
         <a class="flex justify-center my-3" href="/" wire:navigate>
             <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
         </a>
-        <div class="text-center my-3 font-bold text-lg">SEGURIDAD BANCARIA</div>
+        <div class="text-center my-3 font-bold text-white text-lg">SEGURIDAD BANCARIA</div>
     </div>
 
     <form wire:submit="login">
@@ -47,7 +47,7 @@ new #[Layout('layouts.guest')] class extends Component
         <div class="mt-4">
             <x-input-label for="password" :value="__('Contraseña')" />
 
-            <x-text-input wire:model="form.password" id="password" class="block mt-1 w-full"
+            <x-text-input wire:model="form.password" id="password" class="block mt-1 w-full "
                             type="password"
                             name="password"
                             required autocomplete="current-password" />

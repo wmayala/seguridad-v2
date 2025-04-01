@@ -1,14 +1,14 @@
 <div class="flex h-dvh overflow-y-auto">
     <div class="py-6 flex w-full">
         <div class="mx-full sm:px-6 lg:px-8 w-full">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-[#F5F7FE] overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-between">
                         @include('layouts.notif')
-                        <div class="text-[#111e60] text-bold text-3xl mb-5">ACTIVIDADES</div>
+                        <div class="text-[#303845] text-bold text-3xl mb-5">ACTIVIDADES</div>
                         @if(Auth::user()->can('crear-actividad'))
                             <div>
-                                <a href="{{ route('activities.create') }}" class="inline-flex items-center px-4 py-2 bg-[#111e60] border border-transparent rounded-md font-semibold text-md text-white uppercase tracking-widest hover:bg-[#111e60] focus:bg-[#111e60]-700 active:bg-[#111e60]-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Agregar actividad</a>
+                                <a href="{{ route('activities.create') }}" class="inline-flex items-center px-4 py-2 bg-[#303845] border rounded-full font-semibold text-md text-white uppercase tracking-widest hover:bg-[#303845] focus:bg-[#303845]-700 active:bg-[#303845]-900 focus:outline-none focus:ring-2 focus:ring-[#303845] focus:ring-offset-2 transition ease-in-out duration-150">Agregar actividad</a>
                             </div>
                         @endif
                     </div>
@@ -21,37 +21,46 @@
                             autofocus>
                         </x-text-input>
                     </div>
-                    <table class="w-full text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        <thead class="text-lg text-white uppercase bg-[#111e60] dark:bg-gray-700 dark:text-gray-400">
-                            <th class="p-3">NOMBRE DE LA ACTIVIDAD</th>
-                            <th class="p-3">ESTADO</th>
-                            <th class="text-center p-3">ACCIONES</th>
-                        </thead>
-                        <tbody>
-                            @foreach($activities as $activity)
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 hover:text-[#111e60]">
-                                <td class="text-lg p-3">{{ $activity->name }}</td>
-                                <td class="text-lg p-3">
-                                    @if($activity->status==1)
-                                        <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs uppercase text-green-700 ring-1 ring-inset ring-green-600/20">Activo</span>
-                                    @else
-                                        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs uppercase text-red-700 ring-1 ring-inset ring-red-600/10">Inactivo</span>
-                                    @endif
-                                </td>
-                                <td class="text-center">
-                                    @if($activity->id!=1)
-                                        @if (Auth::user()->can('modificar-actividad'))
-                                            <button wire:click="redirectTo('activities.edit',{{ $activity->id }})" class="px-2 py-1 bg-yellow-400 text-white rounded">Editar</button>
+                    <div class="flex justify-center">
+                        <table class="w-3/5 text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                            <thead class="text-lg text-white uppercase bg-[#303845]">
+                                <th class="p-3">NOMBRE DE LA ACTIVIDAD</th>
+                                <th class="p-3">ESTADO</th>
+                                <th class="text-center p-3">ACCIONES</th>
+                            </thead>
+                            <tbody>
+                                @foreach($activities as $activity)
+                                <tr class="border-b hover:bg-gray-200 hover:text-[#303845]">
+                                    <td class="text-lg p-3">{{ $activity->name }}</td>
+                                    <td class="text-lg p-3">
+                                        @if($activity->status==1)
+                                            <span class="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs uppercase text-green-700 ring-1 ring-inset ring-green-600/20">Activo</span>
+                                        @else
+                                            <span class="inline-flex items-center rounded-full bg-red-50 px-2 py-1 text-xs uppercase text-red-700 ring-1 ring-inset ring-red-600/10">Inactivo</span>
                                         @endif
-                                        @if (Auth::user()->can('eliminar-actividad'))
-                                            <button onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()" wire:click="delete({{ $activity->id }})" class="px-2 py-1 bg-red-400 text-white rounded">Eliminar</button>
+                                    </td>
+                                    <td class="text-center">
+                                        @if($activity->id!=1)
+                                            @if (Auth::user()->can('modificar-actividad'))
+                                                <button wire:click="redirectTo('activities.edit',{{ $activity->id }})"
+                                                    class="px-2 border border-[#303845] text-[#303845] rounded-full hover:bg-[#303845] hover:text-white">
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                </button>
+                                            @endif
+                                            @if (Auth::user()->can('eliminar-actividad'))
+                                                <button onclick="confirm('¿Está seguro?') || event.stopImmediatePropagation()"
+                                                    wire:click="delete({{ $activity->id }})"
+                                                    class="px-2 border border-[#303845] text-[#303845] rounded-full hover:bg-[#303845] hover:text-white">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </button>
+                                            @endif
                                         @endif
-                                    @endif
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                     {{ $activities->links() }}
                 </div>
             </div>

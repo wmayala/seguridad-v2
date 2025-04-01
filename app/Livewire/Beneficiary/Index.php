@@ -47,7 +47,7 @@ class Index extends Component
             $query->where('status', 1);
         }
 
-        $beneficiaries = $query->paginate(15);
+        $beneficiaries = $query->paginate(10);
 
         return view('livewire.beneficiary.index', compact('beneficiaries'));
     }

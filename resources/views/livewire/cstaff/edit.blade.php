@@ -1,9 +1,9 @@
 <div class="flex h-dvh overflow-y-auto">
     <div class="py-6 flex w-full">
         <div class="mx-full sm:px-6 lg:px-8 w-full">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-[#F5F7FE] overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div class="text-[#111e60] text-bold text-3xl mb-5">ACTUALIZAR PERSONAL DE EMPRESA</div>
+                    <div class="text-[#303845] text-bold text-3xl mb-5">ACTUALIZAR PERSONAL DE EMPRESA</div>
                     <form wire:submit.prevent="update">
                         <div class="flex justify-center">
                             <div class="flex flex-col gap-5 w-1/2">
@@ -20,25 +20,25 @@
                                     <div class="flex justify-center gap-5">
                                         <div class="flex gap-3">
                                             <input
-                                                class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                                class="border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
                                                 wire:model="zone" type="radio" id="zoneA" value="1">
                                             <label for="zoneA">Clase A</label>
                                         </div>
                                         <div class="flex gap-2">
                                             <input
-                                                class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                                class="border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
                                                 wire:model="zone" type="radio" id="zoneB" value="2">
                                             <label for="zoneB">Clase B</label>
                                         </div>
                                         <div class="flex gap-3">
                                             <input
-                                                class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                                class="border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
                                                 wire:model="zone" type="radio" id="zoneC" value="3">
                                             <label for="zoneC">Clase C</label>
                                         </div>
                                         <div class="flex gap-2">
                                             <input
-                                                class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                                class="border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
                                                 wire:model="zone" type="radio" id="zoneN" value="0">
                                             <label for="zoneN">No Definida</label>
                                         </div>
@@ -92,7 +92,7 @@
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fecha de nacimiento</x-input-label>
                                     <input
-                                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                        class="border-gray-300 focus:border-[#303845] focus:ring-[#303845] rounded-md shadow-sm"
                                         type="date" wire:model="birthDate" id="birthDate">
                                     @error('birthDate')
                                         <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -141,7 +141,7 @@
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fecha de expedición DUI</x-input-label>
                                     <input
-                                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                        class="border-gray-300 focus:border-[#303845] focus:ring-[#303845] rounded-md shadow-sm"
                                         type="date" wire:model="duiDate" id="duiDate">
                                     @error('duiDate')
                                         <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -218,7 +218,7 @@
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Empresa</x-input-label>
                                     <select
-                                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                        class="border-gray-300 focus:border-[#303845] focus:ring-[#303845] rounded-md shadow-sm"
                                         wire:model.lazy="company_id" id="company_id">
                                         <option selected>Seleccionar</option>
                                         @foreach ($companies as $company)
@@ -229,7 +229,7 @@
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fecha de registro</x-input-label>
                                     <input
-                                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                        class="border-gray-300 focus:border-[#303845] focus:ring-[#303845] rounded-md shadow-sm"
                                         type="date" wire:model="issueDate" id="issueDate">
                                     @error('issueDate')
                                         <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -238,7 +238,7 @@
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fecha de vencimiento</x-input-label>
                                     <input
-                                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                        class="border-gray-300 focus:border-[#303845] focus:ring-[#303845] rounded-md shadow-sm"
                                         type="date" wire:model="expirationDate" id="expirationDate">
                                     @error('expirationDate')
                                         <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -247,7 +247,7 @@
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fotografía</x-input-label>
                                     <input type="file" wire:model="photo" id="photo" accept="image/*"
-                                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
+                                        class="file:mr-4 file:rounded-full file:border-0 file:bg-[#303845] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-[#F5F7FE] hover:file:opacity-85">
                                     <div wire:loading wire:target="photo">Cargando imagen...</div>
                                     @if ($photo)
                                         <div class="mt-4">
@@ -273,7 +273,7 @@
                                     <x-input-label class="uppercase">Documento <span class="text-xs">(Puede adjuntar 1
                                             PDF)</span></x-input-label>
                                     <input type="file" wire:model="document" id="document" accept=".pdf"
-                                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
+                                        class="file:mr-4 file:rounded-full file:border-0 file:bg-[#303845] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-[#F5F7FE] hover:file:opacity-85">
                                     <div wire:loading wire:target="document">Cargando documento...</div>
                                 </div>
                                 <div class="flex flex-col justify-center">
@@ -297,7 +297,7 @@
                                 <div class="flex flex-col justify-center items-center gap-5">
 
                                     {{-- CARNET FRENTE --}}
-                                    <div id="id-card-front" class="w-[517px] h-[325px] border border-gray-200 p-2">
+                                    <div id="id-card-front" class="w-[517px] h-[325px] bg-white border border-gray-200 p-2">
                                         <div class="flex justify-center gap-3">
                                             <div class="grid grid-cols-[130px_361px]">
                                                 <div>
@@ -345,7 +345,7 @@
                                                     <div class="text-2xl font-bold text-center">{{ $record }}
                                                     </div>
                                                 </div>
-                                                <div class="mx-2">
+                                                <div class="ml-2">
                                                     <div class="flex w-full py-1 border-b border-black">
                                                         <img src="{{ asset('assets/img/logo_bcr.png') }}"
                                                             alt="Logo BCR" width="60px">
@@ -353,24 +353,24 @@
                                                             class="mx-2 text-lg font-bold text-center uppercase">Banco
                                                             Central de Reserva de El Salvador</span>
                                                     </div>
-                                                    <div class="flex flex-col w-full py-1 border-b border-black">
+                                                    <div class="flex gap-2 w-full py-1 border-b border-black">
                                                         <div>Nombre: </div>
-                                                        <div class="text-lg font-semibold uppercase flex items-center mb-1">
+                                                        <div class="{{ strlen($name) <=25 ? 'text-lg' : 'text-base' }} h-[45px] font-semibold uppercase">
                                                             {{ $name }}
                                                         </div>
                                                     </div>
-                                                    <div class="flex flex-col py-1 border-b border-black">
+                                                    <div class="flex gap-2 py-1 border-b border-black">
                                                         <div>Empresa: </div>
-                                                        <div class="text-lg h-[30px] font-semibold truncate text-ellipsis uppercase">
+                                                        <div class="{{ strlen($company_name) <=25 ? 'text-lg' : 'text-base' }} h-[45px] font-semibold uppercase">
                                                             {{ $company_name }}
                                                         </div>
                                                     </div>
                                                     <div class="flex justify-between py-1 border-b border-black">
-                                                        <div class="flex flex-col">
+                                                        <div class="flex flex-col h-[45px]">
                                                             <div>Dui No.</div>
                                                             <div class="text-center">{{ $dui }}</div>
                                                         </div>
-                                                        <div class="flex flex-col">
+                                                        <div class="flex flex-col h-[45px]">
                                                             <div>Vencimiento</div>
                                                             <div class="text-center">
                                                                 {{ date('d-m-Y', strtotime($expirationDate)) }}</div>
@@ -379,7 +379,7 @@
                                                     <div class="flex gap-2 w-full text-center border-black">
                                                         <div>Firma: </div>
                                                         <div class="relative flex justify-center w-full h-[68px]  ">
-                                                            <img class="absolute object-cover w-max  h-full"
+                                                            <img class="absolute object-cover w-max h-full mt-2"
                                                                 src="{{ asset('storage/' . $existingSign) }}"
                                                                 alt="Firma Portador">
                                                         </div>
@@ -391,7 +391,7 @@
                                     {{-- FIN CARNET FRENTE --}}
 
                                     {{-- CARNET REVERSO --}}
-                                    <div id="id-card-back" class="border border-gray-200 w-[514.25px] h-[322px]">
+                                    <div id="id-card-back" class="bg-white border border-gray-200 w-[514.25px] h-[322px]">
                                         <div class="flex justify-center gap-3">
                                             <div class="grid grid-cols-[auto_1fr]  ">
                                                 <div>
@@ -424,14 +424,14 @@
                                 </div>
                                 <div class="flex justify-center">
                                     <button id="printButton"
-                                        class="px-4 py-2 text-sm font-semibold text-white uppercase bg-cyan-400  rounded-md hover:bg-cyan-800">
+                                        class="px-4 py-2 text-sm font-semibold text-white uppercase bg-cyan-400  rounded-full hover:bg-cyan-800">
                                         Generar carnet
                                     </button>
                                 </div>
                                 <div class="flex justify-center gap-3 mt-5">
                                     <x-primary-button>Guardar</x-primary-button>
                                     <a href="{{ route('cstaff.index') }}"
-                                        class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-[#111e60]-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                        class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-full font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-[#111e60]-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[#303845] focus:ring-offset-2 transition ease-in-out duration-150">
                                         Cancelar
                                     </a>
                                 </div>

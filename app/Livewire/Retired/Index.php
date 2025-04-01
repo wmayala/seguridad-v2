@@ -47,7 +47,7 @@ class Index extends Component
             $query->where('status', 1);
         }
 
-        $retired = $query->paginate(15);
+        $retired = $query->paginate(10);
 
         return view('livewire.retired.index', compact('retired'));
     }

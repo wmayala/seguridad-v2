@@ -25,8 +25,8 @@
         @vite(['resources/css/app.css', 'resources/js/app.js', 'public/js/print-card.js'])
         @livewireStyles
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+    <body class="font-sans antialiased bg-[#303845]">
+        <div class="min-h-screen bg-[#303845]">
             <livewire:layout.navigation />
             <div class="flex h-full">
 

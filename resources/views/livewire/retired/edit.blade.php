@@ -1,9 +1,9 @@
 <div class="flex overflow-y-auto h-dvh">
     <div class="flex w-full py-6">
         <div class="w-full mx-full sm:px-6 lg:px-8">
-            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
+            <div class="overflow-hidden bg-[#F5F7FE] shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div class="text-[#111e60] text-bold text-3xl mb-5">ACTUALIZAR DATOS DE JUBILADO</div>
+                    <div class="text-[#303845] text-bold text-3xl mb-5">ACTUALIZAR DATOS DE JUBILADO</div>
                     <form wire:submit.prevent="update">
                         <div class="flex justify-center">
                             <div class="flex flex-col w-1/2 gap-5">
@@ -24,17 +24,18 @@
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fecha de emisión</x-input-label>
-                                    <input class="border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" type="date" wire:model.live="issueDate" id="issueDate">
+                                    <input class="border-gray-300 focus:border-[#303845] focus:ring-[#303845] rounded-md shadow-sm" focus:ring-indigo-500" type="date" wire:model.live="issueDate" id="issueDate">
                                     @error('issueDate')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fecha de vencimiento</x-input-label>
-                                    <input class="border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" type="date" wire:model.live="expirationDate" id="expirationDate">
+                                    <input class="border-gray-300 focus:border-[#303845] focus:ring-[#303845] rounded-md shadow-sm" focus:ring-indigo-500" type="date" wire:model.live="expirationDate" id="expirationDate">
                                     @error('expirationDate')<span class="text-sm text-red-500">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Fotografía</x-input-label>
-                                    <input type="file" wire:model="photo" id="photo" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
+                                    <input type="file" wire:model="photo" id="photo" accept="image/*"
+                                    class="file:mr-4 file:rounded-full file:border-0 file:bg-[#303845] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-[#F5F7FE] hover:file:opacity-85">
                                     <div wire:loading wire:target="photo">Cargando imagen...</div>
                                     @if ($photo)
                                         <div class="mt-4">
@@ -74,9 +75,9 @@
 
                                 {{-- CARNET FRENTE --}}
                                 <div class="flex flex-col justify-center items-center gap-5">
-                                    <div id="id-card-front" class="w-[517px] h-[325px] border-[12px] border-green-600">
+                                    <div id="id-card-front" class="w-[517px] h-[325px] bg-white border-[12px] border-green-600">
                                         <div class="flex justify-center gap-3">
-                                            <div class="grid grid-cols-[auto_1fr]">
+                                            <div class="grid grid-cols-[130px_361px]">
                                                 <div>
                                                     <div class="border border-black ">
                                                         <div class="w-32 h-40 overflow-hidden">
@@ -130,9 +131,9 @@
                                                             Banco Central de Reserva de El Salvador
                                                         </div>
                                                     </div>
-                                                    <div class="flex flex-col w-full py-1 border-b border-black">
+                                                    <div class="flex w-full gap-2 py-1 border-b border-black">
                                                         <div>Nombre: </div>
-                                                        <div class="text-lg h-[30px] font-semibold truncate text-ellipsis uppercase">
+                                                        <div class="{{ strlen($name) <= 25 ? 'text-lg' : 'text-base' }} h-[45px] font-semibold uppercase">
                                                             {{ $name }}
                                                         </div>
                                                     </div>
@@ -154,7 +155,7 @@
                                                     </div>
                                                     <div class="flex gap-2 w-full text-center border-black">
                                                         <div>Firma: </div>
-                                                        <div class="relative flex justify-center w-full h-[68px]  ">
+                                                        <div class="relative flex justify-center w-full h-[50px] mt-2">
                                                             <img class="absolute object-cover w-max  h-full"
                                                                 src="{{ asset('storage/' . $existingSign) }}"
                                                                 alt="Firma Portador">
@@ -168,7 +169,7 @@
                                     {{-- FIN CARNET FRENTE --}}
 
                                     {{-- CARNET REVERSO --}}
-                                    <div id="id-card-back" class="border border-gray-200 w-[514.25px] h-[322px]">
+                                    <div id="id-card-back" class="bg-white border border-gray-200 w-[514.25px] h-[322px]">
                                         <div class="flex justify-center gap-3">
                                             <div class="grid grid-cols-[auto_1fr]  ">
                                                 <div>
@@ -200,14 +201,14 @@
                                 </div>
 
                                 <div class="flex justify-center">
-                                    <button id="printButton" class="px-4 py-2 text-sm font-semibold text-white uppercase bg-green-800 rounded-md hover:bg-green-600">
+                                    <button id="printButton" class="px-4 py-2 text-sm font-semibold text-white uppercase bg-green-800 rounded-full hover:bg-green-600">
                                         Generar carnet
                                     </button>
                                 </div>
                                 <div class="flex justify-center gap-3 mt-5">
                                     <x-primary-button>Guardar</x-primary-button>
                                     <a href="{{ route('retired.index') }}"
-                                        class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-[#111e60]-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                        class="inline-flex items-center px-4 py-2 bg-gray-600 border rounded-full font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-[#111e60]-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[#303845] focus:ring-offset-2 transition ease-in-out duration-150">
                                         Cancelar
                                     </a>
                                 </div>

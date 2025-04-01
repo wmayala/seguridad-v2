@@ -40,14 +40,14 @@ class Index extends Component
         $query = SFStaff::query();
 
         if($this->search) {
-            $query->where('name', 'like', '%' . $this->name . '%');
+            $query->where('name', 'like', '%' . $this->search . '%');
         }
 
         if(!$this->showAll) {
             $query->where('status', 1);
         }
 
-        $SFstaff = $query->paginate(15);
+        $SFstaff = $query->paginate(10);
 
         return view('livewire.sfstaff.index', compact('SFstaff'));
     }
