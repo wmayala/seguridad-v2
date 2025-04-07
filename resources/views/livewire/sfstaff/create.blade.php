@@ -16,7 +16,7 @@
                                         <x-input-label class="uppercase">Zona restringida</x-input-label>
                                         <div class="flex justify-center gap-5">
                                             <div class="flex gap-3">
-                                                <input class="border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
+                                                <input class="text-[#303845] border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
                                                     wire:model="zone"
                                                     type="radio"
                                                     id="zoneA"
@@ -24,7 +24,7 @@
                                                 <label for="zoneA">Clase A</label>
                                             </div>
                                             <div class="flex gap-2">
-                                                <input class="border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
+                                                <input class="text-[#303845] border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
                                                     wire:model="zone"
                                                     type="radio"
                                                     id="zoneB"
@@ -32,7 +32,7 @@
                                                 <label for="zoneB">Clase B</label>
                                             </div>
                                             <div class="flex gap-3">
-                                                <input class="border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
+                                                <input class="text-[#303845] border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
                                                     wire:model="zone"
                                                     type="radio"
                                                     id="zoneC"
@@ -40,7 +40,7 @@
                                                 <label for="zoneC">Clase C</label>
                                             </div>
                                             <div class="flex gap-2">
-                                                <input class="border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
+                                                <input class="text-[#303845] border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
                                                     wire:model="zone"
                                                     type="radio"
                                                     id="zoneN"
@@ -139,7 +139,7 @@
                                         <x-input-label class="uppercase">Estado del registro</x-input-label>
                                         <div class="flex justify-center gap-5">
                                             <div class="flex gap-3">
-                                                <input class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                                <input class="text-[#303845] bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
                                                     wire:model="status"
                                                     type="radio"
                                                     id="act"
@@ -148,7 +148,7 @@
                                                 <label for="act">ACTIVO</label>
                                             </div>
                                             <div class="flex gap-2">
-                                                <input class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                                <input class="text-[#303845] bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
                                                     wire:model="status"
                                                     type="radio"
                                                     id="inact"

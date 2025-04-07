@@ -9,7 +9,7 @@
                         @if(Auth::user()->can('crear-personal-emp'))
                             <div>
                                 <a href="{{ route('cstaff.create') }}"
-                                class="inline-flex items-center px-4 py-2 bg-[#303845] border border-transparent rounded-full font-semibold text-md text-white uppercase tracking-widest hover:opacity-80 focus:bg-[#111e60]-700 active:bg-[#111e60]-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Agregar personal</a>
+                                class="inline-flex items-center px-4 py-2 bg-[#303845] border border-transparent rounded-full font-semibold text-md text-white uppercase tracking-widest hover:opacity-80 focus:bg-[#303845]-700 active:bg-[#303845]-900 focus:outline-none focus:ring-2 focus:ring-[#303845] focus:ring-offset-2 transition ease-in-out duration-150">Agregar personal</a>
                             </div>
                         @endif
 

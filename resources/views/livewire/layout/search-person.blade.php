@@ -17,7 +17,7 @@
         <div class="flex justify-center gap-6 mb-4">
             @foreach($categories as $key=>$label)
             <div class="flex gap-2">
-                <input class="bg-gray-50 border border-[#303845] rounded-lg focus:ring-[#303845] focus:border-[#303845] p-2.5"
+                <input class="text-[#303845] border border-[#303845] rounded-lg focus:ring-[#303845] focus:border-[#303845] p-2.5"
                        wire:model="selectedCategory"
                        type="radio"
                        id="{{ $label }}"
@@ -34,10 +34,10 @@
         </div>
     </div>
     <div class="flex justify-center mb-4">
-        <div class="mb-4 w-full">
+        <div class="mb-4 w-full flex justify-center">
             @if($results)
-            <table class="w-full text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-lg text-white uppercase bg-[#111e60] dark:bg-gray-700 dark:text-gray-400">
+            <table class="w-3/4 text-lg text-left rtl:text-right text-gray-500">
+                <thead class="text-lg text-white uppercase bg-[#303845]">
                     <th class="text-center p-3">EXPEDIENTE</th>
                     <th class="text-center p-3">NOMBRE</th>
                     <th class="text-center p-3">ESTADO</th>
@@ -45,18 +45,20 @@
                 </thead>
                 <tbody>
                     @forelse($results as $result)
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 hover:text-[#111e60] p-3">
-                        <td class="text-center">{{ $result->record }}</td>
+                    <tr class="border-b hover:bg-gray-200 hover:text-[#303845]">
+                        <td class="text-center p-3">{{ $result->record }}</td>
                         <td>{{ $result->name }}</td>
                         <td class="text-center">
                             @if($result->status==1)
-                                <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs uppercase text-green-700 ring-1 ring-inset ring-green-600/20">Activo</span>
+                                <span class="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs uppercase text-green-700 ring-1 ring-inset ring-green-600/20">Activo</span>
                             @else
-                                <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs uppercase text-red-700 ring-1 ring-inset ring-red-600/10">Inactivo</span>
+                                <span class="inline-flex items-center rounded-full bg-red-50 px-2 py-1 text-xs uppercase text-red-700 ring-1 ring-inset ring-red-600/10">Inactivo</span>
                             @endif
                         </td>
                         <td class="text-center">
-                            <a href="{{ route($url) }}" class="px-2 py-1 bg-yellow-400 text-white rounded">{{ $cat }}</a>
+                            <a href="{{ route($url) }}" class="px-2 py-1 border border-[#303845] text-[#303845] rounded-full hover:bg-[#303845] hover:text-white">
+                                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            </a>
                         </td>
                     </tr>
                     @empty

@@ -16,7 +16,7 @@
                                         <x-input-label class="uppercase">Estado del registro</x-input-label>
                                         <div class="flex justify-center gap-5">
                                             <div class="flex gap-3">
-                                                <input class="bg-gray-50 border border-[#303845] rounded-lg focus:ring-[#303845] focus:border-[#303845] p-2.5"
+                                                <input class="text-[#303845] bg-gray-50 border border-[#303845] rounded-lg focus:ring-[#303845] focus:border-[#303845] p-2.5"
                                                     wire:model="status"
                                                     type="radio"
                                                     id="act"
@@ -25,7 +25,7 @@
                                                 <label for="act">ACTIVO</label>
                                             </div>
                                             <div class="flex gap-2">
-                                                <input class="bg-gray-50 border border-[#303845] rounded-lg focus:ring-[#303845] focus:border-[#303845] p-2.5"
+                                                <input class="text-[#303845] bg-gray-50 border border-[#303845] rounded-lg focus:ring-[#303845] focus:border-[#303845] p-2.5"
                                                     wire:model="status"
                                                     type="radio"
                                                     id="inact"

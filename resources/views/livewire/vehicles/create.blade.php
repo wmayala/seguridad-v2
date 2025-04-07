@@ -72,7 +72,7 @@
                                         <x-input-label class="uppercase">Estado del registro</x-input-label>
                                         <div class="flex justify-center gap-5">
                                             <div class="flex gap-3">
-                                                <input class="border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
+                                                <input class="text-[#303845] border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
                                                        wire:model="status"
                                                        type="radio"
                                                        id="act"
@@ -81,7 +81,7 @@
                                                 <label for="act">ACTIVO</label>
                                             </div>
                                             <div class="flex gap-2">
-                                                <input class="border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
+                                                <input class="text-[#303845] border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
                                                        wire:model="status"
                                                        type="radio"
                                                        id="inact"
@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="flex justify-center gap-3 mt-5">
                                         <x-primary-button>Guardar</x-primary-button>
-                                        <a href="{{ route('vehicles.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-full font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-[#111e60]-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                        <a href="{{ route('vehicles.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-full font-semibold text-sm text-white uppercase tracking-widest hover:bg-gray-800 focus:bg-[#303845]-700 active:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[#303845] focus:ring-offset-2 transition ease-in-out duration-150">
                                             Cancelar
                                         </a>
                                     </div>

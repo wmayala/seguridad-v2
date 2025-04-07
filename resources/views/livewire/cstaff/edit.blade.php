@@ -20,25 +20,25 @@
                                     <div class="flex justify-center gap-5">
                                         <div class="flex gap-3">
                                             <input
-                                                class="border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
+                                                class="text-[#303845] border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
                                                 wire:model="zone" type="radio" id="zoneA" value="1">
                                             <label for="zoneA">Clase A</label>
                                         </div>
                                         <div class="flex gap-2">
                                             <input
-                                                class="border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
+                                                class="text-[#303845] border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
                                                 wire:model="zone" type="radio" id="zoneB" value="2">
                                             <label for="zoneB">Clase B</label>
                                         </div>
                                         <div class="flex gap-3">
                                             <input
-                                                class="border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
+                                                class="text-[#303845] border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
                                                 wire:model="zone" type="radio" id="zoneC" value="3">
                                             <label for="zoneC">Clase C</label>
                                         </div>
                                         <div class="flex gap-2">
                                             <input
-                                                class="border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
+                                                class="text-[#303845] border border-[#303845] rounded-lg focus:ring-[#303845] p-2.5"
                                                 wire:model="zone" type="radio" id="zoneN" value="0">
                                             <label for="zoneN">No Definida</label>
                                         </div>
@@ -65,14 +65,14 @@
                                     <div class="flex justify-center gap-5">
                                         <div class="flex gap-3">
                                             <input
-                                                class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                                class="text-[#303845] bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
                                                 wire:model="gender" type="radio" id="masculino" value="1"
                                                 checked>
                                             <label for="masculino">Masculino</label>
                                         </div>
                                         <div class="flex gap-2">
                                             <input
-                                                class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                                class="text-[#303845] bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
                                                 wire:model="gender" type="radio" id="femenino" value="0">
                                             <label for="femenino">Femenino</label>
                                         </div>
@@ -281,14 +281,14 @@
                                     <div class="flex justify-center gap-5">
                                         <div class="flex gap-3">
                                             <input
-                                                class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                                class="text-[#303845] bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
                                                 wire:model="status" type="radio" id="act" value="1"
                                                 checked>
                                             <label for="act">ACTIVO</label>
                                         </div>
                                         <div class="flex gap-2">
                                             <input
-                                                class="bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
+                                                class="text-[#303845] bg-gray-50 border border-[#111e60] rounded-lg focus:ring-[#111e60] focus:border-[#111e60] p-2.5"
                                                 wire:model="status" type="radio" id="inact" value="0">
                                             <label for="inact">INACTIVO</label>
                                         </div>
