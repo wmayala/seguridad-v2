@@ -38,6 +38,8 @@ class Create extends Component
         else
         { $validateData['photo']=$this->photo; }
 
+
+
         if($this->signature)
         {
             if($this->signature && Storage::disk('public')->exists($this->signature))
