@@ -1,4 +1,4 @@
-import html2canvas from 'html2canvas';
+//import html2canvas from 'html2canvas';
 
 // Obtener el botón por su ID
 const printButton = document.getElementById('printButton');
@@ -69,6 +69,6 @@ if (printButton) {
             console.error("Error al generar las imágenes para impresión:", error);
         });
     });
-} else {
+} /* else {
     console.error("No se encontró el botón con ID 'printButton'. Verifica el DOM.");
-}
+} */

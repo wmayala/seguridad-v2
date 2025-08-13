@@ -7,12 +7,13 @@ use App\Models\SFStaff;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Picqer\Barcode\BarcodeGeneratorPNG;
 
 class Edit extends Component
 {
     use WithFileUploads;
 
-    public $id, $record, $zone, $name, $position, $dui, $duiPlace, $duiDate, $address, $birthPlace, $birthDate, $institution_id, $institution_name, $issueDate, $expirationDate, $photo, $existingPhoto, $signature, $existingSign, $document, $existingDoc, $docPath, $status;
+    public $id, $record, $zone, $name, $position, $dui, $duiPlace, $duiDate, $address, $birthPlace, $birthDate, $institution_id, $institution_name, $issueDate, $expirationDate, $photo, $existingPhoto, $signature, $existingSign, $document, $existingDoc, $docPath, $status, $bar_code;
 
     protected $rules=[
         'record'=>'required|string',
@@ -61,6 +62,9 @@ class Edit extends Component
         else
         { $institution=Institution::findOrFail(1000); }
         $this->institution_name=$institution->name;
+
+        $generator=new BarcodeGeneratorPNG();
+        $this->bar_code=base64_encode($generator->getBarcode($this->dui, $generator::TYPE_CODE_128));
     }
 
     public function update()
@@ -82,7 +86,7 @@ class Edit extends Component
         {
             if($sfstaff->signature && Storage::disk('public')->exists($sfstaff->signature))
             { Storage::disk('public')->delete($sfstaff->signature); }
-            $signPath=$this->photo->store('sfstaff', 'public');
+            $signPath=$this->signature->store('sfstaff', 'public');
             $validatedData['signature']=$signPath;
         }
         else
@@ -92,7 +96,8 @@ class Edit extends Component
         {
             if($sfstaff->document && Storage::disk('public')->exists($sfstaff->document))
             { Storage::disk('public')->delete($sfstaff->document); }
-            $docPath=$this->photo->store('sfstaff', 'public');
+            $originalName=$this->document->getClientOriginalName();
+            $docPath = $this->document->storeAs('sfstaff', $originalName, 'public');
             $validatedData['document']=$docPath;
         }
         else
@@ -121,6 +126,26 @@ class Edit extends Component
         session()->flash('success','Personal SF actualizado exitosamente!');
         return redirect()->route('sfstaff.index');
     }
+
+    public function updatedDocument()
+    {
+        $this->validate([
+            'document'=>'file|mimes:pdf|max:10240',
+        ]);
+
+        $this->existingDoc=$this->document->store('sfstaff', 'public');
+    }
+
+    public function eliminarDocumento()
+    {
+        if ($this->existingDoc && Storage::disk('public')->exists($this->existingDoc)) {
+            Storage::disk('public')->delete($this->existingDoc);
+        }
+
+        $this->existingDoc=null;
+        $this->document=null;
+    }
+
 
     public function render()
     {

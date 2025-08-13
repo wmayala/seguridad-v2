@@ -1,6 +1,6 @@
 <div>
     <div class="flex flex-col justify-center">
-        <div class="ml-6 mb-4  flex justify-center gap-3">
+        <div class="ml-6 mb-4 flex justify-center gap-3">
             <div class="w-1/2 flex flex-col justify-center">
                 <div class="text-[#303845] text-bold text-3xl my-5">CONSULTAS POR CATEGORÍA</div>
                 <x-input-label class="uppercase">Buscar</x-input-label>

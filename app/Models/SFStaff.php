@@ -28,4 +28,9 @@ class SFStaff extends Model
         'document',
         'status'
     ];
+
+    public function institution()
+    {
+        return $this->belongsTo(Institution::class);
+    }
 }

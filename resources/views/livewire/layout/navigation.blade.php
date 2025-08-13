@@ -11,16 +11,15 @@ new class extends Component
     public function logout(Logout $logout): void
     {
         $logout();
-
         $this->redirect('/', navigate: true);
     }
 }; ?>
 
-<nav x-data="{ open: false }" class="bg-[#303845] border-b border-[#3C4557] h-32 flex">
+<nav x-data="{ open: false }" class="bg-[#303845] border-b border-[#3C4557] h-24   flex">
     <!-- Primary Navigation Menu -->
 
     <!-- Logo -->
-    <div class="shrink-0 flex justify-center p-3 w-1/6">
+    <div class="shrink-0 flex justify-center items-center p-3 w-1/6">
         <a href="{{ route('home') }}" wire:navigate>
             <x-application-logo class="block h-4 w-auto fill-current text-gray-800" />
         </a>

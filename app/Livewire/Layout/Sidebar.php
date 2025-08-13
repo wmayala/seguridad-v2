@@ -31,6 +31,7 @@ class Sidebar extends Component
             'title' => 'CONSULTAS',
             'options' => [
                 ['label'=>'Buscar usuarios','route'=>'home'],
+                ['label'=>'Registro de accesos', 'route'=>'access-control'],
             ],
         ],
         [

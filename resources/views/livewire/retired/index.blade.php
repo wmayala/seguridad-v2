@@ -45,7 +45,7 @@
                         </thead>
                         <tbody>
                             @foreach ($retired as $ret)
-                                <tr class="bg-[#F5F7FE] border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 hover:text-[#111e60]">
+                                <tr class="bg-[#F5F7FE] border-b  hover:bg-gray-200 hover:text-[#303845]">
                                     <td class="text-lg p-3"><img class="rounded" src="{{ asset('storage/'.$ret->photo) }}" alt="" width="50"></td>
                                     <td class="text-center text-lg p-3">{{ $ret->record }}</td>
                                     <td class="text-lg p-3">{{ $ret->name }}</td>

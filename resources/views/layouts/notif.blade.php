@@ -1,4 +1,4 @@
-@if(session('success'))
+@if(session()->has('success'))
     <script>
         Swal.fire({
             title: "¡Listo!",

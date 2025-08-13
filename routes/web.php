@@ -33,6 +33,7 @@ use App\Livewire\Institutions\Edit as InstitutionsEdit;
 use App\Livewire\Companies\Index as CompaniesIndex;
 use App\Livewire\Companies\Create as CompaniesCreate;
 use App\Livewire\Companies\Edit as CompaniesEdit;
+use App\Livewire\Layout\AccessControl;
 use App\Livewire\Users\Index as UsersIndex;
 use App\Livewire\Users\Create as UsersCreate;
 use App\Livewire\Users\Edit as UsersEdit;
@@ -42,6 +43,7 @@ use App\Livewire\Roles\RolesPermisos as RolesIndex;
 Route::middleware('auth')->group(function()
 {
     Route::view('/', 'dashboard')->name('home');
+    Route::get('/access-control', AccessControl::class)->name('access-control');
 
     // RUTAS PERSONAL POR ACTIVIDAD
     Route::get('/staff', StaffIndex::class)->name('staff.index');

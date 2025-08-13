@@ -143,11 +143,26 @@
                                     @endif
                                 </div>
                                 <div class="flex flex-col justify-center">
-                                    <x-input-label class="uppercase">Documento <span class="text-xs">(Puede adjuntar 1
-                                            PDF)</span></x-input-label>
+                                    <x-input-label class="uppercase">
+                                        Expediente <span class="text-xs">(Puede adjuntar 1 PDF)</span>
+                                    </x-input-label>
                                     <input type="file" wire:model="document" id="document" accept=".pdf"
-                                    class="file:mr-4 file:rounded-full file:border-0 file:bg-[#303845] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-[#F5F7FE] hover:file:opacity-85">
+                                            class="file:mr-4 file:rounded-full file:border-0 file:bg-[#303845] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-[#F5F7FE] hover:file:opacity-85">
                                     <div wire:loading wire:target="document">Cargando documento...</div>
+
+                                    {{-- Mostrar archivo si existe --}}
+                                    @if ($existingDoc)
+                                        <div class="flex items-center justify-between bg-gray-100 p-3 rounded shadow mt-2">
+                                            <span class="text-sm truncate">{{ basename($existingDoc) }}</span>
+                                            <div class="flex gap-2">
+                                                <a href="{{ Storage::url($existingDoc) }}" target="_blank"
+                                                    class="text-blue-600 text-sm hover:underline">Descargar</a>
+                                                <button wire:click="eliminarDocumento" type="button"
+                                                    class="text-red-500 text-sm hover:underline">Eliminar</button>
+                                            </div>
+                                        </div>
+                                    @endif
+
                                 </div>
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Estado del registro</x-input-label>
@@ -212,13 +227,21 @@
                                                         <!-- FIN CROPPER -->
 
                                                     </div>
-                                                    <div class="mt-3 text-xl text-center">Exp. No.</div>
-                                                    <div class="text-lg font-bold text-center">{{ $record }}
+                                                    {{-- <div class=" text-xl text-center">Exp. No.</div> --}}
+                                                    <div class="text-lg font-bold text-center">{{ $record }}</div>
+                                                    <div class="flex flex-col ml-2">
+                                                            <div class="text-sm">DUI: {{ $dui }}</div>
                                                     </div>
-                                                    <div class="flex flex-col items-center mt-2">
-                                                        <div>Vencimiento</div>
-                                                        <div class="text-center">
-                                                            {{ date('d-m-Y', strtotime($expirationDate)) }}</div>
+                                                    <div class="flex flex-col items-center mt-1">
+                                                        <div class="text-xs">Vencimiento</div>
+                                                        <div class="text-center text-sm">
+                                                            {{ date('d-m-Y', strtotime($expirationDate)) }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex justify-center w-full h-12   ">
+                                                        <img class="object-cover"
+                                                            src="{{ asset('storage/' . $existingSign) }}"
+                                                            alt="Firma Portador">
                                                     </div>
                                                 </div>
                                                 <div class="mx-2">
@@ -247,19 +270,8 @@
                                                             {{ $position }}
                                                         </div>
                                                     </div>
-                                                    <div class="flex gap-2 py-1">
-                                                        <div class="flex flex-col w-1/2">
-                                                            <div class="text-sm">Dui No.:</div>
-                                                            <div class="">{{ $dui }}</div>
-                                                        </div>
-                                                        <div class="flex gap-1 justify-center w-full">
-                                                            <div class="text-sm">Firma: </div>
-                                                            <div class="flex justify-center w-full h-12   ">
-                                                                <img class="object-cover w-max  h-full"
-                                                                    src="{{ asset('storage/' . $existingSign) }}"
-                                                                    alt="Firma Portador">
-                                                            </div>
-                                                        </div>
+                                                    <div class="flex justify-center p-2 my-2 w-full h-14">
+                                                        <img src="data:image/png;base64,{{ $bar_code }}" alt="Código de barras">
                                                     </div>
 
                                                 </div>
@@ -271,7 +283,7 @@
                                     {{-- CARNET REVERSO --}}
                                     <div id="id-card-back" class="bg-white border border-gray-200 w-[514.25px] h-[322px]">
                                         <div class="flex justify-center gap-3">
-                                            <div class="grid grid-cols-[auto_1fr]  ">
+                                            <div class="grid grid-cols-1">
                                                 <div>
                                                     <div class="flex w-full py-2">
                                                         <p class="p-3 mx-2 text-justify">
@@ -294,6 +306,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
