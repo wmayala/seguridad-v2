@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\IDCardController;
-use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Route;
 use App\Livewire\Staffbyactivity\Index as StaffIndex;
 use App\Livewire\Staffbyactivity\Create as StaffCreate;
 use App\Livewire\Staffbyactivity\Edit as StaffEdit;
@@ -34,6 +33,7 @@ use App\Livewire\Companies\Index as CompaniesIndex;
 use App\Livewire\Companies\Create as CompaniesCreate;
 use App\Livewire\Companies\Edit as CompaniesEdit;
 use App\Livewire\Layout\AccessControl;
+use App\Livewire\Layout\AccessReport;
 use App\Livewire\Users\Index as UsersIndex;
 use App\Livewire\Users\Create as UsersCreate;
 use App\Livewire\Users\Edit as UsersEdit;
@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function()
 {
     Route::view('/', 'dashboard')->name('home');
     Route::get('/access-control', AccessControl::class)->name('access-control');
+    Route::get('/access-report', AccessReport::class)->name('access-report');
 
     // RUTAS PERSONAL POR ACTIVIDAD
     Route::get('/staff', StaffIndex::class)->name('staff.index');

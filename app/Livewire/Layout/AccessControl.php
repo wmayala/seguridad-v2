@@ -36,8 +36,8 @@ class AccessControl extends Component
         {
             Access::create([
                 'sfstaff_id' => $this->result->dui,
-                'created_at' => now(),
-                'updated_at' => null,
+                'start_at' => now(),
+                'end_at' => null,
             ]);
         }
         $this->clearInput();
