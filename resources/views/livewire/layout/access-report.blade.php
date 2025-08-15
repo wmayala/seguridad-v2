@@ -22,8 +22,8 @@
                         </button>
                     </div>
 
-                    <table class="w-full text-lg text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                        <thead class="text-lg text-white uppercase bg-[#303845]">
+                    <table class="w-full text-md text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-white uppercase bg-[#303845]">
                             <th class="p-2">#</th>
                             <th class="p-2">DUI</th>
                             <th class="p-2">NOMBRE</th>
@@ -34,19 +34,19 @@
                         </thead>
                         <tbody>
                             @foreach($accesses as $access)
-                            <tr>
+                            <tr class="text-sm border-b hover:bg-gray-200 hover:text-[#303845]">
                                 <td class="p-2">{{ $loop->iteration }}</td>
                                 <td class="p-2">{{ $access->sfstaff_id }}</td>
                                 <td class="p-2">{{ $access->staff->name }}</td>
                                 <td class="p-2">{{ $access->staff->position }}</td>
                                 <td class="p-2">{{ $access->staff->institution->name }}</td>
-                                <td class="p-2">{{ $access->start_at }}</td>
-                                <td class="p-2">{{ $access->end_at }}</td>
+                                <td class="p-2">{{ \Carbon\Carbon::parse($access->start_at)->format('d/m/Y - H:i:s') }}</td>
+                                <td class="p-2">{{ $access->end_at != null ?? \Carbon\Carbon::parse($access->end_at)->format('d/m/Y - H:i:s') }}</td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    @if(Auth::user()->can('crear-personal-sf'))
+                    @if(Auth::user()->can('generar-reporte'))
                         <div class="flex justify-center mt-5">
                             <button wire:click="exportPDF()" class="inline-flex items-center px-4 py-2 bg-[#303845] border rounded-full font-semibold text-md text-white uppercase tracking-widest hover:opacity-85 active:bg-[#303845] focus:outline-none focus:ring-2 focus:ring-[#303845] focus:ring-offset-2 transition ease-in-out duration-150">
                                 Generar reporte PDF

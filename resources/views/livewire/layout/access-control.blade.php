@@ -85,13 +85,23 @@
                 </div>
             </div>
 
-            <div class="flex justify-center mt-5 mb-5">
-                <button wire:click="confirmAccess()"
-                    class="my-5 px-2 py-1 bg-black text-white font-semibold rounded-full w-1/6 hover:opacity-75"
-                >
-                    OK
-                </button>
-            </div>
+            @if(Auth::user()->can('registrar-acceso'))
+                <div class="flex justify-center mt-5 mb-5">
+                    <button wire:click="confirmAccess()"
+                        class="my-5 px-2 py-1 bg-black text-white font-semibold rounded-full w-1/6 hover:opacity-75"
+                    >
+                        OK
+                    </button>
+                </div>
+            @else
+                <div class="flex justify-center mt-5 mb-5">
+                    <button wire:click="clearInput()"
+                        class="my-5 px-2 py-1 bg-black text-white font-semibold rounded-full w-1/6 hover:opacity-75"
+                    >
+                        Limpiar
+                    </button>
+                </div>
+            @endif
         @endif
     </div>
 </div>

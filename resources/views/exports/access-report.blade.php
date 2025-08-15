@@ -65,7 +65,7 @@
                     <td>{{ $access->staff->position }}</td>
                     <td>{{ $access->staff->institution->name }}</td>
                     <td>{{ \Carbon\Carbon::parse($access->start_at)->format('d/m/Y H:i') }}</td>
-                    <td>{{ $access->end_at ? \Carbon\Carbon::parse($access->end_at)->format('d/m/Y H:i') : '-' }}</td>
+                    <td>{{ $access->end_at != null ?? \Carbon\Carbon::parse($access->end_at)->format('d/m/Y H:i') }}</td>
                 </tr>
             @endforeach
         </tbody>
