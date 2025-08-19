@@ -50,7 +50,7 @@
                                         <div class="mt-4">
                                             <x-input-label class="uppercase">Foto Actual</x-input-label>
                                             <div class="flex justify-center">
-                                                <img src="{{ asset('storage/' . $existingPhoto) }}"
+                                                <img src="{{ Storage::disk('s3')->url($existingPhoto) }}"
                                                     alt="Foto actual" width="140" class="rounded-md shadow-md">
                                             </div>
                                         </div>
@@ -87,7 +87,7 @@
                                                                     class="object-cover w-full h-full cursor-pointer"
                                                                     >
                                                             @else
-                                                                <img id="originalImage" src="{{ asset('storage/' . $existingPhoto) }}"
+                                                                <img id="originalImage" src="{{ Storage::disk('s3')->url($existingPhoto) }}"
                                                                     alt="Imagen existente"
                                                                     class="object-cover w-full h-full cursor-pointer"
                                                                     >
@@ -105,7 +105,7 @@
                                                                         class="object-cover cursor-pointer"
                                                                         width="140">
                                                                 @else
-                                                                    <img id="imageToCrop" src="{{ asset('storage/' . $existingPhoto) }}"
+                                                                    <img id="imageToCrop" src="{{ Storage::disk('s3')->url($existingPhoto) }}"
                                                                         alt="Imagen existente"
                                                                         class="object-cover cursor-pointer"
                                                                         width="140">
@@ -120,8 +120,8 @@
                                                         <!-- FIN CROPPER -->
 
                                                     </div>
-                                                    <div class="mt-6 text-xl text-center">Exp. No.</div>
-                                                    <div class="text-2xl font-bold text-center">{{ $record }}</div>
+                                                    <div class="mt-6 text-lg text-center">Exp. No.</div>
+                                                    <div class="text-xl font-bold text-center">{{ $record }}</div>
                                                 </div>
                                                 <div class="mx-2">
                                                     <div class="flex w-full py-1 border-b border-black">
@@ -157,10 +157,9 @@
                                                         <div>Firma: </div>
                                                         <div class="relative flex justify-center w-full h-[50px] mt-2">
                                                             <img class="absolute object-cover w-max  h-full"
-                                                                src="{{ asset('storage/' . $existingSign) }}"
+                                                                src="{{ Storage::disk('s3')->url($existingSign) }}"
                                                                 alt="Firma Portador">
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>

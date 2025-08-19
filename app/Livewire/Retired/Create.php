@@ -26,29 +26,29 @@ class Create extends Component
 
     public function create()
     {
-        $validateData=$this->validate();
+        $validatedData=$this->validate();
 
         if($this->photo)
         {
-            if($this->photo && Storage::disk('public')->exists($this->photo))
-            { Storage::disk('public')->delete($this->photo); }
-            $photoPath=$this->photo->store('retired','public');
-            $validateData['photo']=$photoPath;
+            $photoPath=$this->photo->store('retired','s3');
+            Storage::disk('s3')->setVisibility($photoPath, 'public');
+            $validatedData['photo']=$photoPath;
         }
         else
-        { $validateData['photo']=$this->photo; }
-
-
+        {
+            $validatedData['photo']=null;
+        }
 
         if($this->signature)
         {
-            if($this->signature && Storage::disk('public')->exists($this->signature))
-            { Storage::disk('public')->delete($this->signature); }
-            $signPath=$this->signature->store('retired','public');
-            $validateData['signature']=$signPath;
+            $signPath=$this->signature->store('retired','s3');
+            Storage::disk('s3')->setVisibility($signPath, 'public');
+            $validatedData['signature']=$signPath;
         }
         else
-        { $validateData['signature']=$this->signature; }
+        {
+            $validatedData['signature']=null;
+        }
 
         Retired::create([
             'record'=>$this->record,
@@ -57,8 +57,8 @@ class Create extends Component
             'dui'=>$this->dui,
             'issueDate'=>$this->issueDate,
             'expirationDate'=>$this->expirationDate,
-            'photo'=>$validateData['photo'],
-            'signature'=>$validateData['signature'],
+            'photo'=>$validatedData['photo'],
+            'signature'=>$validatedData['signature'],
             'status'=>$this->status,
         ]);
 

@@ -46,7 +46,13 @@
                         <tbody>
                             @foreach ($retired as $ret)
                                 <tr class="bg-[#F5F7FE] border-b  hover:bg-gray-200 hover:text-[#303845]">
-                                    <td class="text-lg p-3"><img class="rounded" src="{{ asset('storage/'.$ret->photo) }}" alt="" width="50"></td>
+                                    <td class="text-lg p-3">
+                                        @if($ret->photo)
+                                            <img class="rounded" src="{{ Storage::disk('s3')->url($ret->photo) }}" alt="" width="50">
+                                        @else
+                                            <span class="text-sm text-gray-400">Sin Foto</span>
+                                        @endif
+                                    </td>
                                     <td class="text-center text-lg p-3">{{ $ret->record }}</td>
                                     <td class="text-lg p-3">{{ $ret->name }}</td>
                                     <td class="text-center text-lg p-3">{{ $ret->dui }}</td>

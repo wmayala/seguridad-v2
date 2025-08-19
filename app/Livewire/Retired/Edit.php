@@ -46,23 +46,39 @@ class Edit extends Component
 
         if($this->photo)
         {
-            if($retired->photo && Storage::disk('public')->exists($retired->photo))
-            { Storage::disk('public')->delete($retired->photo); }
-            $photoPath=$this->photo->store('retired', 'public');
+            $photoPath=$this->photo->store('retired','s3');
+            Storage::disk('s3')->setVisibility($photoPath, 'public');
             $validatedData['photo']=$photoPath;
         }
         else
-        { $validatedData['photo']=$retired->photo; }
+        {
+            if ($this->id)
+            {
+                $validatedData['photo'] = Retired::find($this->id)->photo;
+            }
+            else
+            {
+                $validatedData['photo'] = null;
+            }
+        }
 
         if($this->signature)
         {
-            if($retired->signature && Storage::disk('public')->exists($retired->signature))
-            { Storage::disk('public')->delete($retired->signature); }
-            $signPath=$this->signature->store('retired', 'public');
+            $signPath=$this->signature->store('retired','s3');
+            Storage::disk('s3')->setVisibility($signPath, 'public');
             $validatedData['signature']=$signPath;
         }
         else
-        { $validatedData['signature']=$retired->signature; }
+        {
+            if ($this->id)
+            {
+                $validatedData['signature'] = Retired::find($this->id)->signature;
+            }
+            else
+            {
+                $validatedData['signature'] = null;
+            }
+        }
 
         $retired->update([
             'record'=>$this->record,

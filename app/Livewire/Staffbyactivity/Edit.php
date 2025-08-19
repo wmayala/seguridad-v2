@@ -96,27 +96,41 @@ class Edit extends Component
         $validatedData=$this->validate();
         $staff=StaffByActivity::findOrFail($this->id);
 
-        //dd($staff);
-
         if($this->photo)
         {
-            if($staff->photo && Storage::disk('public')->exists($staff->photo))
-            { Storage::disk('public')->delete($staff->photo); }
-            $photoPath=$this->photo->store('staff', 'public');
+            $photoPath=$this->photo->store('staff', 's3');
+            Storage::disk('s3')->setVisibility($photoPath, 'public');
             $validatedData['photo']=$photoPath;
         }
         else
-        { $validatedData['photo']=$staff->photo; }
+        {
+            if ($this->id)
+            {
+                $validatedData['photo'] = StaffByActivity::find($this->id)->photo;
+            }
+            else
+            {
+                $validatedData['photo'] = null;
+            }
+        }
 
         if($this->signature)
         {
-            if($staff->signature && Storage::disk('public')->exists($staff->signature))
-            { Storage::disk('public')->delete($staff->signature); }
-            $signPath=$this->signature->store('staff', 'public');
+            $signPath=$this->signature->store('staff', 's3');
+            Storage::disk('s3')->setVisibility($signPath, 'public');
             $validatedData['signature']=$signPath;
         }
         else
-        { $validatedData['signature']=$staff->signature; }
+        {
+            if ($this->id)
+            {
+                $validatedData['signature'] = StaffByActivity::find($this->id)->signature;
+            }
+            else
+            {
+                $validatedData['signature'] = null;
+            }
+        }
 
         $staff->update([
             'record'=>$this->record,
