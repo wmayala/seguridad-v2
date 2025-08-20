@@ -74,34 +74,58 @@ class Edit extends Component
 
         if($this->photo)
         {
-            if($sfstaff->photo && Storage::disk('public')->exists($sfstaff->photo))
-            { Storage::disk('public')->delete($sfstaff->photo); }
-            $photoPath=$this->photo->store('sfstaff', 'public');
+            $photoPath=$this->photo->store('sfstaff','s3');
+            Storage::disk('s3')->setVisibility($photoPath, 'public');
             $validatedData['photo']=$photoPath;
         }
         else
-        { $validatedData['photo']=$sfstaff->photo; }
+        {
+            if($this->id)
+            {
+                $validatedData['photo'] = SFStaff::find($this->id)->photo;
+            }
+            else
+            {
+                $validatedData['photo'] = null;
+            }
+        }
 
         if($this->signature)
         {
-            if($sfstaff->signature && Storage::disk('public')->exists($sfstaff->signature))
-            { Storage::disk('public')->delete($sfstaff->signature); }
-            $signPath=$this->signature->store('sfstaff', 'public');
+            $signPath=$this->signature->store('sfstaff','s3');
+            Storage::disk('s3')->setVisibility($signPath, 'public');
             $validatedData['signature']=$signPath;
         }
         else
-        { $validatedData['signature']=$sfstaff->signature; }
+        {
+            if($this->id)
+            {
+                $validatedData['signature'] = SFStaff::find($this->id)->signature;
+            }
+            else
+            {
+                $validatedData['signature'] = null;
+            }
+        }
 
         if($this->document)
         {
-            if($sfstaff->document && Storage::disk('public')->exists($sfstaff->document))
-            { Storage::disk('public')->delete($sfstaff->document); }
-            $originalName=$this->document->getClientOriginalName();
-            $docPath = $this->document->storeAs('sfstaff', $originalName, 'public');
+            $docName = $this->document->getClientOriginalName();
+            $docPath = "sfstaff/{$docName}";
+            Storage::disk('s3')->putFileAs('sfstaff', $this->document, $docName, 'public');
             $validatedData['document']=$docPath;
         }
         else
-        { $validatedData['document']=$sfstaff->document; }
+        {
+            if($this->id)
+            {
+                $validatedData['document'] = SFStaff::find($this->id)->document;
+            }
+            else
+            {
+                $validatedData['document'] = null;
+            }
+        }
 
         $sfstaff->update([
             'record'=>$this->record,

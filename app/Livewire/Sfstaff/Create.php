@@ -36,37 +36,43 @@ class Create extends Component
 
     public function create()
     {
-        $validateData=$this->validate();
+        $validatedData=$this->validate();
 
         if($this->photo)
         {
-            if($this->photo && Storage::disk('public')->exists($this->photo))
-            { Storage::disk('public')->delete($this->photo); }
-            $photoPath=$this->photo->store('sfstaff','public');
-            $validateData['photo']=$photoPath;
+            $photoPath=$this->photo->store('sfstaff','s3');
+            Storage::disk('s3')->setVisibility($photoPath, 'public');
+            $validatedData['photo']=$photoPath;
         }
         else
-        { $validateData['photo']=$this->photo; }
+        {
+            $validatedData['photo']=null;
+        }
 
         if($this->signature)
         {
-            if($this->signature && Storage::disk('public')->exists($this->signature))
-            { Storage::disk('public')->delete($this->signature); }
-            $signPath=$this->signature->store('sfstaff','public');
-            $validateData['signature']=$signPath;
+            $signPath=$this->signature->store('sfstaff','s3');
+            Storage::disk('s3')->setVisibility($signPath, 'public');
+            $validatedData['signature']=$signPath;
         }
         else
-        { $validateData['signature']=$this->signature; }
+        {
+            $validatedData['signature']=null;
+        }
 
         if($this->document)
         {
-            if($this->document && Storage::disk('public')->exists($this->document))
-            { Storage::disk('public')->delete($this->document); }
-            $docPath=$this->document->store('sfstaff','public');
-            $validateData['document']=$docPath;
+            //$docPath=$this->document->store('sfstaff','s3');
+            //Storage::disk('s3')->setVisibility($docPath, 'public');
+            $docName = $this->document->getClientOriginalName();
+            $docPath = "sfstaff/{$docName}";
+            Storage::disk('s3')->putFileAs('sfstaff', $this->document, $docName, 'public');
+            $validatedData['document']=$docPath;
         }
         else
-        { $validateData['document']=$this->document; }
+        {
+            $validatedData['document']=null;
+        }
 
         SFStaff::create([
             'record'=>$this->record,
@@ -82,9 +88,9 @@ class Create extends Component
             'institution_id'=>$this->institution_id,
             'issueDate'=>$this->issueDate,
             'expirationDate'=>$this->expirationDate,
-            'photo'=>$validateData['photo'],
-            'signature'=>$validateData['signature'],
-            'document'=>$validateData['document'],
+            'photo'=>$validatedData['photo'],
+            'signature'=>$validatedData['signature'],
+            'document'=>$validatedData['document'],
             'status'=>$this->status,
         ]);
 

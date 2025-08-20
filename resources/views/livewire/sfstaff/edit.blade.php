@@ -131,11 +131,11 @@
                                             </div>
                                         </div>
                                     @endif
-                                    @if(!$photo && $existingPhoto)
+                                    @if(!empty($existingPhoto))
                                         <div class="mt-4">
                                             <x-input-label class="uppercase">Foto Actual</x-input-label>
                                             <div class="flex justify-center">
-                                                <img src="{{ asset('storage/' . $existingPhoto) }}"
+                                                <img src="{{ Storage::disk('s3')->url($existingPhoto) }}"
                                                     alt="Foto actual" width="140"
                                                     class="rounded-md shadow-md">
                                             </div>
@@ -195,10 +195,16 @@
                                                                 <img id="originalImage" src="{{ $photo->temporaryUrl() }}"
                                                                     alt="Nueva imagen"
                                                                     class="object-cover w-full h-full cursor-pointer">
-                                                            @else
-                                                                <img id="originalImage" src="{{ asset('storage/' . $existingPhoto) }}"
+                                                            @elseif($existingPhoto)
+                                                                <img id="originalImage"
+                                                                    src="{{ Storage::disk('s3')->url($existingPhoto) }}"
                                                                     alt="Imagen existente"
-                                                                    class="object-cover w-full h-full cursor-pointer">
+                                                                    class="object-cover w-full h-full cursor-pointer"
+                                                                >
+                                                            @else
+                                                                <span class="text-gray-500 text-sm text-center px-2">
+                                                                    Imagen no disponible
+                                                                </span>
                                                             @endif
                                                         </div>
 
@@ -213,10 +219,12 @@
                                                                         class="object-cover cursor-pointer"
                                                                         width="140">
                                                                 @else
-                                                                    <img id="imageToCrop" src="{{ asset('storage/' . $existingPhoto) }}"
-                                                                        alt="Imagen existente"
-                                                                        class="object-cover cursor-pointer"
-                                                                        width="140">
+                                                                    @if(!empty($existingPhoto))
+                                                                        <img id="imageToCrop" src="{{ Storage::disk('s3')->url($existingPhoto) }}"
+                                                                            alt="Imagen existente"
+                                                                            class="object-cover cursor-pointer"
+                                                                            width="140">
+                                                                    @endif
                                                                 @endif
                                                                 <div class="flex justify-end mt-4 space-x-2">
                                                                     <button id="cancelButton" class="px-4 py-2 text-white bg-gray-600 rounded">Cancelar</button>
@@ -239,9 +247,11 @@
                                                         </div>
                                                     </div>
                                                     <div class="flex justify-center w-full h-12   ">
-                                                        <img class="object-cover"
-                                                            src="{{ asset('storage/' . $existingSign) }}"
-                                                            alt="Firma Portador">
+                                                        @if(!empty($existingSign))
+                                                            <img class="object-cover"
+                                                                src="{{ Storage::disk('s3')->url($existingSign) }}"
+                                                                alt="Firma Portador">
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="mx-2">

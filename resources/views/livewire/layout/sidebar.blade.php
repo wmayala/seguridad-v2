@@ -2,7 +2,7 @@
     <div class="bg-[#303845] overflow-hidden shadow-sm">
         <nav class="flex flex-col m-6 h-dvh">
             @auth
-                <div class="w-full max-w-lg mx-auto rounded-lg " x-data="{ openSection: null }">
+                <div class="w-full max-w-lg mx-auto rounded-lg" x-data="{ openSection: null }">
                     @foreach ($sections as $index => $section)
                         <div class="border-b border-gray-500">
                             <!-- Título de la Sección -->

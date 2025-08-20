@@ -48,7 +48,13 @@
                         <tbody>
                             @foreach ($SFstaff as $sf)
                             <tr class="bg-[#F5F7FE] border-b hover:bg-gray-200 hover:text-[#303845]">
-                                <td class="text-lg p-3"><img src="{{ asset('storage/'.$sf->photo) }}" alt="" width="50"></td>
+                                <td class="text-lg p-3">
+                                    @if($sf->photo)
+                                        <img src="{{ Storage::disk('s3')->url($sf->photo) }}" alt="" width="50">
+                                    @else
+                                        <span class="text-sm text-gray-400">Sin Foto</span>
+                                    @endif
+                                </td>
                                 <td class="text-lg text-center p-3">{{ $sf->record }}</td>
                                 <td class="text-lg text-center p-3">
                                     {{ $sf->zone===0?'N/D':
