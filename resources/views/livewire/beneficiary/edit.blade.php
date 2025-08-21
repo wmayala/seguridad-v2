@@ -153,18 +153,18 @@
                                                         <!-- CROPPER -->
                                                         <div id="cropperModal"
                                                             class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
-                                                            <div class="bg-white rounded-lg p-4 w-[90%] md:w-fit">
+                                                            <div class="bg-white rounded-lg p-4 w-auto">
                                                                 <h2 class="mb-4 text-xl font-bold">Ajustar imagen</h2>
                                                                 @if($photo)
                                                                     <img id="imageToCrop" src="{{ $photo->temporaryUrl() }}"
                                                                         alt="Nueva imagen"
                                                                         class="object-cover cursor-pointer"
-                                                                        width="140">
+                                                                        width="450">
                                                                 @else
                                                                     <img id="imageToCrop" src="{{ asset('storage/' . $existingPhoto) }}"
                                                                         alt="Imagen existente"
                                                                         class="object-cover cursor-pointer"
-                                                                        width="140">
+                                                                        width="450">
                                                                 @endif
                                                                 <div class="flex justify-end mt-4 space-x-2">
                                                                     <button id="cancelButton" class="px-4 py-2 text-white bg-gray-600 rounded">Cancelar</button>
@@ -182,7 +182,7 @@
                                                 <div class="mx-2">
                                                     <div class="flex gap-2 py-1 border-b border-black">
                                                         <span>Nombre:</span>
-                                                        <span class="{{ strlen($name) <= 25 ? 'text-lg' : 'text-base' }} h-[45px] font-semibold uppercase mb-1">{{ $name }}</span>
+                                                        <span class="{{ strlen($name) <= 25 ? 'text-lg' : 'text-base' }} font-semibold uppercase mb-1">{{ $name }}</span>
                                                     </div>
                                                     <div class="flex justify-between items-center py-1 border-b border-black h-[40px]">
                                                         <div class="mb-1">Parentesco: {{ $relationship }}</div>
@@ -196,7 +196,7 @@
                                                                 <span class="font-bold">{{ $empCode }}</span>
                                                             </div>
                                                         </div>
-                                                        <div class="{{ strlen($empName) <= 25 ? 'text-lg' : 'text-base' }} font-semibold uppercase">{{ $empName }}</div>
+                                                        <div class="{{ strlen($empName) <= 25 ? 'text-lg' : 'text-sm' }} font-semibold uppercase">{{ $empName }}</div>
                                                     </div>
                                                     <div class="flex gap-2 py-1">
                                                         <div class="flex flex-col w-full">
@@ -264,6 +264,7 @@
                                 </div>
                                 <div class="flex justify-center">
                                     <button id="printButton"
+                                        type="button"
                                         class="px-4 py-2 text-sm font-semibold text-white uppercase bg-cyan-400 rounded-full hover:bg-cyan-800">
                                         Generar carnet
                                     </button>

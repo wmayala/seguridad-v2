@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notif')
     <div class="grid grid-cols-1 bg-[#F5F7FE] rounded-lg">
         <div class="row">
             <div class="text-[#303845] text-bold text-center text-3xl mt-5 mb-5">CONTROL DE ACCESO DE PERSONAL</div>
@@ -12,6 +13,7 @@
                     wire:model="query"
                     wire:keydown.enter="verifyAccess()"
                     maxlength="10"
+                    placeholder="Escriba número de DUI"
                     autofocus>
                 </x-text-input>
                 @error('query')<span class="text-red-500 text-sm font-bold">{{ $message }}</span>@enderror
@@ -56,7 +58,12 @@
             <div class="row">
                 <div class="grid grid-cols-[25%_75%] w-3/4 mx-auto gap-5 mb-3">
                     <div class=" flex items-center justify-center">
-                        <img src="{{ $result->photo }}" alt="" class="max-w-full max-h-full">
+                        {{-- <img src="{{ $result->photo }}" alt="" class="max-w-full max-h-full"> --}}
+                         @if($result->photo)
+                            <img src="{{ Storage::disk('s3')->url($result->photo) }}" alt="" class="max-w-full max-h-full">
+                        @else
+                            <span class="text-sm text-gray-400">Sin Foto</span>
+                        @endif
                     </div>
                     <div class="flex flex-col justify-center ml-20">
                         <span class="text-xs uppercase">Expediente</span>

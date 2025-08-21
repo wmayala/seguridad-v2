@@ -1,11 +1,9 @@
-//import html2canvas from 'html2canvas';
+import html2canvas from 'html2canvas';
 
-// Obtener el botón por su ID
 const printButton = document.getElementById('printButton');
 
-// Validar si el botón existe
 if (printButton) {
-    printButton.addEventListener('click', (event) => {
+    printButton.addEventListener('click', async (event) => {
         event.preventDefault();
 
         const front = document.getElementById('id-card-front');
@@ -16,36 +14,45 @@ if (printButton) {
             return;
         }
 
-        const generateImage = (element) => {
-            return html2canvas(element, { scale: 3, useCORS: true }).then(canvas => {
-                return canvas.toDataURL('image/png', 1.0);
-            });
+        const generateImage = async (element) => {
+            const canvas = await html2canvas(element, { scale: 3, useCORS: true });
+            return canvas.toDataURL('image/png', 1.0);
         };
 
-        Promise.all([generateImage(front), generateImage(back)]).then(([imgDataFront, imgDataBack]) => {
+        try {
+            const [imgDataFront, imgDataBack] = await Promise.all([
+                generateImage(front),
+                generateImage(back)
+            ]);
+
             const printWindow = window.open('', '_blank');
+
             if (printWindow) {
+
+                printWindow.document.open();
                 printWindow.document.write(`
                     <html>
                         <head>
+                            <title>Impresión</title>
                             <style>
-                                @media print {
-                                    body, html {
-                                        margin: 0;
-                                        padding: 0;
-                                        width: 8.5cm;
-                                        height: 5.4cm;
-                                    }
-                                    .card-container {
-                                        width: 8.5cm;
-                                        height: 5.4cm;
-                                        display: block;
-                                        page-break-after: always;
-                                    }
-                                    img {
-                                        width: 100%;
-                                        height: 100%;
-                                    }
+                                @page {
+                                    size: 8.5cm 5.4cm;
+                                    margin: 0;
+                                }
+                                body, html {
+                                    margin: 0;
+                                    padding: 0;
+                                }
+                                .card-container {
+                                    width: 8.5cm;
+                                    height: 5.4cm;
+                                    display: block;
+                                    page-break-after: always;
+                                }
+                                img {
+                                    width: 100%;
+                                    height: auto;
+                                    object-fit: block;
                                 }
                             </style>
                         </head>
@@ -60,15 +67,18 @@ if (printButton) {
                     </html>
                 `);
                 printWindow.document.close();
+
                 printWindow.onload = () => {
-                    printWindow.print();
-                    printWindow.close();
+                    setTimeout(() => {
+                        printWindow.print();
+                        printWindow.close();
+                    }, 250);
                 };
             }
-        }).catch(error => {
+        } catch (error) {
             console.error("Error al generar las imágenes para impresión:", error);
-        });
+        }
     });
-} /* else {
+} else {
     console.error("No se encontró el botón con ID 'printButton'. Verifica el DOM.");
-} */
+}

@@ -27,6 +27,7 @@ class AccessControl extends Component
             ->where('zone', 1)
             ->where('status', 1)
             ->first();
+
         $this->query='';
     }
 

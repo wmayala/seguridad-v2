@@ -211,19 +211,19 @@
                                                         <!-- CROPPER -->
                                                         <div id="cropperModal"
                                                             class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
-                                                            <div class="bg-white rounded-lg p-4 w-[90%] md:w-fit">
+                                                            <div class="bg-white rounded-lg p-4 w-auto">
                                                                 <h2 class="mb-4 text-xl font-bold">Ajustar imagen</h2>
                                                                 @if($photo)
                                                                     <img id="imageToCrop" src="{{ $photo->temporaryUrl() }}"
                                                                         alt="Nueva imagen"
                                                                         class="object-cover cursor-pointer"
-                                                                        width="140">
+                                                                        width="450">
                                                                 @else
                                                                     @if(!empty($existingPhoto))
                                                                         <img id="imageToCrop" src="{{ Storage::disk('s3')->url($existingPhoto) }}"
                                                                             alt="Imagen existente"
                                                                             class="object-cover cursor-pointer"
-                                                                            width="140">
+                                                                            width="450">
                                                                     @endif
                                                                 @endif
                                                                 <div class="flex justify-end mt-4 space-x-2">
@@ -325,6 +325,7 @@
 
                                 <div class="flex justify-center">
                                     <button id="printButton"
+                                        type="button"
                                         class="px-4 py-2 text-sm font-semibold text-white uppercase bg-red-800 rounded-full hover:bg-red-600">
                                         Generar carnet
                                     </button>
