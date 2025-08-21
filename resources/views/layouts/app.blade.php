@@ -18,11 +18,11 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="{{ asset('js/cropper.js') }}"></script>
-        <script type="module" src="{{ asset('js/print-card.js') }}"></script>
+
+
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js', 'public/js/print-card.js'])
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
         @livewireStyles
     </head>
     <body class="font-sans antialiased bg-[#303845]">
@@ -39,5 +39,7 @@
             </div>
         </div>
         @livewireScripts
+        <script src="{{ asset('js/cropper.js') }}"></script>
+        <script src="{{ asset('js/print-card.js') }}"></script>
     </body>
 </html>
