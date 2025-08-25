@@ -157,13 +157,14 @@ class Edit extends Component
             'document'=>'file|mimes:pdf|max:10240',
         ]);
 
-        $this->existingDoc=$this->document->store('sfstaff', 'public');
+        $this->existingDoc=$this->document->store('sfstaff', 's3');
     }
 
     public function eliminarDocumento()
     {
-        if ($this->existingDoc && Storage::disk('public')->exists($this->existingDoc)) {
-            Storage::disk('public')->delete($this->existingDoc);
+        if ($this->existingDoc && Storage::disk('s3')->exists($this->existingDoc))
+        {
+            Storage::disk('s3')->delete($this->existingDoc);
         }
 
         $this->existingDoc=null;

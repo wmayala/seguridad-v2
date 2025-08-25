@@ -49,7 +49,13 @@
                         <tbody>
                             @foreach ($CStaff as $cstaff)
                             <tr class="border-b hover:bg-gray-200 hover:text-[#303845]">
-                                <td class="text-lg p-3"><img src="{{ asset('storage/'.$cstaff->photo) }}" alt="" width="50"></td>
+                                <td class="text-lg p-3">
+                                    @if($cstaff->photo)
+                                        <img src="{{ Storage::disk('s3')->url($cstaff->photo) }}" alt="" width="50">
+                                    @else
+                                        <span class="text-sm text-gray-400">Sin Foto</span>
+                                    @endif
+                                </td>
                                 <td class="text-lg text-center p-3">{{ $cstaff->record }}</td>
                                 <td class="text-lg text-center p-3">
                                     {{ $cstaff->zone===0?'No Definida':

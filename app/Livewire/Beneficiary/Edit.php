@@ -13,8 +13,7 @@ class Edit extends Component
 
     public $id, $record, $name, $age, $relationship, $empCode, $empName, $institution, $expirationDate, $issueDate, $photo, $existingPhoto, $signature, $existingSign, $status;
 
-    // VALIDACIONES
-    protected $rules=[
+    protected $rules = [
         'record'=>'required|string',
         'name'=>'required|string|max:255',
         'age'=>'required|integer',
@@ -29,14 +28,13 @@ class Edit extends Component
         'status'=>'boolean',
     ];
 
-    // CARGA DE TODA LA INFORMACIÓN DEL BENEFICIARIO
     public function mount($id)
     {
-        $beneficiary=Beneficiary::findOrFail($id);
-        $this->id=$beneficiary->id;
-        $this->record=$beneficiary->record;
-        $this->name=$beneficiary->name;
-        $this->age=$beneficiary->age;
+        $beneficiary        = Beneficiary::findOrFail($id);
+        $this->id           = $beneficiary->id;
+        $this->record       = $beneficiary->record;
+        $this->name = $beneficiary->name;
+        $this->age = $beneficiary->age;
         $this->relationship=$beneficiary->relationship;
         $this->empCode=$beneficiary->empCode;
         $this->empName=$beneficiary->empName;
@@ -48,32 +46,46 @@ class Edit extends Component
         $this->status=$beneficiary->status;
     }
 
-    // ACTUALIZACIÓN DE DATOS SI LOS HUBIERE
     public function update()
     {
         $validateData=$this->validate();
         $beneficiary=Beneficiary::findOrFail($this->id);
 
-        // SI LA FOTO O FIRMA EXISTE, LA MANTIENE SINO LA ACTUALIZA
         if($this->photo)
         {
-            if($beneficiary->photo && Storage::disk('public')->exists($beneficiary->photo))
-            { Storage::disk('public')->delete($beneficiary->photo); }
-            $photoPath=$this->photo->store('beneficiaries','public');
+            $photoPath = $this->photo->store('beneficiaries','s3');
+            Storage::disk('s3')->setVisibility($photoPath, 'public');
             $validateData['photo']=$photoPath;
         }
         else
-        { $validateData['photo']=$beneficiary->photo; }
+        {
+            if($this->id)
+            {
+                $validatedData['photo'] = Beneficiary::find($this->id)->photo;
+            }
+            else
+            {
+                $validatedData['photo'] = null;
+            }
+        }
 
         if($this->signature)
         {
-            if($beneficiary->signature && Storage::disk('public')->exists($beneficiary->signature))
-            { Storage::disk('public')->delete($beneficiary->signature); }
-            $signPath=$this->signature->store('beneficiaries','public');
+            $signPath = $this->signature->store('beneficiaries','s3');
+            Storage::disk('s3')->setVisibility($signPath, 'public');
             $validateData['signature']=$signPath;
         }
         else
-        { $validateData['signature']=$beneficiary->signature; }
+        {
+            if ($this->id)
+            {
+                $validatedData['signature'] = Beneficiary::find($this->id)->signature;
+            }
+            else
+            {
+                $validatedData['signature'] = null;
+            }
+        }
 
         $beneficiary->update([
             'record'=>$this->record,

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SFVehicles extends Model
 {
     use HasFactory;
-    
+
     protected $fillable=[
         'record',
         'institution_id',
@@ -21,4 +21,9 @@ class SFVehicles extends Model
         'status',
         'photo',
     ];
+
+    public function institution()
+    {
+        return $this->belongsTo(Institution::class, 'institution_id');
+    }
 }

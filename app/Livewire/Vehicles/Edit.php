@@ -56,13 +56,21 @@ class Edit extends Component
 
         if($this->photo)
         {
-            if($vehicle->photo && Storage::disk('public')->exists($vehicle->photo))
-            { Storage::disk('public')->delete($vehicle->photo); }
-            $photoPath=$this->photo->store('vehicles', 'public');
+            $photoPath=$this->photo->store('vehicles', 's3');
+            Storage::disk('s3')->setVisibility($photoPath, 'public');
             $validatedData['photo']=$photoPath;
         }
         else
-        { $validatedData['photo']=$vehicle->photo; }
+        {
+            if($this->id)
+            {
+                $validatedData['photo'] = SFVehicles::find($this->id)->photo;
+            }
+            else
+            {
+                $validatedData['photo'] = null;
+            }
+        }
 
         $vehicle->update([
             'record'=>$this->record,

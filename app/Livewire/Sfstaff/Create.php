@@ -62,8 +62,6 @@ class Create extends Component
 
         if($this->document)
         {
-            //$docPath=$this->document->store('sfstaff','s3');
-            //Storage::disk('s3')->setVisibility($docPath, 'public');
             $docName = $this->document->getClientOriginalName();
             $docPath = "sfstaff/{$docName}";
             Storage::disk('s3')->putFileAs('sfstaff', $this->document, $docName, 'public');

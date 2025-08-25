@@ -46,13 +46,13 @@ class Edit extends Component
 
         if($this->photo)
         {
-            $photoPath=$this->photo->store('retired','s3');
+            $photoPath = $this->photo->store('retired','s3');
             Storage::disk('s3')->setVisibility($photoPath, 'public');
             $validatedData['photo']=$photoPath;
         }
         else
         {
-            if ($this->id)
+            if($this->id)
             {
                 $validatedData['photo'] = Retired::find($this->id)->photo;
             }
@@ -64,7 +64,7 @@ class Edit extends Component
 
         if($this->signature)
         {
-            $signPath=$this->signature->store('retired','s3');
+            $signPath = $this->signature->store('retired','s3');
             Storage::disk('s3')->setVisibility($signPath, 'public');
             $validatedData['signature']=$signPath;
         }

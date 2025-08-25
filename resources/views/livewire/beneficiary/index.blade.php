@@ -46,7 +46,13 @@
                         <tbody>
                             @foreach($beneficiaries as $beneficiary)
                             <tr class="border-b hover:bg-gray-200 hover:text-[#303845]">
-                                <td class="text-lg p-3"><img class="rounded" src="{{ asset('storage/'.$beneficiary->photo) }}" alt="" width="50"></td>
+                                <td class="text-lg p-3">
+                                    @if($beneficiary->photo)
+                                        <img class="rounded" src="{{ Storage::disk('s3')->url($beneficiary->photo) }}" alt="" width="50">
+                                    @else
+                                        <span class="text-sm text-gray-400">Sin Foto</span>
+                                    @endif
+                                </td>
                                 <td class="text-lg text-center p-3">{{ $beneficiary->record }}</td>
                                 <td class="text-lg p-3">{{ $beneficiary->name }}</td>
                                 <td class="text-lg p-3">{{ $beneficiary->empName }}</td>

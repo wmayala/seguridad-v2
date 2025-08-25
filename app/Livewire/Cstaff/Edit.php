@@ -95,33 +95,58 @@ class Edit extends Component
 
         if($this->photo)
         {
-            if($cstaff->photo && Storage::disk('public')->exists($cstaff->photo))
-            { Storage::disk('public')->delete($cstaff->photo); }
-            $photoPath=$this->photo->store('cstaff', 'public');
+            $photoPath=$this->photo->store('cstaff', 's3');
+            Storage::disk('s3')->setVisibility($photoPath, 'public');
             $validatedData['photo']=$photoPath;
         }
         else
-        { $validatedData['photo']=$cstaff->photo; }
+        {
+            if($this->id)
+            {
+                $validatedData['photo'] = CompaniesStaff::find($this->id)->photo;
+            }
+            else
+            {
+                $validatedData['photo']=null;
+            }
+        }
 
         if($this->signature)
         {
-            if($cstaff->signature && Storage::disk('public')->exists($cstaff->signature))
-            { Storage::disk('public')->delete($cstaff->signature); }
-            $signPath=$this->signature->store('cstaff', 'public');
+            $signPath=$this->signature->store('cstaff','s3');
+            Storage::disk('s3')->setVisibility($signPath, 'public');
             $validatedData['signature']=$signPath;
         }
         else
-        { $validatedData['signature']=$cstaff->signature; }
-
-        if($this->document)
         {
-            if($cstaff->document && Storage::disk('public')->exists($cstaff->document))
-            { Storage::disk('public')->delete($cstaff->document); }
-            $docPath=$this->document->store('cstaff', 'public');
+            if($this->id)
+            {
+                $validatedData['signature'] = CompaniesStaff::find($this->id)->signature;
+            }
+            else
+            {
+                $validatedData['signature'] = null;
+            }
+        }
+
+       if($this->document)
+        {
+            $docName = $this->document->getClientOriginalName();
+            $docPath = "cstaff/{$docName}";
+            Storage::disk('s3')->putFileAs('cstaff', $this->document, $docName, 'public');
             $validatedData['document']=$docPath;
         }
         else
-        { $validatedData['document']=$cstaff->document; }
+        {
+            if($this->id)
+            {
+                $validatedData['document'] = CompaniesStaff::find($this->id)->document;
+            }
+            else
+            {
+                $validatedData['document'] = null;
+            }
+        }
 
         $cstaff->update([
             'record'=>$this->record,
@@ -158,6 +183,26 @@ class Edit extends Component
 
         session()->flash('success','Personal de empresa actualizado exitosamente!');
         return redirect()->route('cstaff.index');
+    }
+
+    public function updatedDocument()
+    {
+        $this->validate([
+            'document'=>'file|mimes:pdf|max:10240',
+        ]);
+
+        $this->existingDoc=$this->document->store('cstaff', 's3');
+    }
+
+    public function eliminarDocumento()
+    {
+        if ($this->existingDoc && Storage::disk('s3')->exists($this->existingDoc))
+        {
+            Storage::disk('s3')->delete($this->existingDoc);
+        }
+
+        $this->existingDoc=null;
+        $this->document=null;
     }
 
     public function render()

@@ -13,7 +13,6 @@ class Create extends Component
 
     public $record, $name, $age, $relationship, $empCode, $empName, $institution, $expirationDate, $issueDate, $photo, $signature, $status;
 
-    // VALIDACIÓN
     protected $rules=[
         'record'=>'required|string',
         'name'=>'required|string|max:255',
@@ -29,32 +28,31 @@ class Create extends Component
         'status'=>'boolean',
     ];
 
-    // FUNCIÓN PARA CREAR UN NUEVO BENEFICIARIO
     public function create()
     {
-        // VERIFICA SI LOS DATOS CUMPLEN LA VALIDACIÓN
-        $validateData=$this->validate();
+        $validatedData=$this->validate();
 
-        // VALIDA SI EXISTE ALGÚN ARCHIVO DE FOTOGRAFÍA Y FIRMA
         if($this->photo)
         {
-            if($this->photo && Storage::disk('public')->exists($this->photo))
-            { Storage::disk('public')->delete($this->photo); }
-            $photoPath=$this->photo->store('beneficiaries','public');
-            $validateData['photo']=$photoPath;
+            $photoPath=$this->photo->store('beneficiaries','s3');
+            Storage::disk('s3')->setVisibility($photoPath, 'public');
+            $validatedData['photo']=$photoPath;
         }
         else
-        { $validateData['photo']=$this->photo; }
+        {
+            $validatedData['photo']=null;
+        }
 
         if($this->signature)
         {
-            if($this->signature && Storage::disk('public')->exists($this->signature))
-            { Storage::disk('public')->delete($this->signature); }
-            $signPath=$this->signature->store('beneficiaries','public');
-            $validateData['signature']=$signPath;
+            $signPath=$this->signature->store('beneficiaries','s3');
+            Storage::disk('s3')->setVisibility($signPath, 'public');
+            $validatedData['signature']=$signPath;
         }
         else
-        { $validateData['signature']=$this->signature; }
+        {
+            $validatedData['signature']=null;
+        }
 
         Beneficiary::create([
             'record'=>$this->record,
@@ -66,8 +64,8 @@ class Create extends Component
             'institution'=>$this->institution,
             'expirationDate'=>$this->expirationDate,
             'issueDate'=>$this->issueDate,
-            'photo'=>$validateData['photo'],
-            'signature'=>$validateData['signature'],
+            'photo'=>$validatedData['photo'],
+            'signature'=>$validatedData['signature'],
             'status'=>$this->status,
         ]);
 

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('accesses', function (Blueprint $table) {
             $table->id();
-            $table->string('sfstaff_id', 10);
+            $table->string('identifier');
+            $table->integer('type');
             $table->dateTime('start_at');
             $table->dateTime('end_at');
             $table->timestamps();

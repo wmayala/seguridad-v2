@@ -1,4 +1,4 @@
-@if(session()->has('success'))
+@if(session('success'))
     <script>
         Swal.fire({
             title: "¡Listo!",
@@ -23,11 +23,11 @@
         });
     </script>
 @elseif(session('delete'))
-<script>
-    Swal.fire({
-        title: "¡Eliminado!",
-        text: "{{ session('delete') }}",
-        icon: "danger"
-    });
-</script>
+    <script>
+        Swal.fire({
+            title: "¡Eliminado!",
+            text: "{{ session('delete') }}",
+            icon: "danger"
+        });
+    </script>
 @endif

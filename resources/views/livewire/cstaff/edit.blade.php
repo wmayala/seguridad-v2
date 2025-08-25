@@ -258,13 +258,11 @@
                                             </div>
                                         </div>
                                     @endif
-                                    @if (!$photo && $existingPhoto)
+                                    @if (!empty($existingPhoto))
                                         <div class="mt-4">
                                             <x-input-label class="uppercase">Foto Actual</x-input-label>
                                             <div class="flex justify-center">
-                                                <img src="{{ asset('storage/' . $existingPhoto) }}"
-                                                    alt="Foto actual" width="140"
-                                                    class="rounded-md shadow-md">
+                                                <img src="{{ Storage::disk('s3')->url($existingPhoto) }}" alt="Foto actual" width="140" class="rounded-md shadow-md">
                                             </div>
                                         </div>
                                     @endif
@@ -275,7 +273,21 @@
                                     <input type="file" wire:model="document" id="document" accept=".pdf"
                                         class="file:mr-4 file:rounded-full file:border-0 file:bg-[#303845] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-[#F5F7FE] hover:file:opacity-85">
                                     <div wire:loading wire:target="document">Cargando documento...</div>
+
+                                    {{-- Mostrar archivo si existe --}}
+                                    @if($existingDoc)
+                                        <div class="flex items-center justify-between bg-gray-100 p-3 rounded shadow mt-2">
+                                            <span class="text-sm truncate">{{ basename($existingDoc) }}</span>
+                                            <div class="flex gap-2">
+                                                <a href="{{ Storage::url($existingDoc) }}" target="_blank"
+                                                    class="text-blue-600 text-sm hover:underline">Descargar</a>
+                                                <button wire:click="eliminarDocumento" type="button"
+                                                    class="text-red-500 text-sm hover:underline">Eliminar</button>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
+
                                 <div class="flex flex-col justify-center">
                                     <x-input-label class="uppercase">Estado del registro</x-input-label>
                                     <div class="flex justify-center gap-5">
@@ -307,10 +319,16 @@
                                                                 <img id="originalImage" src="{{ $photo->temporaryUrl() }}"
                                                                     alt="Nueva imagen"
                                                                     class="object-cover w-full h-full cursor-pointer">
-                                                            @else
-                                                                <img id="originalImage" src="{{ asset('storage/' . $existingPhoto) }}"
+                                                            @elseif($existingPhoto)
+                                                                <img id="originalImage"
+                                                                    src="{{ Storage::disk('s3')->url($existingPhoto) }}"
                                                                     alt="Imagen existente"
-                                                                    class="object-cover w-full h-full cursor-pointer">
+                                                                    class="object-cover w-full h-full cursor-pointer"
+                                                                >
+                                                            @else
+                                                                <span class="text-gray-500 text-sm text-center px-2">
+                                                                    Imagen no disponible
+                                                                </span>
                                                             @endif
                                                         </div>
 
@@ -325,24 +343,24 @@
                                                                         class="object-cover cursor-pointer"
                                                                         width="450">
                                                                 @else
-                                                                    <img id="imageToCrop" src="{{ asset('storage/' . $existingPhoto) }}"
-                                                                        alt="Imagen existente"
-                                                                        class="object-cover cursor-pointer"
-                                                                        width="450">
+                                                                    @if(!empty($existingPhoto))
+                                                                        <img id="imageToCrop" src="{{ Storage::disk('s3')->url($existingPhoto) }}"
+                                                                            alt="Imagen existente"
+                                                                            class="object-cover cursor-pointer"
+                                                                            width="450">
+                                                                    @endif
                                                                 @endif
                                                                 <div class="flex justify-end mt-4 space-x-2">
-                                                                    <button id="cancelButton"
-                                                                        class="px-4 py-2 text-white bg-gray-600 rounded">Cancelar</button>
-                                                                    <button id="cropButton"
-                                                                        class="px-4 py-2 text-white bg-[#111e60]  rounded">Recortar</button>
+                                                                    <button id="cancelButton" class="px-4 py-2 text-white bg-gray-600 rounded">Cancelar</button>
+                                                                    <button id="cropButton" class="px-4 py-2 text-white bg-[#111e60] rounded">Recortar</button>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <!-- FIN CROPPER -->
 
                                                     </div>
-                                                    <div class="mt-6 text-xl text-center">Exp. No.</div>
-                                                    <div class="text-2xl font-bold text-center">{{ $record }}
+                                                    <div class="mt-6 text-xs text-center">No.</div>
+                                                    <div class="text-lg font-bold text-center">{{ $record }}
                                                     </div>
                                                 </div>
                                                 <div class="ml-2">
@@ -379,9 +397,11 @@
                                                     <div class="flex gap-2 w-full text-center border-black">
                                                         <div>Firma: </div>
                                                         <div class="relative flex justify-center w-full h-[68px]  ">
-                                                            <img class="absolute object-cover w-max h-full mt-2"
-                                                                src="{{ asset('storage/' . $existingSign) }}"
-                                                                alt="Firma Portador">
+                                                            @if(!empty($existingSign))
+                                                                <img class="object-cover"
+                                                                    src="{{ Storage::disk('s3')->url($existingSign) }}"
+                                                                    alt="Firma Portador">
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>

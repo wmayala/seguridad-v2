@@ -29,17 +29,18 @@ class Create extends Component
 
     public function create()
     {
-        $validateData=$this->validate();
+        $validatedData=$this->validate();
 
         if($this->photo)
         {
-            if($this->photo && Storage::disk('public')->exists($this->photo))
-            { Storage::disk('public')->delete($this->photo); }
-            $photoPath=$this->photo->store('vehicles','public');
-            $validateData['photo']=$photoPath;
+            $photoPath=$this->photo->store('vehicles','s3');
+            Storage::disk('s3')->setVisibility($photoPath, 'public');
+            $validatedData['photo']=$photoPath;
         }
         else
-        { $validateData['photo']=$this->photo; }
+        {
+            $validatedData['photo']=null;
+        }
 
         SFVehicles::create([
             'record'=>$this->record,
@@ -50,7 +51,7 @@ class Create extends Component
             'plate'=>$this->plate,
             'issueDate'=>$this->issueDate,
             'expirationDate'=>$this->expirationDate,
-            'photo'=>$validateData['photo'],
+            'photo'=>$validatedData['photo'],
             'status'=>$this->status,
         ]);
 

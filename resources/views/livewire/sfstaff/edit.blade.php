@@ -135,9 +135,7 @@
                                         <div class="mt-4">
                                             <x-input-label class="uppercase">Foto Actual</x-input-label>
                                             <div class="flex justify-center">
-                                                <img src="{{ Storage::disk('s3')->url($existingPhoto) }}"
-                                                    alt="Foto actual" width="140"
-                                                    class="rounded-md shadow-md">
+                                                <img src="{{ Storage::disk('s3')->url($existingPhoto) }}" alt="Foto actual" width="140" class="rounded-md shadow-md">
                                             </div>
                                         </div>
                                     @endif
@@ -228,7 +226,7 @@
                                                                 @endif
                                                                 <div class="flex justify-end mt-4 space-x-2">
                                                                     <button id="cancelButton" class="px-4 py-2 text-white bg-gray-600 rounded">Cancelar</button>
-                                                                    <button id="cropButton" class="px-4 py-2 text-white bg-[#111e60]  rounded">Recortar</button>
+                                                                    <button id="cropButton" class="px-4 py-2 text-white bg-[#111e60] rounded">Recortar</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -236,9 +234,10 @@
 
                                                     </div>
                                                     {{-- <div class=" text-xl text-center">Exp. No.</div> --}}
-                                                    <div class="text-lg font-bold text-center">{{ $record }}</div>
-                                                    <div class="flex flex-col ml-2">
-                                                            <div class="text-sm">DUI: {{ $dui }}</div>
+                                                    {{-- <div class="text-lg font-bold text-center">{{ $record }}</div> --}}
+                                                    <div class="flex flex-col mt-2">
+                                                        <div class="text-center text-xs">DUI</div>
+                                                        <div class="text-center text-md font-semibold">{{ $dui }}</div>
                                                     </div>
                                                     <div class="flex flex-col items-center mt-1">
                                                         <div class="text-xs">Vencimiento</div>
@@ -246,7 +245,7 @@
                                                             {{ date('d-m-Y', strtotime($expirationDate)) }}
                                                         </div>
                                                     </div>
-                                                    <div class="flex justify-center w-full h-12   ">
+                                                    <div class="flex justify-center w-full h-12">
                                                         @if(!empty($existingSign))
                                                             <img class="object-cover"
                                                                 src="{{ Storage::disk('s3')->url($existingSign) }}"

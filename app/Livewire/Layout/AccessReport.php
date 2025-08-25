@@ -11,36 +11,54 @@ class AccessReport extends Component
 {
     public $start;
     public $end;
+    public int|string $filterType = '';
 
-    public function getAccess()
+    public function getAccess($paginate = false)
     {
-        $query = Access::with(['staff.institution']);
+        $query = Access::query()
+            ->when($this->start, fn($q) => $q->whereDate('start_at', '>=', $this->start))
+            ->when($this->end, fn($q) => $q->whereDate('start_at', '<=', $this->end))
+            ->when($this->filterType, fn($q) => $q->where('type', $this->filterType))
+            ->orderBy('start_at', 'desc');
 
-        if (!empty($this->start)) {
-            $query->whereDate('start_at', '>=', $this->start);
+        if ($this->filterType == 1)
+        {
+            $query->with(['sf_staff.institution']);
+        }
+        elseif ($this->filterType == 2)
+        {
+            $query->with(['sf_vehicle.institution']);
+        }
+        elseif ($this->filterType == 3)
+        {
+            $query->with(['beneficiary']);
         }
 
-        if (!empty($this->end)) {
-            $query->whereDate('start_at', '<=', $this->end);
-        }
-
-        return $query->orderBy('start_at', 'desc')->get();
+        return $query->get();
     }
 
     public function clearInputs()
     {
         $this->start = null;
         $this->end = null;
+        $this->filterType = '';
     }
 
     public function exportPDF()
     {
-        $accesses = $this->getAccess();
+        $accesses = $this->getAccess(false);
 
-        $pdf = Pdf::loadView('exports.access-report', [
+        if ($accesses->isEmpty())
+        {
+            session()->flash('success', 'No hay registros para generar el reporte.');
+            return;
+        }
+
+        $pdf = Pdf::loadView('exports.accesses-report', [
             'accesses' => $accesses,
             'start' => $this->start,
-            'end' => $this->end
+            'end' => $this->end,
+            'filterType' => $this->filterType,
         ])->setPaper('letter', 'landscape');
 
         return response()->streamDownload(function () use ($pdf)
@@ -51,7 +69,7 @@ class AccessReport extends Component
 
     public function render()
     {
-        $accesses = $this->getAccess();
-        return view('livewire.layout.access-report', compact('accesses'));
+        $accesses = $this->getAccess(true);
+        return view('livewire.layout.access-report', ['accesses' => $accesses]);
     }
 }
