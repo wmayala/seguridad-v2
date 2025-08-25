@@ -46,7 +46,7 @@
                                     @endforeach
                                 </td>
                                 <td class="text-lg text-center p-3">
-                                    <a href="{{ asset('storage').'/'.$sign->document }}" target="_blank">
+                                    <a href="{{ Storage::disk('s3')->url($sign->document) }}" target="_blank">
                                         <div class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-[#303845] hover:text-white focus:ring-4 focus:ring-gray-100 text-sm rounded-full px-3 py-2 mb-2">
                                             <i class="fa fa-file-text-o" aria-hidden="true"></i> Ver documento
                                         </div>

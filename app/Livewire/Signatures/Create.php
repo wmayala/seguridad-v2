@@ -26,17 +26,18 @@ class Create extends Component
 
     public function create()
     {
-        $validateData=$this->validate();
+        $validatedData=$this->validate();
 
         if($this->document)
         {
-            if($this->document && Storage::disk('public')->exists($this->document))
-            { Storage::disk('public')->delete($this->document); }
-            $docPath=$this->document->store('signatures','public');
-            $validateData['document']=$docPath;
+            $docPath=$this->document->store('signatures','s3');
+            Storage::disk('s3')->setVisibility($docPath, 'public');
+            $validatedData['document']=$docPath;
         }
         else
-        { $validateData['document']=$this->document; }
+        {
+            $validatedData['document'] = null;
+        }
 
         AuthSignatures::create([
             'record'=>$this->record,
@@ -44,7 +45,7 @@ class Create extends Component
             'description'=>$this->description,
             'issueDate'=>$this->issueDate,
             'expirationDate'=>$this->expirationDate,
-            'document'=>$validateData['document'],
+            'document'=>$validatedData['document'],
             'status'=>$this->status,
         ]);
 

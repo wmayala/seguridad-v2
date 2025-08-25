@@ -45,13 +45,21 @@ class Edit extends Component
 
         if($this->document)
         {
-            if($signature->document && Storage::disk('public')->exists($signature->document))
-            { Storage::disk('public')->delete($signature->document); }
-            $path=$this->document->store('signatures','public');
+            $path=$this->document->store('signatures','s3');
+            Storage::disk('s3')->setVisibility($path, 'public');
             $validatedData['document']=$path;
         }
         else
-        { $validatedData['document']=$signature->document; }
+        {
+            if($this->id)
+            {
+                $validatedData['document'] = AuthSignatures::find($this->id)->document;
+            }
+            else
+            {
+                $validatedData['document']=null;
+            }
+        }
 
         $signature->update([
             'record'=>$this->record,
@@ -65,6 +73,26 @@ class Edit extends Component
 
         session()->flash('success','Documento actualizado!');
         return redirect()->route('signatures.index');
+    }
+
+    public function updatedDocument()
+    {
+        $this->validate([
+            'document'=>'file|mimes:pdf|max:10240',
+        ]);
+
+        $this->existingDoc=$this->document->store('signatures', 's3');
+    }
+
+    public function eliminarDocumento()
+    {
+        if ($this->existingDoc && Storage::disk('s3')->exists($this->existingDoc))
+        {
+            Storage::disk('s3')->delete($this->existingDoc);
+        }
+
+        $this->existingDoc=null;
+        $this->document=null;
     }
 
     public function render()

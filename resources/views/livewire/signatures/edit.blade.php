@@ -41,6 +41,19 @@
                                         <x-input-label class="uppercase">Documento</x-input-label>
                                         <input type="file" wire:model="document" id="document" accept=".pdf" class="file:mr-4 file:rounded-full file:border-0 file:bg-[#303845] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-[#F5F7FE] hover:file:opacity-85">
                                         <div wire:loading wire:target="document">Cargando documento...</div>
+
+                                        {{-- Mostrar archivo si existe --}}
+                                        @if ($existingDoc)
+                                            <div class="flex items-center justify-between bg-gray-100 p-3 rounded shadow mt-2">
+                                                <span class="text-sm truncate">{{ basename($existingDoc) }}</span>
+                                                <div class="flex gap-2">
+                                                    <a href="{{ Storage::url($existingDoc) }}" target="_blank"
+                                                        class="text-blue-600 text-sm hover:underline">Descargar</a>
+                                                    <button wire:click="eliminarDocumento" type="button"
+                                                        class="text-red-500 text-sm hover:underline">Eliminar</button>
+                                                </div>
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="flex flex-col justify-center">
                                         <x-input-label class="uppercase">Estado del registro</x-input-label>
